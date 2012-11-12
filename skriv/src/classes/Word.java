@@ -1,0 +1,101 @@
+package classes;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Word {
+
+    /* Keep track of the leftmost and rightmost points
+     * This is used to calculate distance so it can start a new Word */
+    private Point rightMost, leftMost;
+    /* This is the list of Points that actually are the Word
+     * Need to be able to iterate through them for drawing the Word */
+    private List<Point> points;
+    /* The actual Color of the word */
+    private Color c;
+    /* Boolean flag to determine if the Word is highlighted */
+    private Boolean isHighlighted;
+    /* Color of the highlight on the Word
+       This value can be filled even if the highglighting flag is false */
+    private Color highlightedColor;
+    /* Bounding box that surrounds the Word
+     * Used for detecting selection, highlighting, and deleting
+     * We cheat by actually filling the rectangle with white when we delete */
+     private Rectangle boundingBox;
+     /* Location of the Word on the Document */
+     private Point location;
+
+     
+     /*
+      * Constructs a word at the given location on the Document and adds an initial point in the List of Points
+      */
+     // I might get rid of the initial point garbage
+     public Word(Point location, Point initialPoint){
+         this.location = location;
+         isHighlighted = false;
+         highlightedColor = Color.YELLOW;
+         c = Color.BLACK;
+         rightMost = initialPoint;
+         leftMost = initialPoint;
+         points = new ArrayList<Point>();
+         this.add(initialPoint);
+     }
+     
+     /*
+      * Constructs a word at the given (x,y) coordinate on the Document and adds an initial point in the List of Points
+      */
+     public Word(int x, int y, Point initialPoint){
+         this(new Point(x, y), initialPoint);
+     }
+     
+     /*
+      * Adds a poing to the List of Points
+      */
+     public void add(Point p){
+         leftMost = leftMost.x > p.x ? p : leftMost;
+         rightMost = rightMost.x < p.x ? p : rightMost;
+         points.add(p);
+     }
+     
+     /*
+      * Sets the location of the word to the specified new location
+      */
+     public void setLocation(Point location){
+         this.location = location;
+     }
+     
+     /*
+      * Returns the location of the Word on the Document
+      */
+     public Point getLocation(){
+         return this.location;
+     }
+     
+     /*
+      * Draws the word with the specified Graphics object from the List of Points
+      * 
+      */
+     public void drawWord(Graphics g){
+         // Need an intelligent way to know when the 'pen' was lifted
+
+     }
+
+     /*
+      * Set the Color of the Word
+      */
+     public void setColor(Color c){
+         this.c = c;
+     }
+
+     /*
+      * Creates a bounding Rectangle around the word
+      */
+     public void createBoundingBox(){
+         
+     }
+}
