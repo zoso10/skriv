@@ -27,9 +27,23 @@ public class Word {
      * Used for detecting selection, highlighting, and deleting
      * We cheat by actually filling the rectangle with white when we delete */
      private Rectangle boundingBox;
-     /* Location of the Word on the Document */
-     private Point location;
+     
+     
+     // STILL NEEDS WORK
+     // Keeping track of location may end up being a crutch and causing a lot of recalculations 
+     private Point location; 
+     // Possibly keeping track of the row will be much easier
+     private int row;
+     // For testing
+     private boolean showBoundingBox = true;
+     
 
+     /*
+      * I actually hate that you have to pass a location of the Word into the Constructor
+      */
+     public Word(Point initialPoint){
+         this(new Point(0,0), initialPoint);
+     }
      
      /*
       * Constructs a word at the given location on the Document and adds an initial point in the List of Points
@@ -63,16 +77,30 @@ public class Word {
      }
      
      /*
+      * 
+      */
+     public int right(){
+         return rightMost.x;
+     }
+     
+     /*
+      * 
+      */
+     public int left(){
+         return leftMost.x;
+     }
+     
+     /*
       * Sets the location of the word to the specified new location
       */
-     public void setLocation(Point location){
+     private void setLocation(Point location){
          this.location = location;
      }
      
      /*
       * Returns the location of the Word on the Document
       */
-     public Point getLocation(){
+     private Point getLocation(){
          return this.location;
      }
      
@@ -82,7 +110,13 @@ public class Word {
       */
      public void drawWord(Graphics g){
          // Need an intelligent way to know when the 'pen' was lifted
-
+         // Let's try when it gets the Point (-1,-1) we know the pen was lifted
+         Point mask = new Point(-1,-1);
+         for(int i = 0; i < points.size()-2; ++i){
+             if(points.get(i) == mask)
+                 ++i;
+             g.drawLine(points.get(i).x, points.get(i).y, points.get(i+1).x, points.get(i+1).y);
+         }
      }
 
      /*
