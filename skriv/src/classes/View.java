@@ -12,8 +12,7 @@ public class View extends javax.swing.JFrame {
         CloseButton.setUI(new VerticalButtonUI(270));
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+                             
     private void initComponents() {
 
         margin = new javax.swing.JPanel();
@@ -47,7 +46,7 @@ public class View extends javax.swing.JFrame {
         ArrowButton.setText("^");
         ArrowButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ArrowButtonActionPerformed(evt);
+                
             }
         });
         margin.add(ArrowButton);
@@ -59,7 +58,7 @@ public class View extends javax.swing.JFrame {
         OpenButton.setText("Open");
         OpenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OpenButtonActionPerformed(evt);
+                
             }
         });
         margin.add(OpenButton);
@@ -67,7 +66,7 @@ public class View extends javax.swing.JFrame {
         SaveButton.setText("Save");
         SaveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveButtonActionPerformed(evt);
+                
             }
         });
         margin.add(SaveButton);
@@ -75,7 +74,7 @@ public class View extends javax.swing.JFrame {
         CloseButton.setText("Close");
         CloseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CloseButtonActionPerformed(evt);
+                
             }
         });
         margin.add(CloseButton);
@@ -110,7 +109,7 @@ public class View extends javax.swing.JFrame {
         PenButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         PenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PenButtonActionPerformed(evt);
+                
             }
         });
         toolBar.add(PenButton);
@@ -121,7 +120,7 @@ public class View extends javax.swing.JFrame {
         SelectButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         SelectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelectButtonActionPerformed(evt);
+                
             }
         });
         toolBar.add(SelectButton);
@@ -132,7 +131,7 @@ public class View extends javax.swing.JFrame {
         InsertButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         InsertButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InsertButtonActionPerformed(evt);
+                
             }
         });
         toolBar.add(InsertButton);
@@ -140,7 +139,7 @@ public class View extends javax.swing.JFrame {
         DeleteButton.setText("Delete");
         DeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteButtonActionPerformed(evt);
+                
             }
         });
         toolBar.add(DeleteButton);
@@ -159,43 +158,8 @@ public class View extends javax.swing.JFrame {
         writingArea.setBounds(0, 768, 768, 256);
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>                                                                   
 
-    private void ArrowButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        System.out.println("Arrow Button Pressed!");
-    }                                           
-
-    private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        System.out.println("Open Button Pressed!");
-    }                                          
-
-    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        System.out.println("Save Button Pressed!");
-    }                                          
-
-    private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        System.out.println("Close Button Pressed!");
-    }                                           
-
-    private void PenButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        System.out.println("Pen Selected!");
-    }                                         
-
-    private void SelectButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        System.out.println("Select Button Selected!");
-    }                                            
-
-    private void InsertButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        System.out.println("Insert Button Selected!");
-    }                                            
-
-    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        System.out.println("Delete Button Selected!");
-    }                                            
-
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton ArrowButton;
