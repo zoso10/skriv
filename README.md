@@ -1,6 +1,7 @@
 This is a project to create an advanced note-taking application.
 
 Team Leader: Tyler Ewing
+
 Team Members:
     David Ecker
     Jacob Shaffer
