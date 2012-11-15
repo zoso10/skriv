@@ -44,11 +44,6 @@ public class View extends javax.swing.JFrame {
         margin.setLayout(new javax.swing.BoxLayout(margin, javax.swing.BoxLayout.Y_AXIS));
 
         ArrowButton.setText("^");
-        ArrowButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
         margin.add(ArrowButton);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -56,27 +51,12 @@ public class View extends javax.swing.JFrame {
         margin.add(jLabel1);
 
         OpenButton.setText("Open");
-        OpenButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
         margin.add(OpenButton);
 
         SaveButton.setText("Save");
-        SaveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
         margin.add(SaveButton);
 
         CloseButton.setText("Close");
-        CloseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
         margin.add(CloseButton);
 
         getContentPane().add(margin);
@@ -107,41 +87,21 @@ public class View extends javax.swing.JFrame {
         PenButton.setFocusable(false);
         PenButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         PenButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        PenButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
         toolBar.add(PenButton);
 
         SelectButton.setText("Select");
         SelectButton.setFocusable(false);
         SelectButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         SelectButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        SelectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
         toolBar.add(SelectButton);
 
         InsertButton.setText("Insert");
         InsertButton.setFocusable(false);
         InsertButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         InsertButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        InsertButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
         toolBar.add(InsertButton);
 
         DeleteButton.setText("Delete");
-        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-            }
-        });
         toolBar.add(DeleteButton);
 
         getContentPane().add(toolBar);
@@ -158,10 +118,34 @@ public class View extends javax.swing.JFrame {
         writingArea.setBounds(0, 768, 768, 256);
 
         pack();
-    }// </editor-fold>                                                                   
+    }                                                                   
 
-
-    // Variables declaration - do not modify                     
+    public void addButtonListeners(java.awt.event.ActionListener al){
+        // Wish these buttons were in an array, it would be less typing :(
+        // This is gonna need to be changed when buttons are added or removed
+        ArrowButton.addActionListener(al);
+        ArrowButton.setActionCommand("arrow");
+        CloseButton.addActionListener(al);
+        CloseButton.setActionCommand("close");
+        DeleteButton.addActionListener(al);
+        DeleteButton.setActionCommand("delete");
+        InsertButton.addActionListener(al);
+        InsertButton.setActionCommand("insert");
+        OpenButton.addActionListener(al);
+        OpenButton.setActionCommand("open");
+        PenButton.addActionListener(al);
+        PenButton.setActionCommand("pen");
+        SaveButton.addActionListener(al);
+        SaveButton.setActionCommand("save");
+        SelectButton.addActionListener(al);
+        SelectButton.setActionCommand("select");
+    }
+    
+    public void addMouseListeners(java.awt.event.MouseListener ml){
+        
+    }
+    
+                    
     private javax.swing.JButton ArrowButton;
     private javax.swing.JButton CloseButton;
     private javax.swing.JButton DeleteButton;
@@ -176,6 +160,5 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel miniMap;
     private javax.swing.JPanel page;
     private javax.swing.JPanel toolBar;
-    private javax.swing.JPanel writingArea;
-    // End of variables declaration                   
+    private javax.swing.JPanel writingArea;                 
 }
