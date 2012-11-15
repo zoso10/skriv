@@ -13,6 +13,5 @@ public class View extends JFrame {
     private void init() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-
     }
 }
