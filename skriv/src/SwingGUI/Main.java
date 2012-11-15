@@ -1,10 +1,6 @@
-
-import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
-
+package SwingGUI;
 
 public class Main extends javax.swing.JFrame {
-
 
     public Main() {
         initComponents();
@@ -13,7 +9,6 @@ public class Main extends javax.swing.JFrame {
         SaveButton.setUI(new VerticalButtonUI(270));
         CloseButton.setUI(new VerticalButtonUI(270));
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -197,17 +192,17 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new Main().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ArrowButton;
     private javax.swing.JButton CloseButton;
@@ -225,5 +220,4 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel toolBar;
     private javax.swing.JPanel writingArea;
     // End of variables declaration//GEN-END:variables
-
 }
