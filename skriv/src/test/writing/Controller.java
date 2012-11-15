@@ -4,9 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionListener;
 
+public class Controller extends MouseAdapter implements MouseMotionListener {
 
-public class Controller extends MouseAdapter implements MouseMotionListener{
-    
     //Just gonna see what I can actually get something working
     /*
      * A minor bug when you draw on the right side then draw on the left side
@@ -14,9 +13,8 @@ public class Controller extends MouseAdapter implements MouseMotionListener{
      */
     private Model model;
     private View view;
-    
-    
-    public Controller(){
+
+    public Controller() {
         model = new Model();
         view = new View();
         view.addMouseDetection(this, this);
@@ -24,11 +22,11 @@ public class Controller extends MouseAdapter implements MouseMotionListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(e.isShiftDown())
+        if (e.isShiftDown()) {
             System.out.println("Strikethrough attempted.");
-        else if(e.isAltDown())
+        } else if (e.isAltDown()) {
             System.out.println("Spread attempted.");
-        else{
+        } else {
             // Add point to "live" Word in Model
             model.addPoint(e.getPoint());
             // update View
@@ -39,22 +37,21 @@ public class Controller extends MouseAdapter implements MouseMotionListener{
     @Override
     public void mouseReleased(MouseEvent e) {
         // Add point to "live" Word
-        model.addPoint(new java.awt.Point(-1,-1));
+        model.addPoint(new java.awt.Point(-1, -1));
     }
 
     @Override
-    public void mouseDragged(MouseEvent e){
+    public void mouseDragged(MouseEvent e) {
         //model.addPoint(e.getPoint());
         model.addDraggedPoint(e.getPoint());
         view.updateUI(model.getViewData());
     }
-    
-    
-    private static void launch(){
+
+    private static void launch() {
         new Controller();
     }
-    
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         launch();
     }
 }

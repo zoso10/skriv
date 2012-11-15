@@ -8,5 +8,4 @@ package test.curve.smoothing;
  * If I start very general I think it will help
  */
 public interface Vectorizer {
-    
 }

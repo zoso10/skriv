@@ -9,5 +9,4 @@ package test.writing.box;
  * @author Tyler_Ewing
  */
 public class Controller {
-    
 }
