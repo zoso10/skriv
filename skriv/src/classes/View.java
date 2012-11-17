@@ -1,6 +1,8 @@
 package classes;
 
 import SwingGUI.*;
+import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class View extends javax.swing.JFrame {
 
@@ -143,6 +145,14 @@ public class View extends javax.swing.JFrame {
     
     public void addMouseListeners(java.awt.event.MouseListener ml){
         
+    }
+    
+    public void updateUI(ArrayList<Word> words){
+        Graphics g = page.getGraphics();
+        // Draw all the words!!
+        for(Word w : words){
+            w.drawWord(g);
+        }
     }
     
                     

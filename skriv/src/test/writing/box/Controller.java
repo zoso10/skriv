@@ -1,21 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package test.writing.box;
 
-import javax.swing.SwingUtilities;
 import classes.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.SwingUtilities;
 
-/**
- *
- * @author Tyler_Ewing
- */
+
 public class Controller implements ActionListener, MouseListener, MouseMotionListener{
     
     private Model model;
@@ -42,6 +35,16 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
     @Override
     public void mousePressed(MouseEvent e) {
         // Add Point and see if it's a new Word
+        if(e.isShiftDown()){
+            System.out.println("Strikethrough attempted.");
+        } else if(e.isAltDown()){
+            System.out.println("Spread attempted");
+        } else{
+            // Add poin to "live" Word in Model
+            model.addPoint(e.getPoint());
+            // update View
+            view.updateUI(model.getViewData());
+        }
     }
 
     @Override
