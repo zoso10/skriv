@@ -30,7 +30,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
     // IMplementation for Button Listeners
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(String.format("%s button pressed!!", e.getActionCommand()));
+        System.out.println(String.format("%s button pressed", e.getActionCommand()));
     }
     
     // Implementation for Mouse Listeners
