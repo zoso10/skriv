@@ -143,8 +143,9 @@ public class View extends javax.swing.JFrame {
         SelectButton.setActionCommand("select");
     }
     
-    public void addMouseListeners(java.awt.event.MouseListener ml){
-        
+    public void addMouseListeners(java.awt.event.MouseListener ml, java.awt.event.MouseMotionListener mml){
+        writingArea.addMouseListener(ml);
+        writingArea.addMouseMotionListener(mml);
     }
     
     public void updateUI(ArrayList<Word> words){

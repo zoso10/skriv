@@ -18,9 +18,9 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         model = new Model();
         view = new View();
         view.setVisible(true);
-    }
+    }   
     
-    // IMplementation for Button Listeners
+    // Implementation for Button Listeners
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println(String.format("%s button pressed", e.getActionCommand()));
@@ -29,7 +29,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
     // Implementation for Mouse Listeners
     @Override
     public void mouseClicked(MouseEvent e) {
-        // Probably won't have functionality
+        // NO need for functionality
     }
 
     @Override
@@ -49,32 +49,39 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // Add Point to denote the pen has been lifted
+        // Add "end" Point to denote the pen has been lifted
+        model.addPoint(new java.awt.Point(-1,-1));
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // Probably won't have functionality
+        // NO need for functionality
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // Probably won't have functionality
+        // NO need for functionality
     }
 
     // Implementation for Mouse Motion Listener
     @Override
     public void mouseDragged(MouseEvent e) {
-        
+        // Add dragged point
+        // Dragged point doesn't check for type of input
+        model.addDraggedPoint(e.getPoint());
+        // Update  View
+        view.updateUI(model.getViewData());
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        
+        // NO need for functionality
     }
     
-    private void addButtonListeners(){
+    // Add button and mouse listeners to the View
+    private void addListeners(){
         view.addButtonListeners(this);
+        view.addMouseListeners(this, this);
     }
     
     
@@ -84,7 +91,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
             @Override
             public void run(){
                 Controller c = new Controller();
-                c.addButtonListeners();
+                c.addListeners();
             }
         });
     }
