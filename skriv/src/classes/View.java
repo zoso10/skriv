@@ -109,12 +109,17 @@ public class View extends javax.swing.JFrame {
         getContentPane().add(toolBar);
         toolBar.setBounds(0, 718, 768, 51);
 
+        // Just debugging some stuff
+        jScrollPane1.setBackground(java.awt.Color.ORANGE);
+        
+        
         writingArea.setBackground(new java.awt.Color(204, 204, 255));
         writingArea.setMaximumSize(new java.awt.Dimension(768, 256));
         writingArea.setMinimumSize(new java.awt.Dimension(768, 256));
         writingArea.setPreferredSize(new java.awt.Dimension(768, 256));
-        writingArea.setLayout(new java.awt.BorderLayout());
-        writingArea.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        // I don't think the writing area needs to have a scrollPane
+        //writingArea.setLayout(new java.awt.BorderLayout());
+        //writingArea.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(writingArea);
         writingArea.setBounds(0, 768, 768, 256);
@@ -149,10 +154,15 @@ public class View extends javax.swing.JFrame {
     }
     
     public void updateUI(ArrayList<Word> words){
+        // This is gonna look strange since we need to draw in two different spots
         Graphics g = page.getGraphics();
         // Draw all the words!!
         for(Word w : words){
             w.drawWord(g);
+        }
+        Graphics g2 = writingArea.getGraphics();
+        for(Word w : words){
+            w.drawWord(g2);
         }
     }
     

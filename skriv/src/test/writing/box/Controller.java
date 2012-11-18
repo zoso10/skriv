@@ -69,8 +69,9 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         // Add dragged point
         // Dragged point doesn't check for type of input
         model.addDraggedPoint(e.getPoint());
-        // Update  View
+        // Update View
         view.updateUI(model.getViewData());
+        System.out.println(e.getPoint().x + " " + e.getPoint().y);
     }
 
     @Override
