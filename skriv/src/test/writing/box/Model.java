@@ -26,6 +26,7 @@ public class Model {
             Word temp = liveWord;
             words.add(temp);
             liveWord = new Word(p);
+            System.out.println("NEW WORD SON!!");
         } else{
             liveWord.add(p);
         }
