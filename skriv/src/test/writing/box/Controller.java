@@ -71,7 +71,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         model.addDraggedPoint(e.getPoint());
         // Update View
         view.updateUI(model.getViewData());
-        System.out.println(e.getPoint().x + " " + e.getPoint().y);
+        //System.out.println(e.getPoint().x + ", " + e.getPoint().y);
     }
 
     @Override

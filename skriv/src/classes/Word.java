@@ -33,6 +33,7 @@ public class Word {
     private int row;
     // For testing
     private boolean showBoundingBox = true;
+    private Point top, bottom;
 
 
     /*
@@ -53,6 +54,11 @@ public class Word {
         c = Color.BLACK;
         rightMost = initialPoint;
         leftMost = initialPoint;
+        
+        //For testing
+        top = initialPoint;
+        bottom = initialPoint;
+        
         points = new ArrayList<Point>();
         this.add(initialPoint);
     }
@@ -71,6 +77,10 @@ public class Word {
         leftMost = leftMost.x > p.x ? p : leftMost;
         rightMost = rightMost.x < p.x ? p : rightMost;
         points.add(p);
+        
+        //For testing
+        top = top.y > p.y ? p : top;
+        bottom = bottom.y < p.y ? p : bottom;
     }
 
     /*
@@ -109,12 +119,15 @@ public class Word {
         // Need an intelligent way to know when the 'pen' was lifted
         // Let's try when it gets the Point (-1,-1) we know the pen was lifted
         Point mask = new Point(-1, -1);
-        for (int i = 0; i < points.size() - 2; ++i) {
-            if (points.get(i) == mask) {
+        for (int i = 0; i < points.size() - 2; ++i) { 
+           if(points.get(i).equals(mask)){
+                System.out.println("Pen has been lifted");
                 ++i;
             }
             g.drawLine(points.get(i).x, points.get(i).y, points.get(i + 1).x, points.get(i + 1).y);
         }
+        // Draw the bounding box
+        g.drawRect(leftMost.x, top.y, rightMost.x-leftMost.x, bottom.y-top.y);
     }
 
     /*
