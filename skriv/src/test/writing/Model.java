@@ -19,18 +19,21 @@ public class Model {
 
     public void addPoint(Point p) {
         if (liveWord == null) {
-            liveWord = new Word(p);
+            // Edited quickly so it'll compile without errors
+            liveWord = new Word(new classes.SmartPoint(p, Boolean.FALSE));
         } else if (Math.abs(liveWord.right() - p.x) > spaceFactor) {
             Word temp = liveWord;
             words.add(temp);
-            liveWord = new Word(p);
+            // Edited quickly so it'll compile without errors
+            liveWord = new Word(new classes.SmartPoint(p, Boolean.FALSE));
         } else {
-            liveWord.add(p);
+            liveWord.add(new classes.SmartPoint(p, Boolean.FALSE));
         }
     }
 
     public void addDraggedPoint(Point p) {
-        liveWord.add(p);
+        // Edited quickly so it'll compile without errors
+        liveWord.add(new classes.SmartPoint(p, Boolean.FALSE));
     }
 
     public void addWord(Word w) {

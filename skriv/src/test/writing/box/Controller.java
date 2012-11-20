@@ -1,6 +1,7 @@
 package test.writing.box;
 
 import classes.View;
+import classes.SmartPoint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -41,7 +42,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
             System.out.println("Spread attempted");
         } else{
             // Add poin to "live" Word in Model
-            model.addPoint(e.getPoint());
+            model.addPoint(new SmartPoint(e.getPoint(), Boolean.FALSE));
             // update View
             view.updateUI(model.getViewData());
         }
@@ -50,7 +51,9 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
     @Override
     public void mouseReleased(MouseEvent e) {
         // Add "end" Point to denote the pen has been lifted
-        model.addPoint(new java.awt.Point(-1,-1));
+        model.addPointDirect(new SmartPoint(e.getPoint(), Boolean.TRUE));
+        // Update View
+        view.updateUI(model.getViewData());
     }
 
     @Override
@@ -68,10 +71,9 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
     public void mouseDragged(MouseEvent e) {
         // Add dragged point
         // Dragged point doesn't check for type of input
-        model.addDraggedPoint(e.getPoint());
+        model.addPointDirect(new SmartPoint(e.getPoint(), Boolean.FALSE));
         // Update View
         view.updateUI(model.getViewData());
-        //System.out.println(e.getPoint().x + ", " + e.getPoint().y);
     }
 
     @Override

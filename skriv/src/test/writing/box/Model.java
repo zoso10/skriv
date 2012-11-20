@@ -1,7 +1,7 @@
 package test.writing.box;
 
 import classes.Word;
-import java.awt.Point;
+import classes.SmartPoint;
 import java.util.ArrayList;
 
 
@@ -13,26 +13,27 @@ public class Model {
     private Word liveWord = null;
     private ArrayList<Word> words;
     // Scale Factor is super important
-    private final static int spaceFactor = 50;
+    private final static int spaceFactor = 100;
     
     public Model(){
         words = new ArrayList<Word>();
     }
     
-    public void addPoint(Point p){
+    public void addPoint(SmartPoint p){
         if(liveWord == null){
              liveWord = new Word(p);
+             System.out.println("new Word");
         } else if(Math.abs(liveWord.right() - p.x) > spaceFactor){
             Word temp = liveWord;
             words.add(temp);
             liveWord = new Word(p);
-            System.out.println("NEW WORD SON!!");
+            System.out.println("new Word");
         } else{
             liveWord.add(p);
         }
     }
     
-    public void addDraggedPoint(Point p){
+    public void addPointDirect(SmartPoint p){
         liveWord.add(p);
     }
     
