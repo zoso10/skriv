@@ -23,7 +23,7 @@ public class Model {
         if(liveWord == null){
              liveWord = new Word(p);
              System.out.println("new Word");
-        } else if(Math.abs(liveWord.right() - p.x) > spaceFactor && !liveWord.contains(p)){
+        } else if(Math.abs(liveWord.right() - p.x) > spaceFactor & !liveWord.contains(p)){
             Word temp = liveWord;
             words.add(temp);
             liveWord = new Word(p);

@@ -41,7 +41,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         } else if(e.isAltDown()){
             System.out.println("Spread attempted");
         } else{
-            // Add poin to "live" Word in Model
+            // Add point to "live" Word in Model
             model.addPoint(new SmartPoint(e.getPoint(), Boolean.FALSE));
             // update View
             view.updateUI(model.getViewData());

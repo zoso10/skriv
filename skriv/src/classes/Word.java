@@ -2,7 +2,6 @@ package classes;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,8 +108,12 @@ public class Word {
         boundingBox = new Rectangle(left, top, right-left, bottom-top);
     }
     
-    public Boolean contains(SmartPoint p){
-        return boundingBox.contains(p.getPoint());
+    public boolean contains(SmartPoint p){
+        if(boundingBox == null){
+            return false;
+        } else{
+            return boundingBox.contains(p.getPoint());
+        }
 //        if(p.x < right && p.x > left && p.y < bottom && p.y > top){
 //            return Boolean.TRUE;
 //        }
