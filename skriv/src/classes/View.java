@@ -161,6 +161,8 @@ public class View extends javax.swing.JFrame {
             w.drawWord(g);
         }
         Graphics g2 = writingArea.getGraphics();
+        // For testing
+        //g2.clearRect(0, 0, writingArea.getWidth(), writingArea.getHeight());
         for(Word w : words){
             w.drawWord(g2);
         }

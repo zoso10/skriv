@@ -25,9 +25,6 @@ public class Word {
 
     // Possibly keeping track of the row will be much easier
     private int row;
-    // For testing
-    private boolean showBoundingBox = true;
-    //private Point top, bottom;
     
     /*
      * I think we can get by with keeping track of left, right, top, bottom
@@ -35,8 +32,6 @@ public class Word {
      */
     private int top, bottom, left, right;
     
-
-
 
     /*
      * Constructs a Word with the given initial Point
@@ -48,7 +43,8 @@ public class Word {
         top = initialPoint.y;
         bottom = initialPoint.y;
         left = initialPoint.x;
-        right = initialPoint.x; 
+        right = initialPoint.x;
+        boundingBox = new Rectangle(initialPoint.getPoint());
         
         points = new ArrayList<SmartPoint>();
         this.add(initialPoint);
@@ -62,6 +58,7 @@ public class Word {
         right = right < p.x ? p.x : right;
         top = top > p.y ? p.y : top;
         bottom = bottom < p.y ? p.y : bottom;
+        createBoundingBox();
         
         points.add(p);
     }
@@ -84,13 +81,11 @@ public class Word {
      * Draws the word with the specified Graphics object from the List of Points
      */
     public void drawWord(Graphics g) {   
-        for (int i = 0; i < points.size() - 2; ++i) { 
-           if(points.get(i).isLast()){
-                //System.out.println("Pen has been lifted");
-                ++i;
-            }
+        for (int i = 0; i < points.size() - 2; ++i) {
+            if(points.get(i).isLast()) ++i;
             g.drawLine(points.get(i).x, points.get(i).y, points.get(i + 1).x, points.get(i + 1).y);
         }
+        // Representation of the Bounding Box
         g.drawRect(left, top, right-left, bottom-top);
     }
 
@@ -102,23 +97,15 @@ public class Word {
     }
 
     /*
-     * Creates a bounding Rectangle around the word
+     * Creates a bounding Rectangle around the Word
      */
-    public void createBoundingBox() {
+    private void createBoundingBox() {
+        // MAKE BETTER LATER
+        // There is probably a better way of adding bounds to the Rectangle
         boundingBox = new Rectangle(left, top, right-left, bottom-top);
     }
     
     public boolean contains(SmartPoint p){
-        if(boundingBox == null){
-            return false;
-        } else{
-            return boundingBox.contains(p.getPoint());
-        }
-//        if(p.x < right && p.x > left && p.y < bottom && p.y > top){
-//            return Boolean.TRUE;
-//        }
-//        else{
-//            return Boolean.FALSE;
-//        }
+        return boundingBox.contains(p.getPoint());
     }
 }
