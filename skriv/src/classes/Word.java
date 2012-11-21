@@ -46,8 +46,6 @@ public class Word {
         isHighlighted = false;
         highlightedColor = Color.YELLOW;
         c = Color.BLACK;
-        
-        // Slowly transitioning to this hopefully
         top = initialPoint.y;
         bottom = initialPoint.y;
         left = initialPoint.x;
@@ -61,28 +59,23 @@ public class Word {
      * Adds a poing to the List of Points
      */
     public void add(SmartPoint p) {      
-        // Slowyly transitioning to this hopefully
         left = left > p.x ? p.x : left;
         right = right < p.x ? p.x : right;
         top = top > p.y ? p.y : top;
         bottom = bottom < p.y ? p.y : bottom;
         
         points.add(p);
-        
-        //For testing
-        //top = top.y > p.y ? p : top;
-        //bottom = bottom.y < p.y ? p : bottom;
     }
 
     /*
-     *
+     * Returns the x-coordinate of the right-most Point
      */
     public int right() {
         return right;
     }
 
     /*
-     *
+     * Return the y-coordinate of the left-most Point
      */
     public int left() {
         return left;
@@ -90,18 +83,16 @@ public class Word {
 
     /*
      * Draws the word with the specified Graphics object from the List of Points
-     *
      */
-    public void drawWord(Graphics g) {
-        // Need an intelligent way to know when the pen was 'lifted'
-        
+    public void drawWord(Graphics g) {   
         for (int i = 0; i < points.size() - 2; ++i) { 
            if(points.get(i).isLast()){
-                System.out.println("Pen has been lifted");
+                //System.out.println("Pen has been lifted");
                 ++i;
             }
             g.drawLine(points.get(i).x, points.get(i).y, points.get(i + 1).x, points.get(i + 1).y);
         }
+        g.drawRect(left, top, right-left, bottom-top);
     }
 
     /*
@@ -115,5 +106,16 @@ public class Word {
      * Creates a bounding Rectangle around the word
      */
     public void createBoundingBox() {
+        boundingBox = new Rectangle(left, top, right-left, bottom-top);
+    }
+    
+    public Boolean contains(SmartPoint p){
+        return boundingBox.contains(p.getPoint());
+//        if(p.x < right && p.x > left && p.y < bottom && p.y > top){
+//            return Boolean.TRUE;
+//        }
+//        else{
+//            return Boolean.FALSE;
+//        }
     }
 }
