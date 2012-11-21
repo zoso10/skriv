@@ -23,7 +23,9 @@ public class Model {
         if(liveWord == null){
              liveWord = new Word(p);
              System.out.println("new Word");
-        } else if(Math.abs(liveWord.right() - p.x) > spaceFactor & !liveWord.contains(p)){
+        // This still is not working properly
+        // The contains() method isn't returning what we want
+        } else if(Math.abs(liveWord.right() - p.x) > spaceFactor && !liveWord.contains(p)){
             Word temp = liveWord;
             words.add(temp);
             liveWord = new Word(p);
