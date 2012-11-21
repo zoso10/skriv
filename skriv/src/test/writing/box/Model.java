@@ -10,7 +10,9 @@ public class Model {
     // Sketchy Model
     // I'll add to it as I need to
     
+    // Keep track of the current Word that gets fed points
     private Word liveWord = null;
+    // Probably just use an ArrayList to hold all the Words
     private ArrayList<Word> words;
     // Scale Factor is super important
     private final static int spaceFactor = 100;
@@ -21,10 +23,8 @@ public class Model {
     
     public void addPoint(SmartPoint p){
         if(liveWord == null){
-             liveWord = new Word(p);
-             System.out.println("new Word");
-        // This still is not working properly
-        // The contains() method isn't returning what we want
+            liveWord = new Word(p);
+            System.out.println("new Word");
         } else if(Math.abs(liveWord.right() - p.x) > spaceFactor && !liveWord.contains(p)){
             Word temp = liveWord;
             words.add(temp);
@@ -43,7 +43,7 @@ public class Model {
         words.add(w);
     }
     
-    // This will need tweaked
+    // THIS IS INCORRECT
     public ArrayList<Word> getViewData(){
         ArrayList<Word> temp = new ArrayList<Word>();
         temp.add(liveWord);
