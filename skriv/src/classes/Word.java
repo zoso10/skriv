@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Word {
+    
+    // Words should be location independent
 
     /* This is the list of Points that actually are the Word
      * Need to be able to iterate through them for drawing the Word */
