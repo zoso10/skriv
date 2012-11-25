@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Word {
+public class WordTranslated {
     
     // Trying to keep this Word class independent
     
@@ -25,7 +25,7 @@ public class Word {
     
     
     // I may can this default constructor
-    public Word(){
+    public WordTranslated(){
         isHighlighted = false;
         hc = Color.YELLOW;
         c = Color.BLACK;
@@ -34,11 +34,15 @@ public class Word {
         height = 0;
         points = new ArrayList<SmartPoint>();
     }
-    
-    public Word(SmartPoint p){
+  
+    public WordTranslated(ArrayList<SmartPoint> points){
         this();
-        this.add(p);
+        this.points = points;
     }
+//    public WordTranslated(SmartPoint p){
+//        this();
+//        this.add(p);
+//    }
     
     public void add(SmartPoint p){
         points.add(p);

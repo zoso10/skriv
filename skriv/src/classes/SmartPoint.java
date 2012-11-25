@@ -14,6 +14,10 @@ public class SmartPoint{
         this.y = p.y;
     }
     
+    public SmartPoint(int x, int y, Boolean b){
+        this(new java.awt.Point(x, y), b);
+    }
+    
     public java.awt.Point getPoint(){
         return p;
     }
