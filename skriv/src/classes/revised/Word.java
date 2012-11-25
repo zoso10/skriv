@@ -2,6 +2,7 @@ package classes.revised;
 
 import classes.SmartPoint;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class Word {
     private Color c;
     private Color hc; // Highlighted Color
     private boolean isHighlighted;
-    private Rectangle boundingBox;
+    private Rectangle boundingBox; // May not need this
     private int length;
     private int height;
     // I'm still trying to decide if I need this or even how to calculate it
@@ -56,5 +57,14 @@ public class Word {
     
     public boolean contains(SmartPoint p){
         return boundingBox.contains(p.getPoint());
+    }
+    
+    public void setColor(Color c){
+        this.c = c;
+    }
+    
+    // Hmm...
+    public void drawWord(Graphics g){
+        
     }
 }
