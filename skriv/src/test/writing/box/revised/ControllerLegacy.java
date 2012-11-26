@@ -1,4 +1,4 @@
-package test.writing.box;
+package test.writing.box.revised;
 
 import classes.View;
 import classes.SmartPoint;
@@ -10,13 +10,13 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.SwingUtilities;
 
 
-public class Controller implements ActionListener, MouseListener, MouseMotionListener{
+public class ControllerLegacy implements ActionListener, MouseListener, MouseMotionListener{
     
-    private Model model;
+    private ModelFactor model;
     private View view;
     
-    public Controller(){
-        model = new Model();
+    public ControllerLegacy(){
+        model = new ModelFactor();
         view = new View();
         view.setVisible(true);
     }   
@@ -93,7 +93,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){
-                Controller c = new Controller();
+                ControllerLegacy c = new ControllerLegacy();
                 c.addListeners();
             }
         });
