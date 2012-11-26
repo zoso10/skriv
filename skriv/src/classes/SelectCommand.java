@@ -10,12 +10,12 @@ public class SelectCommand implements AbstractCommand {
     }
 
     @Override
-    public void redo() {
+    public void redo(Notes n, Word w) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void undo() {
+    public void undo(Notes n, Word w) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

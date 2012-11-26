@@ -6,7 +6,7 @@ package classes;
  */
 public interface AbstractCommand {
 
-    public void redo();
+    public void redo(Notes n, Word w);
 
-    public void undo();
+    public void undo(Notes n, Word w);
 }
