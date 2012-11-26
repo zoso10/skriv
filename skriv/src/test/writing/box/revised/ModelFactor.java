@@ -1,11 +1,11 @@
-package test.writing.box;
+package test.writing.box.revised;
 
 import classes.Word;
 import classes.SmartPoint;
 import java.util.ArrayList;
 
 
-public class Model {
+public class ModelFactor {
     
     // Sketchy Model
     // I'll add to it as I need to
@@ -17,7 +17,7 @@ public class Model {
     // Scale Factor is super important
     private final static int spaceFactor = 100;
     
-    public Model(){
+    public ModelFactor(){
         words = new ArrayList<Word>();
     }
     
