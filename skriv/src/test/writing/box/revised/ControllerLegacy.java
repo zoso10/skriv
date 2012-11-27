@@ -12,11 +12,11 @@ import javax.swing.SwingUtilities;
 
 public class ControllerLegacy implements ActionListener, MouseListener, MouseMotionListener{
     
-    private ModelFactor model;
+    private ModelLegacy model;
     private View view;
     
     public ControllerLegacy(){
-        model = new ModelFactor();
+        model = new ModelLegacy();
         view = new View();
         view.setVisible(true);
     }   
