@@ -36,9 +36,13 @@ public class WordTranslated {
         points = new ArrayList<SmartPoint>();
     }
   
-    public WordTranslated(ArrayList<SmartPoint> points){
+    public WordTranslated(ArrayList<SmartPoint> pointsIncoming){
         this();
-        this.points = points;
+        //this.points = points; // <----- This is where the problem arises
+        // DUH I don't set any of the length, height, or boundingBox constraints
+        for(SmartPoint p : pointsIncoming){
+            this.add(p);
+        }
     }
     
 //    public WordTranslated(SmartPoint p){
@@ -70,8 +74,10 @@ public class WordTranslated {
     }
     
     public BufferedImage toImage(){
+        // ARGB is what I want, but it gives weird behavior
         BufferedImage image = new BufferedImage(length, height, BufferedImage.TYPE_INT_RGB);
         java.awt.Graphics g = image.getGraphics();
+        g.setColor(java.awt.Color.BLACK);
         for (int i = 0; i < points.size() - 2; ++i) {
             if(points.get(i).isLast()) ++i;
             g.drawLine(points.get(i).x, points.get(i).y, points.get(i + 1).x, points.get(i + 1).y);
