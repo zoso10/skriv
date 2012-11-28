@@ -5,7 +5,7 @@ import classes.SmartPoint;
 import java.util.ArrayList;
 
 
-public class ModelFactor {
+public class ModelLegacy {
     
     // Sketchy Model
     // I'll add to it as I need to
@@ -17,7 +17,7 @@ public class ModelFactor {
     // Scale Factor is super important
     private final static int spaceFactor = 100;
     
-    public ModelFactor(){
+    public ModelLegacy(){
         words = new ArrayList<Word>();
     }
     
