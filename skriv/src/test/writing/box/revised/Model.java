@@ -37,8 +37,11 @@ public class Model {
         liveWord.add(p);
     }
     
-    public ArrayList<WordTranslated> getViewData(){
-        return new ArrayList<WordTranslated>();
+    public ArrayList<WordTranslated> getPageData(){
+        ArrayList<WordTranslated> temp = new ArrayList<WordTranslated>();
+        temp.add(liveWord.translate());
+        
+        return temp;
     }
     
     public WordUntranslated getWriteBoxData(){

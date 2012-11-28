@@ -45,6 +45,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         model.addPointDirect(new SmartPoint(e.getPoint(), true));
         // Update UI
         view.updateWritingBoxUI(model.getWriteBoxData());
+        view.updatePageUI(model.getPageData());
     }
 
     @Override
@@ -62,6 +63,7 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
         model.addPointDirect(new SmartPoint(e.getPoint(), false));
         // Update UI
         view.updateWritingBoxUI(model.getWriteBoxData());
+        view.updatePageUI(model.getPageData());
     }
 
     @Override

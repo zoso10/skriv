@@ -4,6 +4,7 @@ import classes.SmartPoint;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class WordTranslated {
         hc = Color.YELLOW;
         c = Color.BLACK;
         boundingBox = new Rectangle();
-        length = 0;
-        height = 0;
+        length = 1;
+        height = 1;
         points = new ArrayList<SmartPoint>();
     }
   
@@ -70,5 +71,16 @@ public class WordTranslated {
     // Hmm...
     public void drawWord(Graphics g){
         
+    }
+    
+    public BufferedImage toImage(){
+        BufferedImage image = new BufferedImage(length, height, BufferedImage.TYPE_INT_RGB);
+        java.awt.Graphics g = image.getGraphics();
+        for (int i = 0; i < points.size() - 2; ++i) {
+            if(points.get(i).isLast()) ++i;
+            g.drawLine(points.get(i).x, points.get(i).y, points.get(i + 1).x, points.get(i + 1).y);
+        }
+        
+        return image;
     }
 }

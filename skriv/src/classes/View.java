@@ -178,6 +178,16 @@ public class View extends javax.swing.JFrame {
         liveWord.draw(g);
     }
     
+    public void updatePageUI(ArrayList<classes.revised.WordTranslated> words){
+        Graphics g = page.getGraphics();
+        java.awt.Point cursor = new java.awt.Point(10,10);
+        
+        for(classes.revised.WordTranslated w : words){
+            g.drawImage(w.toImage(), cursor.x, cursor.y, null);
+            cursor.x += w.getLength();
+        }
+    }
+    
                     
     private javax.swing.JButton ArrowButton;
     private javax.swing.JButton CloseButton;
