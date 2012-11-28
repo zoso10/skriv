@@ -4,7 +4,7 @@ This is a project to create an advanced note-taking application.
 
 **Team Leader**
 
-Tyler Ewing
+* Tyler Ewing
 
 **Team Members**
 
