@@ -40,6 +40,7 @@ public class WordTranslated {
         this();
         this.points = points;
     }
+    
 //    public WordTranslated(SmartPoint p){
 //        this();
 //        this.add(p);
@@ -66,11 +67,6 @@ public class WordTranslated {
     
     public void setColor(Color c){
         this.c = c;
-    }
-    
-    // Hmm...
-    public void drawWord(Graphics g){
-        
     }
     
     public BufferedImage toImage(){

@@ -184,7 +184,8 @@ public class View extends javax.swing.JFrame {
         
         for(classes.revised.WordTranslated w : words){
             g.drawImage(w.toImage(), cursor.x, cursor.y, null);
-            cursor.x += w.getLength();
+            System.out.println(w.getLength());
+            cursor.x += w.getLength() + 10;
         }
     }
     
