@@ -16,7 +16,6 @@ public class InsertCommand implements AbstractCommand {
     public InsertCommand(Notes n, Word w) {
         notesWhereInserted = n;
         insertedWord = w;
-        redo(n, w);
     }
 
     @Override
