@@ -1,5 +1,6 @@
 skriv
 =====
+-----
 
 This is a project to create an advanced note-taking application.
 
