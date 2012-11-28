@@ -21,3 +21,4 @@ The original motivation for this project is to make it for iOS or Android tablet
 The application has intuitive features that enhances the user's experience while taking notes for a class, during a meeting, etc. These features are designed to assist the user without being intrusive or disruptive of workflow.
 
 
+![JavaFX](http://upload.wikimedia.org/wikipedia/en/3/39/JavaFX.png)
