@@ -61,7 +61,18 @@ public class WordUntranslated {
         boundingBox = new Rectangle(left, top, right-left, bottom-top);
     }
     
+    public Rectangle getBoundingBox(){
+        return boundingBox;
+    }
+    
     public boolean contains(SmartPoint p){
         return boundingBox.contains(p.getPoint());
+    }
+    
+    public void draw(java.awt.Graphics g){
+        for (int i = 0; i < points.size() - 2; ++i) {
+            if(points.get(i).isLast()) ++i;
+            g.drawLine(points.get(i).x, points.get(i).y, points.get(i + 1).x, points.get(i + 1).y);
+        }
     }
 }

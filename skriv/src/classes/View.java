@@ -155,17 +155,27 @@ public class View extends javax.swing.JFrame {
     
     public void updateUI(ArrayList<Word> words){
         // This is gonna look strange since we need to draw in two different spots
-        Graphics g = page.getGraphics();
-        // Draw all the words!!
-        for(Word w : words){
-            w.drawWord(g);
-        }
+//        Graphics g = page.getGraphics();
+//        // Draw all the words!!
+//        for(Word w : words){
+//            w.drawWord(g);
+//        }
         Graphics g2 = writingArea.getGraphics();
         // For testing
         //g2.clearRect(0, 0, writingArea.getWidth(), writingArea.getHeight());
         for(Word w : words){
             w.drawWord(g2);
         }
+    }
+    
+    public void updateWritingBoxUI(classes.revised.WordUntranslated liveWord){
+        Graphics g = writingArea.getGraphics();
+        java.awt.Rectangle r = liveWord.getBoundingBox();
+        //g.clearRect(r.x, r.y, r.width, r.height);
+        g.setColor(new java.awt.Color(204,204,255));
+        g.fillRect(r.x, r.y, r.width, r.height);
+        g.setColor(java.awt.Color.BLACK);
+        liveWord.draw(g);
     }
     
                     

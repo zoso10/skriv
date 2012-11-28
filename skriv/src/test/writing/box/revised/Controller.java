@@ -43,6 +43,8 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
     @Override
     public void mouseReleased(MouseEvent e) {
         model.addPointDirect(new SmartPoint(e.getPoint(), true));
+        // Update UI
+        view.updateWritingBoxUI(model.getWriteBoxData());
     }
 
     @Override
@@ -58,6 +60,8 @@ public class Controller implements ActionListener, MouseListener, MouseMotionLis
     @Override
     public void mouseDragged(MouseEvent e) {
         model.addPointDirect(new SmartPoint(e.getPoint(), false));
+        // Update UI
+        view.updateWritingBoxUI(model.getWriteBoxData());
     }
 
     @Override
