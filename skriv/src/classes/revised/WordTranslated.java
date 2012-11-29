@@ -75,7 +75,7 @@ public class WordTranslated {
     
     public BufferedImage toImage(){
         // ARGB is what I want, but it gives weird behavior
-        BufferedImage image = new BufferedImage(length, height, BufferedImage.TYPE_INT_RGB);
+        BufferedImage image = new BufferedImage(length, height, BufferedImage.TYPE_INT_ARGB);
         java.awt.Graphics g = image.getGraphics();
         g.setColor(java.awt.Color.BLACK);
         for (int i = 0; i < points.size() - 2; ++i) {
