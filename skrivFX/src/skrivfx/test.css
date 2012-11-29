@@ -18,4 +18,11 @@ root {
     -fx-background-color: #9dd4ff;
 }
 
+.titled-pane .title{
+    -fx-padding: 20;
+}
+
+.titled-pane .text{
+    -fx-rotate: 90deg;
+}
 
