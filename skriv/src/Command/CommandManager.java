@@ -26,6 +26,7 @@ public class CommandManager {
      */
     public void executeCmd(Command cmd) {
         back.push(cmd);
+        back.peek().redo(); // actually does the command
     }
 
     /**
@@ -36,6 +37,8 @@ public class CommandManager {
     public Command goBack() {
         forward.push(back.peek());
         back.pop();
+        forward.peek().undo(); // undoes the command
+
         return forward.peek();
     }
 
@@ -47,6 +50,8 @@ public class CommandManager {
     public Command goForward() {
         back.push(forward.peek());
         forward.pop();
+        back.peek().redo(); // redoes the command
+
         return back.peek();
     }
 }
