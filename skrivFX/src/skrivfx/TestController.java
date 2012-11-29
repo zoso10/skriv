@@ -18,7 +18,7 @@ public class TestController implements Initializable{
     
     @FXML
     private void handleButtonAction(ActionEvent e){
-        
+        System.out.println("dont touch me there");
     }
     
     @Override

@@ -14,7 +14,11 @@
         <URL value="@test.css" />
       </stylesheets>
     </ScrollPane>
-    <ToolBar layoutY="717.0" prefHeight="50.9998779296875" prefWidth="768.0" />
+    <ToolBar layoutY="717.0" prefHeight="50.9998779296875" prefWidth="768.0">
+      <items>
+        <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+      </items>
+    </ToolBar>
     <Accordion layoutX="-53.0" layoutY="52.0" prefHeight="613.0" prefWidth="718.0" rotate="270.0">
       <panes>
         <TitledPane alignment="CENTER_RIGHT" contentDisplay="TOP" text="Menu">
