@@ -25,4 +25,8 @@ public class SmartPoint{
     public Boolean isLast(){
         return b;
     }
+    
+    public String toString(){
+        return String.format("(%d,%d)",x,y);
+    }
 }

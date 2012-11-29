@@ -1,10 +1,10 @@
 package test.writing.box.revised;
 
+import classes.SmartPoint;
 import classes.revised.WordTranslated;
 import classes.revised.WordUntranslated;
-import classes.SmartPoint;
-import java.util.List;
 import java.util.ArrayList; 
+import java.util.List;
 
 
 public class Model {
@@ -13,7 +13,7 @@ public class Model {
     private WordUntranslated liveWord = null;
     private List<WordTranslated> words;
     private final static int spaceFactor = 100;
-
+    
     
     public Model(){
         words = new ArrayList<WordTranslated>();
@@ -37,7 +37,14 @@ public class Model {
         liveWord.add(p);
     }
     
-    public ArrayList<WordTranslated> getViewData(){
-        return new ArrayList<WordTranslated>();
+    public ArrayList<WordTranslated> getPageData(){
+        ArrayList<WordTranslated> temp = new ArrayList<WordTranslated>();
+        temp.add(liveWord.translate());
+        
+        return temp;
+    }
+    
+    public WordUntranslated getWriteBoxData(){
+        return liveWord;
     }
 }

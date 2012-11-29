@@ -4,6 +4,7 @@ import classes.SmartPoint;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,15 +31,20 @@ public class WordTranslated {
         hc = Color.YELLOW;
         c = Color.BLACK;
         boundingBox = new Rectangle();
-        length = 0;
-        height = 0;
+        length = 1;
+        height = 1;
         points = new ArrayList<SmartPoint>();
     }
   
-    public WordTranslated(ArrayList<SmartPoint> points){
+    public WordTranslated(ArrayList<SmartPoint> pointsIncoming){
         this();
-        this.points = points;
+        //this.points = points; // <----- This is where the problem arises
+        // DUH I don't set any of the length, height, or boundingBox constraints
+        for(SmartPoint p : pointsIncoming){
+            this.add(p);
+        }
     }
+    
 //    public WordTranslated(SmartPoint p){
 //        this();
 //        this.add(p);
@@ -67,8 +73,16 @@ public class WordTranslated {
         this.c = c;
     }
     
-    // Hmm...
-    public void drawWord(Graphics g){
+    public BufferedImage toImage(){
+        // ARGB is what I want, but it gives weird behavior
+        BufferedImage image = new BufferedImage(length, height, BufferedImage.TYPE_INT_ARGB);
+        java.awt.Graphics g = image.getGraphics();
+        g.setColor(java.awt.Color.BLACK);
+        for (int i = 0; i < points.size() - 2; ++i) {
+            if(points.get(i).isLast()) ++i;
+            g.drawLine(points.get(i).x, points.get(i).y, points.get(i + 1).x, points.get(i + 1).y);
+        }
         
+        return image;
     }
 }

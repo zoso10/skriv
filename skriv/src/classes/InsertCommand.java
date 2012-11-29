@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package classes;
 
 /**
@@ -16,7 +12,6 @@ public class InsertCommand implements AbstractCommand {
     public InsertCommand(Notes n, Word w) {
         notesWhereInserted = n;
         insertedWord = w;
-        redo(n, w);
     }
 
     @Override
