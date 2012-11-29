@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivFX.jfxGUIController">
+  <children>
+    <ScrollPane id="" hbarPolicy="ALWAYS" layoutY="768.0" pannable="true" prefHeight="256.0" prefWidth="768.0" vbarPolicy="NEVER">
+      <stylesheets>
+        <URL value="@test.css" />
+      </stylesheets>
+    </ScrollPane>
+    <ToolBar layoutY="717.0" prefHeight="50.9998779296875" prefWidth="768.0">
+      <items>
+        <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+      </items>
+    </ToolBar>
+    <Accordion layoutX="-53.0" layoutY="52.0" prefHeight="613.0" prefWidth="718.0" rotate="270.0">
+      <panes>
+        <TitledPane alignment="CENTER" contentDisplay="TEXT_ONLY" text="Menu">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" visible="false" />
+          </content>
+          <stylesheets>
+            <URL value="@test.css" />
+          </stylesheets>
+        </TitledPane>
+        <TitledPane fx:id="x1" alignment="CENTER" contentDisplay="TEXT_ONLY" text="Doc 1">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+        </TitledPane>
+      </panes>
+    </Accordion>
+    <Pane id="mini-map" layoutX="614.0" prefHeight="717.0" prefWidth="154.0001220703125" styleClass="mini-map">
+      <children>
+        <Label layoutX="61.0" layoutY="228.0" text="MiniMap" />
+        <ScrollBar layoutY="2.0" orientation="VERTICAL" prefHeight="713.0" prefWidth="142.6" styleClass="big-scroll-bar, thumb">
+          <stylesheets>
+            <URL value="@test.css" />
+          </stylesheets>
+        </ScrollBar>
+      </children>
+      <stylesheets>
+        <URL value="@test.css" />
+      </stylesheets>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@test.css" />
+  </stylesheets>
+</AnchorPane>
