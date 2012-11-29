@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="SkrivFX.TestController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml"> <!--fx:controller="skrivFX.TestController"> -->
   <children>
     <ScrollPane id="" hbarPolicy="ALWAYS" layoutY="768.0" pannable="true" prefHeight="256.0" prefWidth="768.0" vbarPolicy="NEVER">
       <stylesheets>
