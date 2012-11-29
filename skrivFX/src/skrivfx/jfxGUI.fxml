@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivFX.jfxGUIController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="SkrivFX.TestController">
   <children>
     <ScrollPane id="" hbarPolicy="ALWAYS" layoutY="768.0" pannable="true" prefHeight="256.0" prefWidth="768.0" vbarPolicy="NEVER">
       <stylesheets>
@@ -16,7 +16,7 @@
     </ScrollPane>
     <ToolBar layoutY="717.0" prefHeight="50.9998779296875" prefWidth="768.0">
       <items>
-        <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+        <!--<Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />-->
       </items>
     </ToolBar>
     <Accordion layoutX="-53.0" layoutY="52.0" prefHeight="613.0" prefWidth="718.0" rotate="270.0">
