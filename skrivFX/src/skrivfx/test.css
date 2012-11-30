@@ -29,4 +29,13 @@ root {
 .titled-pane .title .arrow-button .arrow{
     -fx-opacity: 0;
 }
+#MenuButton{
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("RightArrow.png");
+    -fx-background-position: center;
+}
+#MenuButton:selected{
+    -fx-rotate: 90deg;
+}
 

@@ -19,7 +19,7 @@
         <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
       </items>
     </ToolBar>
-    <Accordion layoutX="-53.0" layoutY="52.0" prefHeight="613.0" prefWidth="718.0" rotate="270.0">
+    <Accordion layoutX="-53.0" layoutY="52.0" prefHeight="613.0" prefWidth="718.0" rotate="270.0" visible="false">
       <panes>
         <TitledPane alignment="CENTER_RIGHT" contentDisplay="TOP" text="Menu">
           <content>
@@ -47,6 +47,7 @@
         <URL value="@test.css" />
       </stylesheets>
     </Pane>
+    <ToggleButton id="MenuButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="64.00009999999747" />
   </children>
   <stylesheets>
     <URL value="@test.css" />
