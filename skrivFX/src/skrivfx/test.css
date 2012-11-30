@@ -33,12 +33,17 @@ root {
     -fx-background-color: transparent;
     -fx-background-repeat: no-repeat;
     -fx-background-image: url("MenuButton.png");
+    -fx-opacity: 50%;
     -fx-background-position: center;
     -fx-scale-shape: true;
     -fx-background-radius: 25;
 }
 #MenuButton:selected{
     -fx-rotate: 90deg;
+}
+
+#MenuButton:hover{
+    -fx-opacity: 100%;
 }
 
 #WriteButton{
@@ -59,7 +64,7 @@ root {
 
 .tool-bar{
     -fx-background-color: black;
-    -fx-background-radius: 10 10 0 0;
+    -fx-background-radius: 25 25 0 0;
 }
 
 
