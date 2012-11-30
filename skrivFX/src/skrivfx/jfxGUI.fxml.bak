@@ -58,15 +58,27 @@
         <URL value="@test.css" />
       </stylesheets>
     </Pane>
-    <ToggleButton id="MenuButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
-      <contextMenu>
-        <ContextMenu>
-          <items>
-            <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-          </items>
-        </ContextMenu>
-      </contextMenu>
-    </ToggleButton>
+    <ToggleButton id="MenuButton" fx:id="menuButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+    <Accordion id="Menu" fx:id="menu" layoutX="11.0" layoutY="127.0" opacity="0.0">
+      <expandedPane>
+        <TitledPane fx:id="x2" animated="false" text="Save">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+        </TitledPane>
+      </expandedPane>
+      <panes>
+        <fx:reference source="x2" />
+        <TitledPane fx:id="x1" animated="false" text="Open">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+        </TitledPane>
+      </panes>
+      <stylesheets>
+        <URL value="@test.css" />
+      </stylesheets>
+    </Accordion>
   </children>
   <stylesheets>
     <URL value="@test.css" />

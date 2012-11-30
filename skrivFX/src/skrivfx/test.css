@@ -18,7 +18,7 @@ root {
     -fx-background-color: #9dd4ff;
 }
 
-.titled-pane .title{
+/*.titled-pane .title{
     -fx-padding: 20;
 }
 
@@ -28,7 +28,8 @@ root {
 
 .titled-pane .title .arrow-button .arrow{
     -fx-opacity: 0;
-}
+}*/
+
 #MenuButton{
     -fx-background-color: transparent;
     -fx-background-repeat: no-repeat;
@@ -45,6 +46,8 @@ root {
 #MenuButton:hover{
     -fx-opacity: 100%;
 }
+
+
 
 #WriteButton{
     -fx-background-color: transparent;
