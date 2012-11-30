@@ -21,6 +21,6 @@ The original motivation for this project is to make it for iOS or Android tablet
 The application has intuitive features that enhances the user's experience while taking notes for a class, during a meeting, etc. These features are designed to assist the user without being intrusive or disruptive of workflow.
 
 
-![JavaFX](Screen%20Shot.png)
+![JavaFX](https://github.com/zoso10/skriv/blob/master/Screen%20Shot.png?raw=true)
 
 "Pen Icon" used under CC Attribution 3.0 license. Originally created by DesignContest. Retrieved 11/29/2012 from http://www.designcontest.com.
