@@ -11,7 +11,7 @@ root {
 }
 
 .background{
-    -fx-background-image: url("ios-linen.jpg");
+    -fx-background-image: url("logoBG.png");
 }
 
 .mini-map{
