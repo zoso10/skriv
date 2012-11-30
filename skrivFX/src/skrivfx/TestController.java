@@ -39,12 +39,13 @@ public class TestController implements Initializable{
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("That was easy, wasn't it?");
                 if (menuButton.isSelected()){
-                    menu.setOpacity(1.0);
+                    //menu.setOpacity(1.0);
+                    menu.setVisible(true);
                 }
                 else{
-                    menu.setOpacity(0.0);
+                    //menu.setOpacity(0.0);
+                    menu.setVisible(false);
                 }
             }
         });

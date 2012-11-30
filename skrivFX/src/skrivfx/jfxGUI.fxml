@@ -30,21 +30,6 @@
         </Button>
       </items>
     </ToolBar>
-    <Accordion layoutX="-53.0" layoutY="52.0" prefHeight="613.0" prefWidth="718.0" rotate="270.0" visible="false">
-      <panes>
-        <TitledPane alignment="CENTER_RIGHT" contentDisplay="TOP" text="Menu">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" visible="false" />
-          </content>
-          <stylesheets>
-            <URL value="@test.css" />
-          </stylesheets>
-        </TitledPane>
-      </panes>
-      <stylesheets>
-        <URL value="@test.css" />
-      </stylesheets>
-    </Accordion>
     <Pane id="mini-map" layoutX="614.0" prefHeight="717.0" prefWidth="154.0001220703125" styleClass="mini-map">
       <children>
         <Label layoutX="61.0" layoutY="228.0" text="MiniMap" />
@@ -59,14 +44,14 @@
       </stylesheets>
     </Pane>
     <ToggleButton id="MenuButton" fx:id="menuButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-    <Accordion id="Menu" fx:id="menu" layoutX="11.0" layoutY="75.0" opacity="0.0">
+    <Accordion id="Menu" fx:id="menu" layoutX="11.0" layoutY="75.0" visible="false">
       <panes>
-        <TitledPane fx:id="x2" expanded="false" text="Save">
+        <TitledPane id="" text="Save">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
           </content>
         </TitledPane>
-        <TitledPane fx:id="x1" expanded="false" text="Open">
+        <TitledPane fx:id="x1" text="Open">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
           </content>
