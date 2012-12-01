@@ -212,25 +212,27 @@ public class TestController implements Initializable{
         }
     }
 
+/*------------------------  Mouse & Keyboard  ------------------------*/
     
     @FXML
     private void scrollDragAction(MouseEvent evt){
         //System.out.println("Druggeded");
        // if (thumb.getHeight() track.getFitHeight())
-        if(evt.getY()-thumb.getHeight()/2>0&&evt.getY()+thumb.getHeight()/2<track.getFitHeight())
-        thumb.setY(evt.getY()-thumb.getHeight()/2);
-        if (evt.getY()-thumb.getHeight()/2<=0)
+        if(evt.getY()-thumb.getHeight()/2>0&&evt.getY()+thumb.getHeight()/2<track.getFitHeight()) {
+            thumb.setY(evt.getY()-thumb.getHeight()/2);
+        }
+        if (evt.getY()-thumb.getHeight()/2<=0) {
             thumb.setY(0);
-        if (evt.getY()+thumb.getHeight()/2>=track.getFitHeight())
+        }
+        if (evt.getY()+thumb.getHeight()/2>=track.getFitHeight()) {
             thumb.setY(track.getFitHeight()-thumb.getHeight());
+        }
     }
     
     @FXML
     private void keyboardShortcut(KeyEvent kp){ 
         System.out.println(kp.getText());
-        if (kp.isShortcutDown() && kp.getCharacter() == "s"){
-            this.handleSaveButtonAction();
-        }
+        
     }
     
     
