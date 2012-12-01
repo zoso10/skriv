@@ -11,7 +11,7 @@
 
 <AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
   <children>
-    <ScrollPane id="" hbarPolicy="ALWAYS" layoutY="777.0" pannable="true" prefHeight="247.0" prefWidth="768.0" vbarPolicy="NEVER">
+    <ScrollPane id="WriteArea" hbarPolicy="ALWAYS" layoutY="777.0" pannable="true" prefHeight="247.0" prefWidth="768.0" vbarPolicy="NEVER">
       <stylesheets>
         <URL value="@test.css" />
       </stylesheets>
@@ -35,22 +35,22 @@
       </stylesheets>
     </Pane>
     <ToggleButton id="MenuButton" fx:id="menuButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleMenuButtonAction" prefHeight="50.0" prefWidth="50.0" />
-    <AnchorPane fx:id="menuPane" layoutX="14.0" layoutY="79.0" prefHeight="280.0" prefWidth="199.0" visible="false">
+    <AnchorPane fx:id="menuPane" layoutX="14.0" layoutY="79.0" opacity="0.0" prefHeight="280.0" prefWidth="199.0" visible="false">
       <children>
         <VBox minWidth="142.5999755859375" prefHeight="280.0" prefWidth="199.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>
-            <Button id="NewButton" fx:id="newButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+            <Button id="NewButton" fx:id="newButton" mnemonicParsing="false" onAction="#handleNewButtonAction" prefHeight="50.0" prefWidth="50.0">
               <VBox.margin>
                 <Insets bottom="5.0" right="5.0" />
               </VBox.margin>
             </Button>
-            <Button id="OpenButton" fx:id="openButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+            <Button id="OpenButton" fx:id="openButton" mnemonicParsing="false" onAction="#handleOpenButtonAction" prefHeight="50.0" prefWidth="50.0">
               <VBox.margin>
                 <Insets bottom="5.0" right="5.0" top="5.0" fx:id="x1" />
               </VBox.margin>
             </Button>
-            <Button id="SaveButton" fx:id="saveButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" VBox.margin="$x1" />
-            <Button id="CloseButton" fx:id="closeButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" VBox.margin="$x1" />
+            <Button id="SaveButton" fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButtonAction" prefHeight="50.0" prefWidth="50.0" VBox.margin="$x1" />
+            <Button id="CloseButton" fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="50.0" prefWidth="50.0" VBox.margin="$x1" />
           </children>
         </VBox>
       </children>

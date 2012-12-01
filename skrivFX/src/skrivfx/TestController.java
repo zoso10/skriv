@@ -6,6 +6,8 @@ package skrivfx;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,14 +18,18 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 /**
  *
  * @author Tyler
+ * 
+ * Make sure you use the @FXML tag any time you need to interface
+ * with the FXML file!
  */
 public class TestController implements Initializable{
     
-    
+    //These are objects injected from the FXML file:
     @FXML
     private ToggleButton menuButton;
     @FXML
@@ -39,6 +45,7 @@ public class TestController implements Initializable{
     @FXML
     private Button closeButton;
     
+    //Button action methods:
     @FXML
     private void handleWriteButtonAction(ActionEvent e){
         if (writeButton.isSelected()){
@@ -49,15 +56,33 @@ public class TestController implements Initializable{
         } 
     }
     
+    
     @FXML
     private void handleMenuButtonAction(){
+        FadeTransition ft = new FadeTransition(Duration.millis(500), menuPane);
+        ft.setAutoReverse(false);
         if (menuButton.isSelected()){
-            menuPane.setVisible(true);
+            menuPane.setVisible(true);    
+            ft.setCycleCount(1);
+            ft.setFromValue(0.0);
+            ft.setToValue(1.0);
+            ft.play();
+            System.out.println("fade in complete");
         }
+        //No idea why the fade out transition doesnt work right.
+        //the transition works if you remove the .setVisible line,
+        //however if the buttons are left visible they are still 
+        //clickable, which is undesirable
         else{
+            ft.setFromValue(1.0);
+            ft.setToValue(0.0);
+            ft.setCycleCount(1);
+            ft.play();
             menuPane.setVisible(false);
+            System.out.println("fade out complete");
         }
     }
+    
     
     @FXML
     private void handleNewButtonAction(){

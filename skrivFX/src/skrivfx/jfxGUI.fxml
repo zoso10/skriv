@@ -11,7 +11,7 @@
 
 <AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
   <children>
-    <ScrollPane id="" hbarPolicy="ALWAYS" layoutY="777.0" pannable="true" prefHeight="247.0" prefWidth="768.0" vbarPolicy="NEVER">
+    <ScrollPane id="WriteArea" hbarPolicy="ALWAYS" layoutY="777.0" pannable="true" prefHeight="247.0" prefWidth="768.0" vbarPolicy="NEVER">
       <stylesheets>
         <URL value="@test.css" />
       </stylesheets>
