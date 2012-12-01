@@ -59,10 +59,11 @@ public class TestController implements Initializable{
     
     @FXML
     private void handleMenuButtonAction(){
-        FadeTransition ft = new FadeTransition(Duration.millis(500), menuPane);
-        ft.setAutoReverse(false);
         if (menuButton.isSelected()){
             menuPane.setVisible(true);    
+            
+            FadeTransition ft = new FadeTransition(Duration.millis(500), menuPane);
+            ft.setAutoReverse(false);
             ft.setCycleCount(1);
             ft.setFromValue(0.0);
             ft.setToValue(1.0);
@@ -74,6 +75,8 @@ public class TestController implements Initializable{
         //however if the buttons are left visible they are still 
         //clickable, which is undesirable
         else{
+            FadeTransition ft = new FadeTransition(Duration.millis(500), menuPane);
+            ft.setAutoReverse(false);
             ft.setFromValue(1.0);
             ft.setToValue(0.0);
             ft.setCycleCount(1);
