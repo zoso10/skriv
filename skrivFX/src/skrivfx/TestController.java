@@ -4,6 +4,7 @@
  */
 package skrivfx;
 
+import java.awt.Rectangle;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,6 +51,8 @@ public class TestController implements Initializable{
     private Button saveButton;
     @FXML
     private Button closeButton;
+    @FXML
+    private Rectangle thumb;
     
     //attributes
     private ParallelTransition parallelTransition;

@@ -14,8 +14,8 @@ root {
     -fx-background-image: url("logoBG.png");
 }
 
-.mini-map{
-    -fx-background-color: #9dd4ff;
+.mini-map-pane{
+    -fx-background-color: #282828;
 }
 
 /*.titled-pane .title{

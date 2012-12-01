@@ -5,8 +5,10 @@
 <?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
@@ -21,14 +23,10 @@
         <ToggleButton id="WriteButton" fx:id="writeButton" mnemonicParsing="false" onAction="#handleWriteButtonAction" prefHeight="50.0" prefWidth="50.0" />
       </items>
     </ToolBar>
-    <Pane id="mini-map" layoutX="614.0" opacity="0.3" prefHeight="717.0" prefWidth="154.0001220703125" styleClass="mini-map">
+    <Pane id="mini-map-pane" layoutX="614.0" prefHeight="717.0" prefWidth="154.0">
       <children>
-        <Label layoutX="61.0" layoutY="228.0" text="MiniMap" />
-        <ScrollBar layoutY="2.0" orientation="VERTICAL" prefHeight="713.0" prefWidth="142.6" styleClass="big-scroll-bar, thumb">
-          <stylesheets>
-            <URL value="@test.css" />
-          </stylesheets>
-        </ScrollBar>
+        <ImageView fitHeight="717.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
+        <Rectangle id="thumb" arcHeight="5.0" arcWidth="5.0" blendMode="COLOR_DODGE" fill="#9f9f9f" height="200.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="3.6" width="154.0" />
       </children>
       <stylesheets>
         <URL value="@test.css" />
