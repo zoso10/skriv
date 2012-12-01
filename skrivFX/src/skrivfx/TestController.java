@@ -79,7 +79,16 @@ public class TestController implements Initializable{
         //clickable, which is undesirable
         else{
             this.menuButtonClose();
-            menuPane.setVisible(false);
+            Thread t = new Thread(new Runnable(){
+                @Override
+                public void run(){
+                    try{
+                        Thread.sleep(250);
+                    } catch(Exception e){ System.out.println("OH SHIT NIGGAS"); }
+                    menuPane.setVisible(false);
+                }
+            });
+            t.start(); 
         }
     }
     
