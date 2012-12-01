@@ -70,7 +70,7 @@ public class TestController implements Initializable{
     @FXML
     private void handleMenuButtonAction(){
         if (menuButton.isSelected()){
-            menuPane.setVisible(true);    
+            menuPane.setVisible(true);
             this.menuButtonOpen();          
         }
         //No idea why the fade out transition doesnt work right.
