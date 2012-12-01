@@ -65,7 +65,7 @@ public class TestController implements Initializable{
         } 
     }
     
-    
+/*------------------------Animated Menu Button------------------------*/
     
     @FXML
     private void handleMenuButtonAction(){
@@ -140,6 +140,7 @@ public class TestController implements Initializable{
         parallelTransition.play();
 }
     
+/*------------------------    Menu Buttons    ------------------------*/
     
     @FXML
     private void handleNewButtonAction(){
