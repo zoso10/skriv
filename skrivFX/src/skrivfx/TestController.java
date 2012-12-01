@@ -4,7 +4,6 @@
  */
 package skrivfx;
 
-import java.awt.Rectangle;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +20,9 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -53,6 +54,8 @@ public class TestController implements Initializable{
     private Button closeButton;
     @FXML
     private Rectangle thumb;
+    @FXML
+    private ImageView track;
     
     //attributes
     private ParallelTransition parallelTransition;
@@ -87,7 +90,7 @@ public class TestController implements Initializable{
                 public void run(){
                     try{
                         Thread.sleep(250);
-                    } catch(Exception e){ System.out.println("OH SHIT NIGGAS"); }
+                    } catch(Exception e){ System.out.println("pause exception"); }
                     menuPane.setVisible(false);
                 }
             });
