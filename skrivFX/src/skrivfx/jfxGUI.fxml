@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
   <children>
@@ -17,20 +18,13 @@
     <ToolBar layoutY="717.0" prefHeight="50.9998779296875" prefWidth="768.0">
       <items>
         <Button id="WriteButton" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="50.0">
-          <contextMenu>
-            <ContextMenu onAction="#handleButtonAction">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-              </items>
-            </ContextMenu>
-          </contextMenu>
           <stylesheets>
             <URL value="@test.css" />
           </stylesheets>
         </Button>
       </items>
     </ToolBar>
-    <Pane id="mini-map" layoutX="614.0" prefHeight="717.0" prefWidth="154.0001220703125" styleClass="mini-map">
+    <Pane id="mini-map" layoutX="614.0" opacity="0.3" prefHeight="717.0" prefWidth="154.0001220703125" styleClass="mini-map">
       <children>
         <Label layoutX="61.0" layoutY="228.0" text="MiniMap" />
         <ScrollBar layoutY="2.0" orientation="VERTICAL" prefHeight="713.0" prefWidth="142.6" styleClass="big-scroll-bar, thumb">
@@ -44,23 +38,15 @@
       </stylesheets>
     </Pane>
     <ToggleButton id="MenuButton" fx:id="menuButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-    <Accordion id="Menu" fx:id="menu" layoutX="11.0" layoutY="75.0" visible="false">
-      <panes>
-        <TitledPane id="" text="Save">
+    <AnchorPane fx:id="menuPane" layoutX="14.0" layoutY="79.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <children>
+        <TitledPane id="x1" fx:id="openPane" expanded="false" text="Open">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
           </content>
         </TitledPane>
-        <TitledPane fx:id="x1" text="Open">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-          </content>
-        </TitledPane>
-      </panes>
-      <stylesheets>
-        <URL value="@test.css" />
-      </stylesheets>
-    </Accordion>
+      </children>
+    </AnchorPane>
   </children>
   <stylesheets>
     <URL value="@test.css" />

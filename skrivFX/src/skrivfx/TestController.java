@@ -11,7 +11,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
 /**
  *
@@ -19,11 +22,15 @@ import javafx.scene.control.ToggleButton;
  */
 public class TestController implements Initializable{
     
-    @FXML
-    private Accordion menu;
     
     @FXML
     private ToggleButton menuButton;
+    
+    @FXML
+    private TitledPane openPane;
+    
+    @FXML
+    private AnchorPane menuPane;
     
     @FXML
     private void handleButtonAction(ActionEvent e){
@@ -41,14 +48,14 @@ public class TestController implements Initializable{
             public void handle(ActionEvent event) {
                 if (menuButton.isSelected()){
                     //menu.setOpacity(1.0);
-                    menu.setVisible(true);
+                    menuPane.setVisible(true);
                 }
                 else{
                     //menu.setOpacity(0.0);
-                    menu.setVisible(false);
+                    menuPane.setVisible(false);
                 }
             }
-        });
+        });     
 
     }
     

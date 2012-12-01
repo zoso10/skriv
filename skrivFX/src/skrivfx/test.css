@@ -34,13 +34,14 @@ root {
     -fx-background-color: transparent;
     -fx-background-repeat: no-repeat;
     -fx-background-image: url("MenuButton.png");
-    -fx-opacity: 50%;
+    -fx-opacity: 25%;
     -fx-background-position: center;
     -fx-scale-shape: true;
     -fx-background-radius: 25;
 }
 #MenuButton:selected{
     -fx-rotate: 90deg;
+    -fx-opacity: 100%;
 }
 
 #MenuButton:hover{
@@ -68,5 +69,7 @@ root {
     -fx-background-color: black;
     -fx-background-radius: 25 25 0 0;
 }
+
+
 
 
