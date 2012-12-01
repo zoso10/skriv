@@ -176,12 +176,6 @@ public class TestController implements Initializable{
             this.menuButtonClose();
             menuButton.setSelected(false);
             menuPane.setVisible(false);
-            
-//            DirectoryChooser dc = new DirectoryChooser();
-//            dc.setTitle("Open skriv file...");
-//            File defaultDirectory = new File(".");
-//            dc.setInitialDirectory(defaultDirectory);
-//            File selectedDirectory = dc.showDialog(new Stage());
             FileChooser fc = new FileChooser();
             fc.setTitle("Open skriv file...");
             File defaultDirectory = new File(".");
@@ -220,7 +214,9 @@ public class TestController implements Initializable{
     @FXML
     private void scrollDragAction(MouseEvent evt){
         System.out.println("Druggeded");
-        thumb.setY(-thumb.getHeight()+evt.getY());
+       // if (thumb.getHeight() track.getFitHeight())
+        if(evt.getY()-thumb.getHeight()/2>0&&evt.getY()+thumb.getHeight()/2<track.getFitHeight())
+        thumb.setY(evt.getY()-thumb.getHeight()/2);
     }
     
     
