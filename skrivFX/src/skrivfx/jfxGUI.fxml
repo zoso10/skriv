@@ -25,8 +25,8 @@
     </ToolBar>
     <Pane id="mini-map-pane" layoutX="614.0" prefHeight="717.0" prefWidth="154.0">
       <children>
-        <ImageView id="thumb" fx:id="track" fitHeight="717.0" fitWidth="154.0" onMouseDragged="#scrollDragAction" onMousePressed="#scrollDragAction" pickOnBounds="true" preserveRatio="true" />
-        <Rectangle fx:id="thumb" arcHeight="5.0" arcWidth="5.0" blendMode="COLOR_DODGE" fill="#9f9f9f" height="200.0" onMouseDragged="#scrollDragAction" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="3.6" width="154.0" />
+        <ImageView fx:id="track" fitHeight="717.0" fitWidth="154.0" onMouseDragged="#scrollDragAction" onMousePressed="#scrollDragAction" pickOnBounds="true" preserveRatio="true" visible="false" />
+        <Rectangle fx:id="thumb" arcHeight="15.0" arcWidth="15.0" blendMode="COLOR_DODGE" fill="#9f9f9f" height="200.0" onMouseDragged="#scrollDragAction" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="3.6" width="154.0" />
       </children>
       <stylesheets>
         <URL value="@test.css" />

@@ -15,7 +15,7 @@ root {
 }
 
 .mini-map-pane{
-    -fx-background-color: #282828;
+    -fx-background-color: black;
 }
 
 /*.titled-pane .title{
@@ -134,6 +134,9 @@ root {
 .tool-bar{
     -fx-background-color: black;
     -fx-background-radius: 25 25 0 0;
+    -fx-border-color: #303132 #303132 black #303132;
+    -fx-border-radius: 25 25 0 0;
+    -fx-border-width: 3;
 }
 
 
