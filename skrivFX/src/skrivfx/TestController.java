@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
@@ -216,6 +217,11 @@ public class TestController implements Initializable{
         }
     }
     
+    @FXML
+    private void scrollDragAction(MouseEvent evt){
+        System.out.println("Druggeded");
+        thumb.setY(-thumb.getHeight()+evt.getY());
+    }
     
     
 //    @Override // This method is called by the FXMLLoader when initialization is complete
