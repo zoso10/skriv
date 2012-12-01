@@ -94,13 +94,13 @@ public class TestController implements Initializable{
     
     private void menuButtonOpen(){
         FadeTransition fadeTransition = 
-        new FadeTransition(Duration.millis(250), menuPane);
+        new FadeTransition(Duration.millis(150), menuPane);
         fadeTransition.setFromValue(0.0);
         fadeTransition.setToValue(1.0);
         fadeTransition.setCycleCount(1);
         fadeTransition.setAutoReverse(true);
         TranslateTransition translateTransition =
-        new TranslateTransition(Duration.millis(250), menuPane);
+        new TranslateTransition(Duration.millis(150), menuPane);
         translateTransition.setFromY(-100);
         translateTransition.setToY(5);
         translateTransition.setCycleCount(1);
@@ -122,13 +122,13 @@ public class TestController implements Initializable{
 }
     private void menuButtonClose(){
         FadeTransition fadeTransition = 
-        new FadeTransition(Duration.millis(250), menuPane);
+        new FadeTransition(Duration.millis(75), menuPane);
         fadeTransition.setFromValue(1.0);
         fadeTransition.setToValue(0.0);
         fadeTransition.setCycleCount(1);
         fadeTransition.setAutoReverse(true);
         TranslateTransition translateTransition =
-        new TranslateTransition(Duration.millis(250), menuPane);
+        new TranslateTransition(Duration.millis(150), menuPane);
         translateTransition.setFromY(5);
         translateTransition.setToY(-100);
         translateTransition.setCycleCount(1);
