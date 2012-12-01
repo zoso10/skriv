@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -222,6 +223,14 @@ public class TestController implements Initializable{
             thumb.setY(0);
         if (evt.getY()+thumb.getHeight()/2>=track.getFitHeight())
             thumb.setY(track.getFitHeight()-thumb.getHeight());
+    }
+    
+    @FXML
+    private void keyboardShortcut(KeyEvent kp){ 
+        System.out.println(kp.getText());
+        if (kp.isShortcutDown() && kp.getCharacter() == "s"){
+            this.handleSaveButtonAction();
+        }
     }
     
     
