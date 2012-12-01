@@ -4,15 +4,13 @@
  */
 package skrivfx;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,7 +21,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -66,19 +66,12 @@ public class TestController implements Initializable{
     }
     
     
+    
     @FXML
     private void handleMenuButtonAction(){
         if (menuButton.isSelected()){
             menuPane.setVisible(true);    
-            this.menuButtonOpen();
-//            FadeTransition ft = new FadeTransition(Duration.millis(500), menuPane);
-//            ft.setAutoReverse(false);
-//            ft.setCycleCount(1);
-//            ft.setFromValue(0.0);
-//            ft.setToValue(1.0);
-//            ft.play();
-//            System.out.println("fade in complete");
-            
+            this.menuButtonOpen();          
         }
         //No idea why the fade out transition doesnt work right.
         //the transition works if you remove the .setVisible line,
@@ -86,14 +79,7 @@ public class TestController implements Initializable{
         //clickable, which is undesirable
         else{
             this.menuButtonClose();
-//            FadeTransition ft = new FadeTransition(Duration.millis(500), menuPane);
-//            ft.setAutoReverse(false);
-//            ft.setFromValue(1.0);
-//            ft.setToValue(0.0);
-//            ft.setCycleCount(1);
-//            ft.play();
             menuPane.setVisible(false);
-            //System.out.println("fade out complete");
         }
     }
     
@@ -173,6 +159,17 @@ public class TestController implements Initializable{
             this.menuButtonClose();
             menuButton.setSelected(false);
             menuPane.setVisible(false);
+            
+//            DirectoryChooser dc = new DirectoryChooser();
+//            dc.setTitle("Open skriv file...");
+//            File defaultDirectory = new File(".");
+//            dc.setInitialDirectory(defaultDirectory);
+//            File selectedDirectory = dc.showDialog(new Stage());
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Open skriv file...");
+            File defaultDirectory = new File(".");
+            fc.setInitialDirectory(defaultDirectory);
+            fc.showOpenDialog(new Stage());
         }
     }
     
@@ -183,6 +180,13 @@ public class TestController implements Initializable{
             this.menuButtonClose();
             menuButton.setSelected(false);
             menuPane.setVisible(false);
+            
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Save skriv file...");
+            File defaultDirectory = new File(".");
+            fc.setInitialDirectory(defaultDirectory);
+            //File selectedDirectory = dc.showDialog(new Stage());
+            fc.showSaveDialog(new Stage());
         }
     }
     @FXML
