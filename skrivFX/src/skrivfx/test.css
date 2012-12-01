@@ -65,6 +65,66 @@ root {
     
 }
 
+#NewButton{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("NewButton.png");
+    -fx-background-position: center;
+}
+#NewButton:hover{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("NewButtonGlow.png");
+    -fx-background-position: center;
+}
+
+#OpenButton{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("OpenButton.png");
+    -fx-background-position: center;
+}
+#OpenButton:hover{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("OpenButtonGlow.png");
+    -fx-background-position: center;
+}
+
+#SaveButton{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("SaveButton.png");
+    -fx-background-position: center;
+}
+#SaveButton:hover{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("SaveButtonGlow.png");
+    -fx-background-position: center;
+}
+
+#CloseButton{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("CloseButton.png");
+    -fx-background-position: center;
+}
+#CloseButton:hover{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-image: url("CloseButtonGlow.png");
+    -fx-background-position: center;
+}
+
 .tool-bar{
     -fx-background-color: black;
     -fx-background-radius: 25 25 0 0;

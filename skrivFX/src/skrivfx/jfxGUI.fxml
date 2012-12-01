@@ -3,6 +3,7 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
@@ -38,13 +39,20 @@
       </stylesheets>
     </Pane>
     <ToggleButton id="MenuButton" fx:id="menuButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-    <AnchorPane fx:id="menuPane" layoutX="14.0" layoutY="79.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+    <AnchorPane fx:id="menuPane" layoutX="14.0" layoutY="79.0" prefHeight="280.0" prefWidth="203.0" visible="false">
       <children>
-        <TitledPane id="x1" fx:id="openPane" expanded="false" text="Open">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-          </content>
-        </TitledPane>
+        <VBox minWidth="142.5999755859375" prefHeight="280.0" prefWidth="203.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <children>
+            <Button id="NewButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0">
+              <VBox.margin>
+                <Insets bottom="5.0" right="5.0" top="5.0" fx:id="x1" />
+              </VBox.margin>
+            </Button>
+            <Button id="OpenButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" VBox.margin="$x1" />
+            <Button id="SaveButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" VBox.margin="$x1" />
+            <Button id="CloseButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" VBox.margin="$x1" />
+          </children>
+        </VBox>
       </children>
     </AnchorPane>
   </children>
