@@ -46,8 +46,6 @@ public class TestController implements Initializable{
     @FXML
     private ToggleButton menuButton;
     @FXML
-    private AnchorPane menuPane;
-    @FXML
     private ToggleButton writeButton;
     @FXML
     private Button openButton;
@@ -63,6 +61,7 @@ public class TestController implements Initializable{
     private ImageView track;
     @FXML
     private AnchorPane writingPane;
+    
     
     //attributes
     private ParallelTransition parallelTransition;
@@ -83,7 +82,10 @@ public class TestController implements Initializable{
     @FXML
     private void handleMenuButtonAction(){
         if (menuButton.isSelected()){
-            menuPane.setVisible(true);
+            newButton.setVisible(true);
+            openButton.setVisible(true);
+            saveButton.setVisible(true);
+            closeButton.setVisible(true);
             this.menuButtonOpen();          
         }
         //No idea why the fade out transition doesnt work right.
@@ -96,9 +98,12 @@ public class TestController implements Initializable{
                 @Override
                 public void run(){
                     try{
-                        Thread.sleep(250);
+                        Thread.sleep(150);
                     } catch(Exception e){ System.out.println("pause exception"); }
-                    menuPane.setVisible(false);
+                    newButton.setVisible(false);
+                    openButton.setVisible(false);
+                    saveButton.setVisible(false);
+                    closeButton.setVisible(false);
                 }
             });
             t.start(); 
@@ -106,18 +111,20 @@ public class TestController implements Initializable{
     }
     
     private void menuButtonOpen(){
-        FadeTransition fadeTransition = 
-        new FadeTransition(Duration.millis(150), menuPane);
-        fadeTransition.setFromValue(0.0);
-        fadeTransition.setToValue(1.0);
-        fadeTransition.setCycleCount(1);
-        fadeTransition.setAutoReverse(true);
-        TranslateTransition translateTransition =
-        new TranslateTransition(Duration.millis(150), menuPane);
-        translateTransition.setFromY(-100);
-        translateTransition.setToY(5);
-        translateTransition.setCycleCount(1);
-        translateTransition.setAutoReverse(true);
+        FadeTransition closeFade = 
+        new FadeTransition(Duration.millis(150), closeButton);
+        closeFade.setFromValue(0.0);
+        closeFade.setToValue(1.0);
+        closeFade.setCycleCount(1);
+        closeFade.setAutoReverse(true);
+        
+        TranslateTransition closeTranslate =
+        new TranslateTransition(Duration.millis(150), closeButton);
+        closeTranslate.setFromY(-100);
+        closeTranslate.setToY(5);
+        closeTranslate.setCycleCount(1);
+        closeTranslate.setAutoReverse(true);
+        
         RotateTransition rotateTransition = 
         new RotateTransition(Duration.millis(150), menuButton);
         rotateTransition.setByAngle(90);
@@ -126,26 +133,38 @@ public class TestController implements Initializable{
 
         parallelTransition = new ParallelTransition();
         parallelTransition.getChildren().addAll(
-                fadeTransition,
-                translateTransition,
+//                newFade,
+//                newTranslate,
+//                
+//                openFade,
+//                openTranslate,
+//                
+//                saveFade,
+//                saveTranslate,
+                
+                closeFade,
+                closeTranslate,
+                
                 rotateTransition
         );
         parallelTransition.setCycleCount(1);
         parallelTransition.play();
 }
     private void menuButtonClose(){
-        FadeTransition fadeTransition = 
-        new FadeTransition(Duration.millis(75), menuPane);
-        fadeTransition.setFromValue(1.0);
-        fadeTransition.setToValue(0.0);
-        fadeTransition.setCycleCount(1);
-        fadeTransition.setAutoReverse(true);
-        TranslateTransition translateTransition =
-        new TranslateTransition(Duration.millis(150), menuPane);
-        translateTransition.setFromY(5);
-        translateTransition.setToY(-100);
-        translateTransition.setCycleCount(1);
-        translateTransition.setAutoReverse(true);
+        FadeTransition closeFade = 
+        new FadeTransition(Duration.millis(75), closeButton);
+        closeFade.setFromValue(1.0);
+        closeFade.setToValue(0.0);
+        closeFade.setCycleCount(1);
+        closeFade.setAutoReverse(true);
+        
+        TranslateTransition closeTranslate =
+        new TranslateTransition(Duration.millis(150), closeButton);
+        closeTranslate.setFromY(5);
+        closeTranslate.setToY(-100);
+        closeTranslate.setCycleCount(1);
+        closeTranslate.setAutoReverse(true);
+        
         RotateTransition rotateTransition = 
         new RotateTransition(Duration.millis(150), menuButton);
         rotateTransition.setByAngle(-90);
@@ -154,8 +173,8 @@ public class TestController implements Initializable{
 
         parallelTransition = new ParallelTransition();
         parallelTransition.getChildren().addAll(
-                fadeTransition,
-                translateTransition,
+                closeFade,
+                closeTranslate,
                 rotateTransition
         );
         parallelTransition.setCycleCount(1);
@@ -170,7 +189,10 @@ public class TestController implements Initializable{
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
-            menuPane.setVisible(false);
+            newButton.setVisible(false);
+            openButton.setVisible(false);
+            saveButton.setVisible(false);
+            closeButton.setVisible(false);
 
         }
     }
@@ -181,7 +203,10 @@ public class TestController implements Initializable{
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
-            menuPane.setVisible(false);
+            newButton.setVisible(false);
+            openButton.setVisible(false);
+            saveButton.setVisible(false);
+            closeButton.setVisible(false);
             FileChooser fc = new FileChooser();
             fc.setTitle("Open skriv file...");
             File defaultDirectory = new File(".");
@@ -196,7 +221,10 @@ public class TestController implements Initializable{
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
-            menuPane.setVisible(false);
+            newButton.setVisible(false);
+            openButton.setVisible(false);
+            saveButton.setVisible(false);
+            closeButton.setVisible(false);
             
             FileChooser fc = new FileChooser();
             fc.setTitle("Save skriv file...");
@@ -212,7 +240,10 @@ public class TestController implements Initializable{
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
-            menuPane.setVisible(false);
+            newButton.setVisible(false);
+            openButton.setVisible(false);
+            saveButton.setVisible(false);
+            closeButton.setVisible(false);
             
         }
     }

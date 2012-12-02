@@ -48,7 +48,7 @@
         </VBox>
       </children>
     </AnchorPane>
-    <AnchorPane id="drawingPane" fx:id="writingPane" layoutY="783.0" prefHeight="241.0" prefWidth="768.0" />
+    <Pane id="DrawingPane" layoutY="783.0" prefHeight="241.0" prefWidth="767.9999000000025" />
   </children>
   <stylesheets>
     <URL value="@test.css" />
