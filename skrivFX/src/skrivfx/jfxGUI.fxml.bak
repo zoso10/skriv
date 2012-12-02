@@ -13,11 +13,6 @@
 
 <AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyboardShortcut" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
   <children>
-    <ScrollPane id="WriteArea" hbarPolicy="ALWAYS" layoutY="777.0" pannable="true" prefHeight="247.0" prefWidth="768.0" vbarPolicy="NEVER">
-      <stylesheets>
-        <URL value="@test.css" />
-      </stylesheets>
-    </ScrollPane>
     <ToolBar layoutY="717.0" prefHeight="50.9998779296875" prefWidth="768.0">
       <items>
         <ToggleButton id="WriteButton" fx:id="writeButton" mnemonicParsing="false" onAction="#handleWriteButtonAction" prefHeight="50.0" prefWidth="50.0" />
@@ -53,6 +48,7 @@
         </VBox>
       </children>
     </AnchorPane>
+    <AnchorPane id="drawingPane" fx:id="writingPane" layoutY="783.0" prefHeight="241.0" prefWidth="768.0" />
   </children>
   <stylesheets>
     <URL value="@test.css" />
