@@ -58,6 +58,8 @@ public class TestController implements Initializable{
     private Rectangle thumb;
     @FXML
     private ImageView track;
+    @FXML
+    private AnchorPane writingPane;
     
     //attributes
     private ParallelTransition parallelTransition;
