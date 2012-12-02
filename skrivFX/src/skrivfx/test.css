@@ -133,9 +133,9 @@ root {
 
 .tool-bar{
     -fx-background-color: black;
-    -fx-background-radius: 25 25 0 0;
-    -fx-border-color: #303132 #303132 black #303132;
-    -fx-border-radius: 25 25 0 0;
+    -fx-background-radius: 25 0 0 0;
+    -fx-border-color: #303132 black black #303132;
+    -fx-border-radius: 25 0 0 0;
     -fx-border-width: 3;
 }
 
