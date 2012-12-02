@@ -32,7 +32,7 @@
     <Button id="OpenButton" fx:id="openButton" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleOpenButtonAction" opacity="0.0" prefHeight="50.0" prefWidth="50.0" visible="false" />
     <Button id="SaveButton" fx:id="saveButton" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" opacity="0.0" prefHeight="50.0" prefWidth="50.0" visible="false" />
     <Button id="CloseButton" fx:id="closeButton" layoutX="15.0" layoutY="255.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" opacity="0.0" prefHeight="50.0" prefWidth="50.0" visible="false" />
-    <Pane id="DrawingPane" layoutY="783.0" prefHeight="241.0" prefWidth="767.9999000000025" />
+    <Pane id="DrawingPane" layoutY="783.0" prefHeight="241.0" prefWidth="768" />
   </children>
   <stylesheets>
     <URL value="@test.css" />
