@@ -4,6 +4,7 @@
  */
 package skrivfx;
 
+import classes.SmartPoint;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Accordion;
@@ -33,6 +35,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Model;
 
 /**
  *
@@ -45,6 +48,7 @@ public class TestController implements Initializable{
     
     // Other stuff
     private Canvas canvas;
+    private Model model;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -371,6 +375,18 @@ public class TestController implements Initializable{
         
     }
     
+    private void startLine(GraphicsContext gc, Point2D p){
+        gc.beginPath();
+        gc.moveTo(p.getX(), p.getY());
+        gc.lineTo(p.getX()+.01, p.getY()+.01);
+        gc.stroke();
+    }
+    
+    private void updatePoint(GraphicsContext gc, Point2D p){
+        gc.lineTo(p.getX(), p.getY());
+        gc.stroke();
+    }
+    
     
 //    @Override // This method is called by the FXMLLoader when initialization is complete
 //    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -391,18 +407,46 @@ public class TestController implements Initializable{
 //        });     
 //
 //    }
-    
+        
     @Override
     public void initialize(URL url, ResourceBundle rb){
         // stuff, maybe...
+        model = new Model();
         canvas = new Canvas();
         canvas.widthProperty().bind(drawingPane.widthProperty());
         canvas.heightProperty().bind(drawingPane.heightProperty());
         
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        //gc.fillRect(0, 0, 100, 100);
+        final GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
+        gc.setLineWidth(2);
+        
+        canvas.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent e){
+                Point2D p2d = new Point2D(e.getX(), e.getY());
+                SmartPoint sp = new SmartPoint(p2d, false);
+                model.addPoint(sp);
+                startLine(gc, p2d);
+            }
+        });
+        
+        canvas.setOnMouseDragged(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent e){
+                Point2D p2d = new Point2D(e.getX(), e.getY());
+                SmartPoint sp = new SmartPoint(p2d, false);
+                model.addPointDirect(sp);
+                updatePoint(gc, p2d);
+            }
+        });
+        
+        canvas.setOnMouseReleased(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent e){
+                model.addPointDirect(new SmartPoint(e.getSceneX(), e.getSceneY(), true));
+            }
+        });
         
         drawingPane.getChildren().add(canvas);
     }
 }
-//penis
