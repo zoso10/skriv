@@ -26,6 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
@@ -41,6 +42,9 @@ import javafx.util.Duration;
  * with the FXML file!
  */
 public class TestController implements Initializable{
+    
+    // Other stuff
+    private Canvas canvas;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -60,7 +64,7 @@ public class TestController implements Initializable{
     @FXML
     private ImageView track;
     @FXML
-    private AnchorPane writingPane;
+    private Pane drawingPane;
     
     
     //attributes
@@ -391,5 +395,14 @@ public class TestController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb){
         // stuff, maybe...
+        canvas = new Canvas();
+        canvas.widthProperty().bind(drawingPane.widthProperty());
+        canvas.heightProperty().bind(drawingPane.heightProperty());
+        
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        //gc.fillRect(0, 0, 100, 100);
+        
+        drawingPane.getChildren().add(canvas);
     }
 }
+//penis

@@ -15,14 +15,14 @@ import javafx.stage.Stage;
  * @author Tyler_Ewing
  */
 public class SkrivFX extends Application {
-    
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("jfxGUI.fxml"));
         
+    @Override
+    public void start(Stage stage) throws Exception {        
+        Parent root = FXMLLoader.load(getClass().getResource("jfxGUI.fxml"));
+               
         Scene scene = new Scene(root);
         
-        
+                        
         stage.setScene(scene);
         stage.setTitle("skriv");
         stage.setResizable(false);

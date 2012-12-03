@@ -139,5 +139,9 @@ root {
     -fx-border-width: 3;
 }
 
+#DrawingPane{
+    -fx-background-color: white;
+}
+
 
 
