@@ -4,6 +4,7 @@
  */
 package skrivfx;
 
+import classes.ClearThread;
 import classes.SmartPoint;
 import java.io.File;
 import java.net.URL;
@@ -50,6 +51,8 @@ public class TestController implements Initializable{
     private Canvas canvas;
     private Model model;
     private boolean hasReachedEnd = false;
+    //private Thread t;
+    private ClearThread t = new ClearThread();
     
     //These are objects injected from the FXML file:
     @FXML
@@ -424,6 +427,13 @@ public class TestController implements Initializable{
         canvas.setOnMousePressed(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent e){
+//                if(t != null && t.isAlive()){
+//                    t.interrupt();
+//                }
+                if(t.isRunning()){
+                    System.out.println("Trying to kill the Thread");
+                    t.kill();
+                }
                 Point2D p2d = new Point2D(e.getX(), e.getY());
                 SmartPoint sp = new SmartPoint(p2d, false);
                 model.addPoint(sp);
@@ -447,18 +457,19 @@ public class TestController implements Initializable{
             public void handle(MouseEvent e){
                 model.addPointDirect(new SmartPoint(e.getSceneX(), e.getSceneY(), true));
                 if(hasReachedEnd){
-                     Thread t = new Thread(new Runnable(){
-                         @Override
-                         public void run(){
-                             try{
-                                 Thread.sleep(400);
-                             } catch(Exception e){ System.out.println("You suck"); }
-                             model.endWord();
-                             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                             hasReachedEnd = false;
-                         }
-                     });
-                     t.start();
+//                     t = new Thread(new Runnable(){
+//                         @Override
+//                         public void run(){
+//                             try{
+//                                 Thread.sleep(400);
+//                             } catch(Exception e){ System.out.println("You suck"); }
+//                             model.endWord();
+//                             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+//                             hasReachedEnd = false;
+//                         }
+//                     });
+//                     t.start();
+                    t.start();
                 }
             }
         });
