@@ -1,22 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package classes;
 
-/**
- *
- * @author Tyler
- */
+import javafx.scene.canvas.GraphicsContext;
+
+
 public class ClearThread extends Thread{
     
     private static final int STATE_RUN = 0, STATE_STOP = 2, STATE_WAIT = 3;
-    private static final int MAX_WAIT = 450;
+    private static final int MAX_WAIT = 800;
     private int _state;
-    private int counter = 0;
+    private int counter;
+    private GraphicsContext gc;
     
     
-    public ClearThread(){
+    public ClearThread(GraphicsContext gc){
+        this.gc = gc;
         counter = 0;
         _state = STATE_WAIT;
     }
@@ -24,12 +21,13 @@ public class ClearThread extends Thread{
     @Override
     public void run(){
         while(_state != STATE_STOP && counter < MAX_WAIT){
-            System.out.println("In loop");
+            //System.out.println("In loop");
             ++counter;
             try{
                 Thread.sleep(1);
             } catch(InterruptedException exc){ System.out.println("Sleep interrupted"); }
         }
+        gc.clearRect(0, 0, 768, 247);
         this.end();
     }
     
@@ -41,8 +39,8 @@ public class ClearThread extends Thread{
         _state = STATE_STOP;
         try{
             this.interrupt();
-            this.join();
-        } catch(InterruptedException exc){ System.out.println("EFFED UP STOPPING"); }
+            //this.join();
+        } catch(Exception exc){ System.out.println("EFFED UP STOPPING"); }
     }
     
     public boolean isFinished(){

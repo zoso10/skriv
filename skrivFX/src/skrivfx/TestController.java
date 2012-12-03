@@ -52,7 +52,7 @@ public class TestController implements Initializable{
     private Model model;
     private boolean hasReachedEnd = false;
     //private Thread t;
-    private ClearThread t = new ClearThread();
+    private ClearThread t;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -421,15 +421,14 @@ public class TestController implements Initializable{
         canvas.heightProperty().bind(drawingPane.heightProperty());
         
         final GraphicsContext gc = canvas.getGraphicsContext2D();
+        t = new ClearThread(gc);
+        
         gc.setFill(Color.BLACK);
         gc.setLineWidth(2);
         
         canvas.setOnMousePressed(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent e){
-//                if(t != null && t.isAlive()){
-//                    t.interrupt();
-//                }
                 if(t.isRunning()){
                     System.out.println("Trying to kill the Thread");
                     t.kill();
@@ -457,19 +456,8 @@ public class TestController implements Initializable{
             public void handle(MouseEvent e){
                 model.addPointDirect(new SmartPoint(e.getSceneX(), e.getSceneY(), true));
                 if(hasReachedEnd){
-//                     t = new Thread(new Runnable(){
-//                         @Override
-//                         public void run(){
-//                             try{
-//                                 Thread.sleep(400);
-//                             } catch(Exception e){ System.out.println("You suck"); }
-//                             model.endWord();
-//                             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-//                             hasReachedEnd = false;
-//                         }
-//                     });
-//                     t.start();
                     t.start();
+                    //gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 }
             }
         });
