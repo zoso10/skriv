@@ -49,6 +49,7 @@ public class TestController implements Initializable{
     // Other stuff
     private Canvas canvas;
     private Model model;
+    private boolean hasReachedEnd = false;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -435,6 +436,7 @@ public class TestController implements Initializable{
             public void handle(MouseEvent e){
                 Point2D p2d = new Point2D(e.getX(), e.getY());
                 SmartPoint sp = new SmartPoint(p2d, false);
+                if(e.getX() > canvas.getWidth()*.85){ hasReachedEnd = true; }
                 model.addPointDirect(sp);
                 updatePoint(gc, p2d);
             }
@@ -444,6 +446,20 @@ public class TestController implements Initializable{
             @Override
             public void handle(MouseEvent e){
                 model.addPointDirect(new SmartPoint(e.getSceneX(), e.getSceneY(), true));
+                if(hasReachedEnd){
+                     Thread t = new Thread(new Runnable(){
+                         @Override
+                         public void run(){
+                             try{
+                                 Thread.sleep(400);
+                             } catch(Exception e){ System.out.println("You suck"); }
+                             model.endWord();
+                             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                             hasReachedEnd = false;
+                         }
+                     });
+                     t.start();
+                }
             }
         });
         

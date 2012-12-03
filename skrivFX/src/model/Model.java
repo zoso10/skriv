@@ -35,4 +35,11 @@ public class Model {
     public void addPointDirect(SmartPoint p){
         liveWord.add(p);
     }
+    
+    public void endWord(){
+        Word temp = liveWord;
+        words.add(temp);
+        liveWord = null;
+        System.out.println("Ended Word");
+    }
 }
