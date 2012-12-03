@@ -98,7 +98,7 @@ public class TestController implements Initializable{
                 @Override
                 public void run(){
                     try{
-                        Thread.sleep(150);
+                        Thread.sleep(250);
                     } catch(Exception e){ System.out.println("pause exception"); }
                     newButton.setVisible(false);
                     openButton.setVisible(false);
@@ -110,16 +110,60 @@ public class TestController implements Initializable{
         }
     }
     
+    //code reuse goes out the window:
+    
     private void menuButtonOpen(){
+        FadeTransition newFade = 
+        new FadeTransition(Duration.millis(50), newButton);
+        newFade.setFromValue(0.0);
+        newFade.setToValue(1.0);
+        newFade.setCycleCount(1);
+        newFade.setAutoReverse(true);
+        
+        TranslateTransition newTranslate =
+        new TranslateTransition(Duration.millis(50), newButton);
+        newTranslate.setFromY(-100);
+        newTranslate.setToY(5);
+        newTranslate.setCycleCount(1);
+        newTranslate.setAutoReverse(true);
+        
+        FadeTransition openFade = 
+        new FadeTransition(Duration.millis(100), openButton);
+        openFade.setFromValue(0.0);
+        openFade.setToValue(1.0);
+        openFade.setCycleCount(1);
+        openFade.setAutoReverse(true);
+        
+        TranslateTransition openTranslate =
+        new TranslateTransition(Duration.millis(100), openButton);
+        openTranslate.setFromY(-100);
+        openTranslate.setToY(5);
+        openTranslate.setCycleCount(1);
+        openTranslate.setAutoReverse(true);
+        
+        FadeTransition saveFade = 
+        new FadeTransition(Duration.millis(150), saveButton);
+        saveFade.setFromValue(0.0);
+        saveFade.setToValue(1.0);
+        saveFade.setCycleCount(1);
+        saveFade.setAutoReverse(true);
+        
+        TranslateTransition saveTranslate =
+        new TranslateTransition(Duration.millis(150), saveButton);
+        saveTranslate.setFromY(-100);
+        saveTranslate.setToY(5);
+        saveTranslate.setCycleCount(1);
+        saveTranslate.setAutoReverse(true);
+        
         FadeTransition closeFade = 
-        new FadeTransition(Duration.millis(150), closeButton);
+        new FadeTransition(Duration.millis(250), closeButton);
         closeFade.setFromValue(0.0);
         closeFade.setToValue(1.0);
         closeFade.setCycleCount(1);
         closeFade.setAutoReverse(true);
         
         TranslateTransition closeTranslate =
-        new TranslateTransition(Duration.millis(150), closeButton);
+        new TranslateTransition(Duration.millis(250), closeButton);
         closeTranslate.setFromY(-100);
         closeTranslate.setToY(5);
         closeTranslate.setCycleCount(1);
@@ -133,14 +177,14 @@ public class TestController implements Initializable{
 
         parallelTransition = new ParallelTransition();
         parallelTransition.getChildren().addAll(
-//                newFade,
-//                newTranslate,
-//                
-//                openFade,
-//                openTranslate,
-//                
-//                saveFade,
-//                saveTranslate,
+                newFade,
+                newTranslate,
+                
+                openFade,
+                openTranslate,
+                
+                saveFade,
+                saveTranslate,
                 
                 closeFade,
                 closeTranslate,
@@ -151,6 +195,48 @@ public class TestController implements Initializable{
         parallelTransition.play();
 }
     private void menuButtonClose(){
+        FadeTransition newFade = 
+        new FadeTransition(Duration.millis(50), newButton);
+        newFade.setFromValue(1.0);
+        newFade.setToValue(0.0);
+        newFade.setCycleCount(1);
+        newFade.setAutoReverse(true);
+        
+        TranslateTransition newTranslate =
+        new TranslateTransition(Duration.millis(50), newButton);
+        newTranslate.setFromY(5);
+        newTranslate.setToY(-100);
+        newTranslate.setCycleCount(1);
+        newTranslate.setAutoReverse(true);
+        
+        FadeTransition openFade = 
+        new FadeTransition(Duration.millis(100), openButton);
+        openFade.setFromValue(1.0);
+        openFade.setToValue(0.0);
+        openFade.setCycleCount(1);
+        openFade.setAutoReverse(true);
+        
+        TranslateTransition openTranslate =
+        new TranslateTransition(Duration.millis(100), openButton);
+        openTranslate.setFromY(5);
+        openTranslate.setToY(-100);
+        openTranslate.setCycleCount(1);
+        openTranslate.setAutoReverse(true);
+        
+        FadeTransition saveFade = 
+        new FadeTransition(Duration.millis(150), saveButton);
+        saveFade.setFromValue(1.0);
+        saveFade.setToValue(0.0);
+        saveFade.setCycleCount(1);
+        saveFade.setAutoReverse(true);
+        
+        TranslateTransition saveTranslate =
+        new TranslateTransition(Duration.millis(150), saveButton);
+        saveTranslate.setFromY(5);
+        saveTranslate.setToY(-100);
+        saveTranslate.setCycleCount(1);
+        saveTranslate.setAutoReverse(true);
+        
         FadeTransition closeFade = 
         new FadeTransition(Duration.millis(75), closeButton);
         closeFade.setFromValue(1.0);
@@ -173,8 +259,18 @@ public class TestController implements Initializable{
 
         parallelTransition = new ParallelTransition();
         parallelTransition.getChildren().addAll(
+                newFade,
+                newTranslate,
+                
+                openFade,
+                openTranslate,
+                
+                saveFade,
+                saveTranslate,
+                
                 closeFade,
                 closeTranslate,
+                
                 rotateTransition
         );
         parallelTransition.setCycleCount(1);
