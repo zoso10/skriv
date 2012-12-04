@@ -37,6 +37,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Model;
+import view.View;
 
 /**
  *
@@ -45,11 +46,12 @@ import model.Model;
  * Make sure you use the @FXML tag any time you need to interface
  * with the FXML file!
  */
-public class TestController implements Initializable{
+public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-    private Canvas canvas;
+    //private Canvas canvas;
     private Model model;
+    private View view;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
     
@@ -381,91 +383,114 @@ public class TestController implements Initializable{
         
     }
     
-    private void startLine(GraphicsContext gc, Point2D p){
-        gc.beginPath();
-        gc.moveTo(p.getX(), p.getY());
-        gc.lineTo(p.getX()+.01, p.getY()+.01);
-        gc.stroke();
+    /*---------------- Overridden MouseEvent Handler -----------------*/
+    @Override
+    public void handle(MouseEvent e){
+        if(e.getEventType() == MouseEvent.MOUSE_PRESSED){ mousePressedEvent(e); }
+        else if(e.getEventType() == MouseEvent.MOUSE_DRAGGED){ mouseDraggedEvent(e); }
+        else{ mouseReleasedEvent(e); }
     }
     
-    private void updatePoint(GraphicsContext gc, Point2D p){
-        gc.lineTo(p.getX(), p.getY());
-        gc.stroke();
+    private void mousePressedEvent(MouseEvent e){
+        Point2D p2d = new Point2D(e.getX(), e.getY());
+        SmartPoint sp = new SmartPoint(p2d, false);
+        t.reset();
+        view.startLine(p2d);
+        // Add point to Model
+        model.addPoint(sp);
+    }
+    
+    private void mouseDraggedEvent(MouseEvent e){
+        Point2D p2d = new Point2D(e.getX(), e.getY());
+        SmartPoint sp = new SmartPoint(p2d, false);
+        if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
+        view.updateLine(p2d);
+        // Add point direct to Model
+        model.addPointDirect(sp);
+    }
+    
+    private void mouseReleasedEvent(MouseEvent e){
+        Point2D p2d = new Point2D(e.getX(), e.getY());
+        SmartPoint sp = new SmartPoint(p2d, true);
+        if(hasReachedEnd){
+            t.restart();
+            hasReachedEnd = false;
+        }
+        // Add point direct to Model
+        model.addPointDirect(sp);
     }
     
     public static ClearThread getThread(){
         return t;
     }
-    
-    
-//    @Override // This method is called by the FXMLLoader when initialization is complete
-//    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-//        assert menuButton != null : "fx:id=\"menuButton\" was not injected: check your FXML file 'jfxGUI.fxml'.";
-//
-//        // initialize your logic here: all @FXML variables will have been injected
-//        menuButton.setOnAction(new EventHandler<ActionEvent>() {
-//
-//            @Override
-//            public void handle(ActionEvent event) {
-//                if (menuButton.isSelected()){
-//                    menuPane.setVisible(true);
-//                }
-//                else{
-//                    menuPane.setVisible(false);
-//                }
-//            }
-//        });     
-//
-//    }
         
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        // stuff, maybe...
+        // Little more of an MVC structure
         model = new Model();
-        canvas = new Canvas();
-        canvas.widthProperty().bind(drawingPane.widthProperty());
-        canvas.heightProperty().bind(drawingPane.heightProperty());
-        
-        final GraphicsContext gc = canvas.getGraphicsContext2D();
-        t = new ClearThread(gc);
+        // SPLIT UP VIEW
+        view = new View();
+        view.makePageCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        t = new ClearThread(view.getWritingGraphics());
         t.start();
         
-        gc.setFill(Color.BLACK);
-        gc.setLineWidth(2);
+        // Add Handlers
+        view.addHandlers(this);
         
-        canvas.setOnMousePressed(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent e){
-                Point2D p2d = new Point2D(e.getX(), e.getY());
-                SmartPoint sp = new SmartPoint(p2d, false);
-                t.reset();
-                model.addPoint(sp);
-                startLine(gc, p2d);
-            }
-        });
+        // Add Canvas to Drawing Pane
+        drawingPane.getChildren().add(view.getWritingCanvas());
         
-        canvas.setOnMouseDragged(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent e){
-                Point2D p2d = new Point2D(e.getX(), e.getY());
-                SmartPoint sp = new SmartPoint(p2d, false);
-                if(e.getX() > canvas.getWidth()*.9){ hasReachedEnd = true; }
-                model.addPointDirect(sp);
-                updatePoint(gc, p2d);
-            }
-        });
+        // Add Canvas to Page Pane
+        page.getChildren().add(view.getPageCanvas());
         
-        canvas.setOnMouseReleased(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent e){
-                model.addPointDirect(new SmartPoint(e.getSceneX(), e.getSceneY(), true));
-                if(hasReachedEnd){
-                    t.restart();
-                    hasReachedEnd = false;
-                }
-            }
-        });
         
-        drawingPane.getChildren().add(canvas);
-    };
+        // Boy that got messy quick
+//        model = new Model();
+//        canvas = new Canvas();
+//        canvas.widthProperty().bind(drawingPane.widthProperty());
+//        canvas.heightProperty().bind(drawingPane.heightProperty());
+//        
+//        final GraphicsContext gc = canvas.getGraphicsContext2D();
+//        t = new ClearThread(gc);
+//        t.start();
+//        
+//        gc.setFill(Color.BLACK);
+//        gc.setLineWidth(2);
+//        
+//        canvas.setOnMousePressed(new EventHandler<MouseEvent>(){
+//            @Override
+//            public void handle(MouseEvent e){
+//                Point2D p2d = new Point2D(e.getX(), e.getY());
+//                SmartPoint sp = new SmartPoint(p2d, false);
+//                t.reset();
+//                model.addPoint(sp);
+//                startLine(gc, p2d);
+//            }
+//        });
+//        
+//        canvas.setOnMouseDragged(new EventHandler<MouseEvent>(){
+//            @Override
+//            public void handle(MouseEvent e){
+//                Point2D p2d = new Point2D(e.getX(), e.getY());
+//                SmartPoint sp = new SmartPoint(p2d, false);
+//                if(e.getX() > canvas.getWidth()*.9){ hasReachedEnd = true; }
+//                model.addPointDirect(sp);
+//                updatePoint(gc, p2d);
+//            }
+//        });
+//        
+//        canvas.setOnMouseReleased(new EventHandler<MouseEvent>(){
+//            @Override
+//            public void handle(MouseEvent e){
+//                model.addPointDirect(new SmartPoint(e.getSceneX(), e.getSceneY(), true));
+//                if(hasReachedEnd){
+//                    t.restart();
+//                    hasReachedEnd = false;
+//                }
+//            }
+//        });
+//        
+//        drawingPane.getChildren().add(canvas);
+    }
 }

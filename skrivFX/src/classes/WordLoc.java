@@ -9,6 +9,10 @@ public class WordLoc{
     private List<SmartPoint> points;
     private double left, right; // left and right bounds
     
+    public WordLoc(){
+        
+    }
+    
     public WordLoc(SmartPoint p){
         left = right = p.getX();
         points = new ArrayList<>();

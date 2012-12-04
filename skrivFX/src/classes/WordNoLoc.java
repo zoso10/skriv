@@ -19,7 +19,7 @@ public class WordNoLoc{
     }
     
     // For when the point is to the right and below the offset
-    public SmartPoint addPoint(SmartPoint p){
+    public void addPoint(SmartPoint p){
         double xTranslate = p.getX() - offset.getX();
         double yTranslate = p.getY() - offset.getY();
         width = width < xTranslate ? xTranslate : width;
@@ -27,7 +27,7 @@ public class WordNoLoc{
         SmartPoint pTranslated = new SmartPoint(xTranslate, yTranslate, p.isLast());
         points.add(pTranslated);
         
-        return new SmartPoint(xTranslate, yTranslate, p.isLast());
+        //return new SmartPoint(xTranslate, yTranslate, p.isLast());
     }
     
     public double getWidth(){
@@ -36,5 +36,9 @@ public class WordNoLoc{
     
     public double getHeight(){
         return height;
-    }  
+    }
+    
+    public void draw(javafx.scene.canvas.GraphicsContext gc){
+        
+    }
 }
