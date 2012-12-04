@@ -20,7 +20,7 @@
     </ToolBar>
     <Pane id="mini-map-pane" prefHeight="717.0" prefWidth="106.0" AnchorPane.rightAnchor="0.0">
       <children>
-        <ImageView fx:id="track" fitHeight="950.025" fitWidth="106.0" onMouseDragged="#scrollDragAction" onMousePressed="#scrollDragAction" pickOnBounds="true" preserveRatio="true" visible="false" />
+        <ImageView fx:id="track" fitHeight="950.025" fitWidth="106.0" onMouseDragged="#scrollDragAction" onMousePressed="#scrollDragAction" pickOnBounds="true" preserveRatio="true" />
         <Rectangle fx:id="thumb" arcHeight="15.0" arcWidth="15.0" blendMode="COLOR_DODGE" fill="#9f9f9f" height="139.0" onMouseDragged="#scrollDragAction" stroke="#bfbfbf" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="3.6" width="106.0" />
       </children>
       <stylesheets>
