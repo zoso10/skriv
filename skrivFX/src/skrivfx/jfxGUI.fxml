@@ -18,10 +18,10 @@
         <ToggleButton id="WriteButton" fx:id="writeButton" mnemonicParsing="false" onAction="#handleWriteButtonAction" prefHeight="50.0" prefWidth="50.0" />
       </items>
     </ToolBar>
-    <Pane id="mini-map-pane" layoutX="614.0" prefHeight="717.0" prefWidth="154.0">
+    <Pane id="mini-map-pane" prefHeight="717.0" prefWidth="106.0" AnchorPane.rightAnchor="0.0">
       <children>
-        <ImageView fx:id="track" fitHeight="717.0" fitWidth="154.0" onMouseDragged="#scrollDragAction" onMousePressed="#scrollDragAction" pickOnBounds="true" preserveRatio="true" />
-        <Rectangle fx:id="thumb" arcHeight="15.0" arcWidth="15.0" blendMode="COLOR_DODGE" fill="#9f9f9f" height="200.0" onMouseDragged="#scrollDragAction" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="3.6" width="154.0" />
+        <ImageView fx:id="track" fitHeight="950.025" fitWidth="106.0" onMouseDragged="#scrollDragAction" onMousePressed="#scrollDragAction" pickOnBounds="true" preserveRatio="true" visible="false" />
+        <Rectangle fx:id="thumb" arcHeight="15.0" arcWidth="15.0" blendMode="COLOR_DODGE" fill="#9f9f9f" height="139.0" onMouseDragged="#scrollDragAction" stroke="#bfbfbf" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="3.6" width="106.0" />
       </children>
       <stylesheets>
         <URL value="@test.css" />
@@ -32,7 +32,8 @@
     <Button id="OpenButton" fx:id="openButton" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleOpenButtonAction" opacity="0.0" prefHeight="50.0" prefWidth="50.0" visible="false" />
     <Button id="SaveButton" fx:id="saveButton" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" opacity="0.0" prefHeight="50.0" prefWidth="50.0" visible="false" />
     <Button id="CloseButton" fx:id="closeButton" layoutX="15.0" layoutY="255.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" opacity="0.0" prefHeight="50.0" prefWidth="50.0" visible="false" />
-    <Pane id="DrawingPane" fx:id="drawingPane" layoutY="783.0" prefHeight="241.0" prefWidth="768" /> 
+    <Pane id="DrawingPane" fx:id="drawingPane" layoutY="783.0" prefHeight="241.0" prefWidth="768.0" />
+    <Pane id="Page" fx:id="page" layoutX="106.0" prefHeight="717.0" prefWidth="556.0" />
   </children>
   <stylesheets>
     <URL value="@test.css" />

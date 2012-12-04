@@ -73,6 +73,8 @@ public class TestController implements Initializable{
     private ImageView track;
     @FXML
     private Pane drawingPane;
+    @FXML
+    private Pane page;
     
     
     //attributes

@@ -134,14 +134,22 @@ root {
 .tool-bar{
     -fx-background-color: black;
     -fx-background-radius: 25 0 0 0;
-    -fx-border-color: #303132 black black #303132;
+    -fx-border-color: black;
     -fx-border-radius: 25 0 0 0;
     -fx-border-width: 3;
 }
 
 #DrawingPane{
     -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 3 3 0 3;
+    -fx-background-radius: 0 0 10 10;
 }
 
+#Page{
+    -fx-background-color: white;
+/*    -fx-opacity: 80%;*/
+    -fx-background-radius: 10;
+}
 
 
