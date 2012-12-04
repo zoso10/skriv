@@ -23,9 +23,10 @@ public class Model {
             System.out.println("Word was null");
         } else if(liveWordContains(p)){
             Word temp = liveWord;
+            System.out.println("New Word");
+            System.out.println(temp.left());
             words.add(temp);
             liveWord = new Word(p);
-            System.out.println("New Word");
         } else{
             liveWord.add(p);
         }
@@ -43,6 +44,7 @@ public class Model {
         System.out.println("Ended Word");
     }
     
+    // I think we'll use this for the Clear Thread
     public boolean liveWordContains(SmartPoint p){
         if(liveWord == null){ return false; }
         else{ return liveWord.right() + spaceFactor < p.getX() || liveWord.left() - spaceFactor > p.getX(); }
