@@ -347,6 +347,7 @@ public class TestController implements Initializable{
     @FXML
     private void handleCloseButtonAction(){
         System.out.println("close button pressed");
+        if(t != null){ t.kill(); }
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
@@ -423,6 +424,8 @@ public class TestController implements Initializable{
         canvas.heightProperty().bind(drawingPane.heightProperty());
         
         final GraphicsContext gc = canvas.getGraphicsContext2D();
+        t = new ClearThread(gc);
+        t.start();
         
         gc.setFill(Color.BLACK);
         gc.setLineWidth(2);
@@ -430,13 +433,16 @@ public class TestController implements Initializable{
         canvas.setOnMousePressed(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent e){
-                if(t == null || !t.isAlive()){ 
-                    System.out.println("Thread is null");
-                    //t = new ClearThread(gc); 
-                    System.out.println(t.isAlive());
-                }
                 Point2D p2d = new Point2D(e.getX(), e.getY());
                 SmartPoint sp = new SmartPoint(p2d, false);
+                t.reset();
+//                if(model.liveWordContains(sp) && hasReachedEnd){ 
+//                    t.restart(); 
+//                }
+//                else if(hasReachedEnd){
+//                    t.reset();
+//                    gc.clearRect(0, 0, 768, 247);
+//                }
                 model.addPoint(sp);
                 startLine(gc, p2d);
             }
@@ -447,7 +453,7 @@ public class TestController implements Initializable{
             public void handle(MouseEvent e){
                 Point2D p2d = new Point2D(e.getX(), e.getY());
                 SmartPoint sp = new SmartPoint(p2d, false);
-                if(e.getX() > canvas.getWidth()*.85){ hasReachedEnd = true; }
+                if(e.getX() > canvas.getWidth()*.9){ hasReachedEnd = true; }
                 model.addPointDirect(sp);
                 updatePoint(gc, p2d);
             }
@@ -458,12 +464,12 @@ public class TestController implements Initializable{
             public void handle(MouseEvent e){
                 model.addPointDirect(new SmartPoint(e.getSceneX(), e.getSceneY(), true));
                 if(hasReachedEnd){
-                    //t.start();
+                    t.restart();
                     hasReachedEnd = false;
                 }
             }
         });
         
         drawingPane.getChildren().add(canvas);
-    }
+    };
 }

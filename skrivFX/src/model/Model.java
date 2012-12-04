@@ -21,7 +21,7 @@ public class Model {
         if(liveWord == null){
             liveWord = new Word(p);
             System.out.println("Word was null");
-        } else if(liveWord.right() + spaceFactor < p.getX() || liveWord.left() - spaceFactor > p.getX()){
+        } else if(liveWordContains(p)){
             Word temp = liveWord;
             words.add(temp);
             liveWord = new Word(p);
@@ -41,5 +41,10 @@ public class Model {
         words.add(temp);
         liveWord = null;
         System.out.println("Ended Word");
+    }
+    
+    public boolean liveWordContains(SmartPoint p){
+        if(liveWord == null){ return false; }
+        else{ return liveWord.right() + spaceFactor < p.getX() || liveWord.left() - spaceFactor > p.getX(); }
     }
 }
