@@ -423,7 +423,6 @@ public class TestController implements Initializable{
         canvas.heightProperty().bind(drawingPane.heightProperty());
         
         final GraphicsContext gc = canvas.getGraphicsContext2D();
-        t = new ClearThread(gc);
         
         gc.setFill(Color.BLACK);
         gc.setLineWidth(2);
@@ -431,9 +430,10 @@ public class TestController implements Initializable{
         canvas.setOnMousePressed(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent e){
-                if(t.isRunning()){
-                    System.out.println("Trying to kill the Thread");
-                    t.kill();
+                if(t == null || !t.isAlive()){ 
+                    System.out.println("Thread is null");
+                    //t = new ClearThread(gc); 
+                    System.out.println(t.isAlive());
                 }
                 Point2D p2d = new Point2D(e.getX(), e.getY());
                 SmartPoint sp = new SmartPoint(p2d, false);
@@ -458,8 +458,8 @@ public class TestController implements Initializable{
             public void handle(MouseEvent e){
                 model.addPointDirect(new SmartPoint(e.getSceneX(), e.getSceneY(), true));
                 if(hasReachedEnd){
-                    t.start();
-                    //gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                    //t.start();
+                    hasReachedEnd = false;
                 }
             }
         });
