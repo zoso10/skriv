@@ -51,8 +51,7 @@ public class TestController implements Initializable{
     private Canvas canvas;
     private Model model;
     private boolean hasReachedEnd = false;
-    //private Thread t;
-    private ClearThread t;
+    private static ClearThread t;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -347,7 +346,7 @@ public class TestController implements Initializable{
     @FXML
     private void handleCloseButtonAction(){
         System.out.println("close button pressed");
-        if(t != null){ t.kill(); }
+        //if(t != null){ t.kill(); }
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
@@ -392,6 +391,10 @@ public class TestController implements Initializable{
     private void updatePoint(GraphicsContext gc, Point2D p){
         gc.lineTo(p.getX(), p.getY());
         gc.stroke();
+    }
+    
+    public static ClearThread getThread(){
+        return t;
     }
     
     

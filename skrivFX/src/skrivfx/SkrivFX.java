@@ -5,10 +5,12 @@
 package skrivfx;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -21,6 +23,14 @@ public class SkrivFX extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("jfxGUI.fxml"));
                
         Scene scene = new Scene(root);
+        
+        // Meh...
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+            @Override
+            public void handle(WindowEvent e){
+                TestController.getThread().kill();
+            }
+        });
         
                         
         stage.setScene(scene);
