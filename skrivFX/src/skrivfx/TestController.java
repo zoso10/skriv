@@ -439,13 +439,6 @@ public class TestController implements Initializable{
                 Point2D p2d = new Point2D(e.getX(), e.getY());
                 SmartPoint sp = new SmartPoint(p2d, false);
                 t.reset();
-//                if(model.liveWordContains(sp) && hasReachedEnd){ 
-//                    t.restart(); 
-//                }
-//                else if(hasReachedEnd){
-//                    t.reset();
-//                    gc.clearRect(0, 0, 768, 247);
-//                }
                 model.addPoint(sp);
                 startLine(gc, p2d);
             }
