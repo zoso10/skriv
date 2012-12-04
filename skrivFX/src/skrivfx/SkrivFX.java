@@ -16,7 +16,7 @@ import javafx.stage.WindowEvent;
  *
  * @author Tyler_Ewing
  */
-public class SkrivFX extends Application {
+public class SkrivFX extends Application implements EventHandler<WindowEvent>{
         
     @Override
     public void start(Stage stage) throws Exception {        
@@ -24,19 +24,19 @@ public class SkrivFX extends Application {
                
         Scene scene = new Scene(root);
         
-        // Meh...
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
-            @Override
-            public void handle(WindowEvent e){
-                TestController.getThread().kill();
-            }
-        });
         
-                        
+        stage.setOnCloseRequest(this);
+        
         stage.setScene(scene);
         stage.setTitle("skriv");
         stage.setResizable(false);
         stage.show();
+    }
+    
+    @Override
+    public void handle(WindowEvent e){
+        // This is a bad way of doing it
+        TestController.getThread().kill();
     }
 
     /**
