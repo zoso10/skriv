@@ -84,10 +84,6 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             closeButton.setVisible(true);
             this.menuButtonOpen();          
         }
-        //No idea why the fade out transition doesnt work right.
-        //the transition works if you remove the .setVisible line,
-        //however if the buttons are left visible they are still 
-        //clickable, which is undesirable
         else{
             this.menuButtonClose();
             Thread t = new Thread(new Runnable(){
