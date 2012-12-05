@@ -397,7 +397,9 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         t.reset();
         view.startLine(p2d);
         // Add point to Model
-        model.addPoint(sp);
+        if(model.addPoint(sp)){
+            view.addWord(model.getLast());
+        }
     }
     
     private void mouseDraggedEvent(MouseEvent e){
@@ -430,7 +432,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         model = new Model();
         // SPLIT UP VIEW
         view = new View();
-        view.makePageCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        view.makePageCanvas(page.widthProperty(), page.heightProperty());
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         t = new ClearThread(view.getWritingGraphics());
         t.start();

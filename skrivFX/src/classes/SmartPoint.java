@@ -30,4 +30,12 @@ public class SmartPoint {
     public double getY(){
         return p.getY();
     }
+    
+    public void translateX(double offsetX){
+        p = new javafx.geometry.Point2D(p.getX()+offsetX, p.getY());
+    }
+    
+    public void translateY(double offsetY){
+        p = new javafx.geometry.Point2D(p.getX(), p.getY()+offsetY);
+    }
 }

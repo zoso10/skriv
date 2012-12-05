@@ -1,6 +1,6 @@
 package view;
 
-import classes.WordNoLoc;
+import classes.Word;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -19,21 +19,10 @@ public class View {
     private Canvas pageCanvas;
     private GraphicsContext writingGC;
     private GraphicsContext pageGC;
-    private List<WordNoLoc> words;
+    private List<Word> words;
     private double cursorX;
     private double cursorY;
     
-//    public View(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
-//        writingCanvas = new Canvas();
-//        writingCanvas.widthProperty().bind(width);
-//        writingCanvas.heightProperty().bind(height);
-//        cursor.x(10);
-//        cursor.y(10);
-//        gc = writingCanvas.getGraphicsContext2D();
-//        
-//        gc.setFill(Color.BLACK);
-//        gc.setLineWidth(20);
-//    }
     
     public View(){
         words = new ArrayList<>();
@@ -59,6 +48,7 @@ public class View {
         pageGC = pageCanvas.getGraphicsContext2D();       
         pageGC.setFill(Color.BLACK);
         pageGC.setLineWidth(1);
+        //pageGC.fillRect(0, 0, 100, 100);
     }
     
     public void addHandlers(EventHandler<MouseEvent> e){
@@ -84,11 +74,16 @@ public class View {
         return pageCanvas;
     }  
     
-    public void addWord(WordNoLoc w){
+    public void addWord(Word w){
         // I don't think I need this
-        words.add(w);
+        //words.add(w);
         // Check to make sure there is room first
-        w.draw(pageGC);
+        if(768-cursorX < w.getWidth()){
+            cursorX = 10;
+            cursorY = cursorY + w.getHeight() + 20;
+        }     
+        w.draw(pageGC, cursorX, cursorY);
+        cursorX = cursorX + w.getWidth() + 20;
     }
    
     // This is all for drawing the Words in the Writing Box
