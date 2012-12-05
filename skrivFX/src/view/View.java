@@ -78,25 +78,25 @@ public class View {
         //words.add(w);
         // Check to make sure there is room first
         // Let's trying threading this because, holy moley it is SLOWWWW
-        final Word wFinal = w;
-        drawThread = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                if(pageCanvas.getWidth()-cursorX < wFinal.getWidth()){
-                    cursorX = 10;
-                    cursorY = cursorY + wFinal.getHeight() + 20;
-                }     
-                wFinal.draw(pageGC, cursorX, cursorY);
-                cursorX = cursorX + wFinal.getWidth() + 20;
-            }
-        });
-        drawThread.start();
-//        if(pageCanvas.getWidth()-cursorX < w.getWidth()){
-//            cursorX = 10;
-//            cursorY = cursorY + w.getHeight() + 20;
-//        }     
-//        w.draw(pageGC, cursorX, cursorY);
-//        cursorX = cursorX + w.getWidth() + 20;
+//        final Word wFinal = w;
+//        drawThread = new Thread(new Runnable(){
+//            @Override
+//            public void run(){
+//                if(pageCanvas.getWidth()-cursorX < wFinal.getWidth()){
+//                    cursorX = 10;
+//                    cursorY = cursorY + wFinal.getHeight() + 20;
+//                }     
+//                wFinal.draw(pageGC, cursorX, cursorY);
+//                cursorX = cursorX + wFinal.getWidth() + 20;
+//            }
+//        });
+//        drawThread.start();
+        if(pageCanvas.getWidth()-cursorX < w.getWidth()){
+            cursorX = 10;
+            cursorY = cursorY + w.getHeight() + 20;
+        }     
+        w.draw(pageGC, cursorX, cursorY);
+        cursorX = cursorX + w.getWidth() + 20;
     }
    
     // This is all for drawing the Words in the Writing Box
