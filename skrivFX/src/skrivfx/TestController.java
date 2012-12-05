@@ -353,7 +353,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         if (evt.getY()-thumb.getHeight()/2<=0) {
             thumb.setY(0);
         }
-        if (evt.getY()+thumb.getHeight()/2>=track.getFitHeight()) {
+        if (evt.getY()+thumb.getHeight()>=track.getFitHeight()) {
             thumb.setY(track.getFitHeight()-thumb.getHeight());
         }
     }
