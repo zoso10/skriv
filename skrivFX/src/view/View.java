@@ -47,7 +47,6 @@ public class View {
         pageGC = pageCanvas.getGraphicsContext2D();       
         pageGC.setFill(Color.BLACK);
         pageGC.setLineWidth(1);
-        //pageGC.fillRect(0, 0, 100, 100);
     }
     
     public void addHandlers(EventHandler<MouseEvent> e){
