@@ -41,7 +41,7 @@ public class Model {
             left = left > p.getX() ? p.getX() : left;
             right = right < p.getX() ? p.getX() : right;
             liveWord.addPoint(p);
-            return true;
+            return false;
         }
     }
     
