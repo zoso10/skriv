@@ -56,10 +56,5 @@ public class ClearThread extends Thread{
     public void kill(){
         _state = STATE_STOP;
         synchronized(this){ this.notify(); }
-//        try{
-//            this.interrupt();
-//            this.join(); 
-//        }
-//        catch(Exception e){ System.out.println("Something just sucks"); }
     }
 }

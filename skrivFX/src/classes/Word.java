@@ -57,16 +57,20 @@ public class Word {
     }
     
     private void translateX(double newX){
-        offsetX = offsetX - newX;
+        double oldOffset = offsetX;
+        offsetX = newX;
+        double difference = oldOffset - offsetX;
         for(SmartPoint p : points){
-            p.translateX(offsetX);
+            p.translateX(difference);
         }
     }
     
     private void translateY(double newY){
-        offsetY = offsetX - newY;
+        double oldOffset = offsetY;
+        offsetY = newY;
+        double difference = oldOffset - offsetY;
         for(SmartPoint p : points){
-            p.translateY(offsetY);
+            p.translateY(difference);
         }
     }
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package skrivfx;
 
 import classes.ClearThread;
@@ -9,7 +5,6 @@ import classes.SmartPoint;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
@@ -19,37 +14,23 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
-import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Model;
 import view.View;
 
-/**
- *
- * @author Tyler
- * 
- * Make sure you use the @FXML tag any time you need to interface
- * with the FXML file!
- */
+
 public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-    //private Canvas canvas;
     private Model model;
     private View view;
     private boolean hasReachedEnd = false;
@@ -445,54 +426,5 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         
         // Add Canvas to Page Pane
         page.getChildren().add(view.getPageCanvas());
-        
-        
-        // Boy that got messy quick
-//        model = new Model();
-//        canvas = new Canvas();
-//        canvas.widthProperty().bind(drawingPane.widthProperty());
-//        canvas.heightProperty().bind(drawingPane.heightProperty());
-//        
-//        final GraphicsContext gc = canvas.getGraphicsContext2D();
-//        t = new ClearThread(gc);
-//        t.start();
-//        
-//        gc.setFill(Color.BLACK);
-//        gc.setLineWidth(2);
-//        
-//        canvas.setOnMousePressed(new EventHandler<MouseEvent>(){
-//            @Override
-//            public void handle(MouseEvent e){
-//                Point2D p2d = new Point2D(e.getX(), e.getY());
-//                SmartPoint sp = new SmartPoint(p2d, false);
-//                t.reset();
-//                model.addPoint(sp);
-//                startLine(gc, p2d);
-//            }
-//        });
-//        
-//        canvas.setOnMouseDragged(new EventHandler<MouseEvent>(){
-//            @Override
-//            public void handle(MouseEvent e){
-//                Point2D p2d = new Point2D(e.getX(), e.getY());
-//                SmartPoint sp = new SmartPoint(p2d, false);
-//                if(e.getX() > canvas.getWidth()*.9){ hasReachedEnd = true; }
-//                model.addPointDirect(sp);
-//                updatePoint(gc, p2d);
-//            }
-//        });
-//        
-//        canvas.setOnMouseReleased(new EventHandler<MouseEvent>(){
-//            @Override
-//            public void handle(MouseEvent e){
-//                model.addPointDirect(new SmartPoint(e.getSceneX(), e.getSceneY(), true));
-//                if(hasReachedEnd){
-//                    t.restart();
-//                    hasReachedEnd = false;
-//                }
-//            }
-//        });
-//        
-//        drawingPane.getChildren().add(canvas);
     }
 }

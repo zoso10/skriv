@@ -6,7 +6,6 @@ import java.util.List;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.geometry.Point2DBuilder;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
@@ -78,7 +77,7 @@ public class View {
         // I don't think I need this
         //words.add(w);
         // Check to make sure there is room first
-        if(768-cursorX < w.getWidth()){
+        if(556-cursorX < w.getWidth()){
             cursorX = 10;
             cursorY = cursorY + w.getHeight() + 20;
         }     
