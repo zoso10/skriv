@@ -45,7 +45,6 @@ public class Word {
         System.out.println("Drawing Word: " + points.get(0).getX() + ", " + points.get(0).getY());
         gc.moveTo(points.get(0).getX()+cursorX, points.get(0).getY()+cursorY);
         for(int i = 1; i < points.size()-1; ++i){
-            //System.out.println("Points in here");
             if(points.get(i).isLast()){
                 ++i;
                 gc.moveTo(points.get(i).getX()+cursorX, points.get(i).getY()+cursorY);
@@ -54,6 +53,7 @@ public class Word {
                 gc.stroke();
             }
         }
+        System.out.println("Number of points: " + points.size());
     }
     
     private void translateX(double newX){
