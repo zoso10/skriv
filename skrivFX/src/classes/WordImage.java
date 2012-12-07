@@ -12,7 +12,7 @@ public class WordImage {
     private Color c;
     // etc...
     
-    public WordImage(WritableImage image){
+    public WordImage(Image image){
         this.image = image;
         width = image.getWidth();
         height = image.getHeight();

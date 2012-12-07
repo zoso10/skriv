@@ -2,6 +2,7 @@ package skrivfx;
 
 import classes.ClearThread;
 import classes.SmartPoint;
+import classes.WordImage;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -36,6 +38,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private View view;
     private model.ModelImage modelI;
     private view.ViewImage viewI;
+    private Image image;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
     
@@ -401,7 +404,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         t.reset();
         // If point is not in current Word then take snapshot and make new Word then draw it to the page
         if(modelI.isNewWord(e.getX(), e.getY())){
-            
+            image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
+            WordImage w = new WordImage(image);
         }
     }
     

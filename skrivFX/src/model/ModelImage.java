@@ -37,15 +37,37 @@ public class ModelImage {
         }
         else{
             System.out.println("Still in Word");
+            checkBounds(x, y);
             return false;
         }
     }
     
     public void addPoint(double x, double y){
+        checkBounds(x, y);
+    }
+    
+    public int left(){
+        return (int)left;
+    }
+    
+    public int top(){
+        return (int)top;
+    }
+    
+    public int getWidth(){
+        return (int)width;
+    }
+    
+    public int getHeight(){
+        return (int)height;
+    }
+    
+    private void checkBounds(double x, double y){
         left = left > x ? x : left;
         right = right < x ? x : right;
         top = top > y ? y : top;
         bottom = bottom < y ? y : bottom;
-        //width = 
+        width = right - left;
+        height = bottom - top;
     }
 }
