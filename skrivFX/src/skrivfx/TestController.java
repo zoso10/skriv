@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -57,6 +58,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private Pane drawingPane;
     @FXML
     private Pane page;
+    @FXML
+    private TabPane tabPane;
     
     
     //attributes
@@ -343,6 +346,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private void scrollDragAction(MouseEvent evt){
         //System.out.println("Druggeded");
        // if (thumb.getHeight() track.getFitHeight())
+        thumb.setOpacity(0.5);
         if(evt.getY()-thumb.getHeight()/2>0&&evt.getY()+thumb.getHeight()/2<track.getFitHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
@@ -352,6 +356,16 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         if (evt.getY()+thumb.getHeight()>=track.getFitHeight()) {
             thumb.setY(track.getFitHeight()-thumb.getHeight());
         }
+    }
+    
+    @FXML
+    private void onMouseEntered(MouseEvent evt){
+        thumb.setOpacity(0.5);
+    }
+    
+    @FXML
+    private void onMouseExited(MouseEvent evt){
+        thumb.setOpacity(0.3);
     }
     
     @FXML

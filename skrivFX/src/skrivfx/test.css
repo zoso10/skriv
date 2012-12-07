@@ -11,7 +11,7 @@ root {
 }
 
 .background{
-    -fx-background-image: url("logoBG.png");
+    -fx-background-image: url("linenBG.png");
 }
 
 .mini-map-pane{
@@ -141,15 +141,17 @@ root {
 
 #DrawingPane{
     -fx-background-color: white;
-    -fx-border-color: black;
+/*    -fx-border-color: black;
     -fx-border-width: 3 3 0 3;
-    -fx-background-radius: 0 0 10 10;
+    -fx-background-radius: 0 0 10 10;*/
 }
 
 #Page{
     -fx-background-color: white;
 /*    -fx-opacity: 80%;*/
-    -fx-background-radius: 10;
+/*    -fx-background-radius: 10;*/
 }
+
+
 
 
