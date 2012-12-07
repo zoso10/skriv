@@ -55,9 +55,9 @@
     </Pane>
     <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
       <effect>
-        <InnerShadow height="37.5" radius="21.375" width="50.0">
+        <InnerShadow height="0.0" radius="12.0" width="50.0">
           <input>
-            <DropShadow height="37.5" radius="21.375" width="50.0" />
+            <DropShadow height="43.75" radius="22.9375" width="50.0" />
           </input>
         </InnerShadow>
       </effect>
