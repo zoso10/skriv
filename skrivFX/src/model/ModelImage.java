@@ -13,6 +13,7 @@ public class ModelImage {
     private static final int spaceFactor = 70;
     // Bounds of "current Word" that we'll end up using to take the snapshot
     private double left, right, top, bottom;
+    private double width, height;
     private java.util.List<classes.WordImage> words;
     private int wordCount;
     
@@ -24,6 +25,7 @@ public class ModelImage {
         left = 1000;
         top = 1000;
         bottom = 0;
+        width = height = 0;
     }
     
     // Returns TRUE when the Point is forming a new Word
@@ -44,5 +46,6 @@ public class ModelImage {
         right = right < x ? x : right;
         top = top > y ? y : top;
         bottom = bottom < y ? y : bottom;
+        //width = 
     }
 }

@@ -34,6 +34,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     // Other stuff
     private Model model;
     private View view;
+    private model.ModelImage modelI;
+    private view.ViewImage viewI;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
     
@@ -383,34 +385,52 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     }
     
     private void mousePressedEvent(MouseEvent e){
-        Point2D p2d = new Point2D(e.getX(), e.getY());
-        SmartPoint sp = new SmartPoint(p2d, false);
+//        Point2D p2d = new Point2D(e.getX(), e.getY());
+//        SmartPoint sp = new SmartPoint(p2d, false);
+//        t.reset();
+//        view.startLine(p2d);
+//        // Add point to Model
+//        if(model.addPoint(sp)){
+//            view.addWord(model.getLast());
+//        }
+        
+        
+        // Start drawing the Line in the writingBox (View)
+        viewI.startLine(e.getX(), e.getY());
+        // Reset Thread
         t.reset();
-        view.startLine(p2d);
-        // Add point to Model
-        if(model.addPoint(sp)){
-            view.addWord(model.getLast());
+        // If point is not in current Word then take snapshot and make new Word then draw it to the page
+        if(modelI.isNewWord(e.getX(), e.getY())){
+            
         }
     }
     
     private void mouseDraggedEvent(MouseEvent e){
-        Point2D p2d = new Point2D(e.getX(), e.getY());
-        SmartPoint sp = new SmartPoint(p2d, false);
+//        Point2D p2d = new Point2D(e.getX(), e.getY());
+//        SmartPoint sp = new SmartPoint(p2d, false);
+//        if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
+//        view.updateLine(p2d);
+//        // Add point direct to Model
+//        model.addPointDirect(sp);
+        
         if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
-        view.updateLine(p2d);
-        // Add point direct to Model
-        model.addPointDirect(sp);
+        viewI.updateLine(e.getX(), e.getY());
     }
     
     private void mouseReleasedEvent(MouseEvent e){
-        Point2D p2d = new Point2D(e.getX(), e.getY());
-        SmartPoint sp = new SmartPoint(p2d, true);
+//        Point2D p2d = new Point2D(e.getX(), e.getY());
+//        SmartPoint sp = new SmartPoint(p2d, true);
+//        if(hasReachedEnd){
+//            t.restart();
+//            hasReachedEnd = false;
+//        }
+//        // Add point direct to Model
+//        model.addPointDirect(sp);
+        
         if(hasReachedEnd){
             t.restart();
             hasReachedEnd = false;
         }
-        // Add point direct to Model
-        model.addPointDirect(sp);
     }
     
     public static ClearThread getThread(){
@@ -420,21 +440,26 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @Override
     public void initialize(URL url, ResourceBundle rb){
         // Little more of an MVC structure
-        model = new Model();
+        //model = new Model();
+        modelI = new model.ModelImage();
         // SPLIT UP VIEW
-        view = new View();
-        view.makePageCanvas(page.widthProperty(), page.heightProperty());
-        view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
-        t = new ClearThread(view.getWritingGraphics());
+        //view = new View();
+        viewI = new view.ViewImage();
+//        view.makePageCanvas(page.widthProperty(), page.heightProperty());
+//        view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
+        viewI.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        t = new ClearThread(viewI.getWritingGraphics());
         t.start();
         
         // Add Handlers
-        view.addHandlers(this);
+//        view.addHandlers(this);
+        viewI.addHandlers(this);
         
         // Add Canvas to Drawing Pane
-        drawingPane.getChildren().add(view.getWritingCanvas());
+        drawingPane.getChildren().add(viewI.getWritingCanvas());
         
         // Add Canvas to Page Pane
-        page.getChildren().add(view.getPageCanvas());
+        page.getChildren().add(viewI.getPageCanvas());
     }
 }
