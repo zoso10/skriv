@@ -1,7 +1,9 @@
 package classes;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.image.Image;
 
 
 public class Word {
@@ -10,6 +12,9 @@ public class Word {
     private double offsetX;
     private double offsetY;
     private double width, height;
+    // Time to transition to BufferedImages and JavaFX Images
+    private BufferedImage bi;
+    private Image image;
     
     
     public Word(SmartPoint p){
@@ -18,6 +23,7 @@ public class Word {
         offsetX = p.getX();
         offsetY = p.getY();
         width = height = 0;
+        bi = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
     }
     
     // For when the point is to the right and below the offset
@@ -31,6 +37,9 @@ public class Word {
         height = height < yTranslated ? yTranslated : height;
         SmartPoint pTranslated = new SmartPoint(xTranslated, yTranslated, p.isLast());
         points.add(pTranslated);
+        
+        // Draw on BufferedImage
+        
     }
     
     public double getWidth(){
@@ -43,6 +52,8 @@ public class Word {
     
     public void draw(javafx.scene.canvas.GraphicsContext gc, double cursorX, double cursorY){
         System.out.println("Drawing Word: " + points.get(0).getX() + ", " + points.get(0).getY());
+        // Convert BufferedImage to Image and return it or draw it
+        
         gc.moveTo(points.get(0).getX()+cursorX, points.get(0).getY()+cursorY);
         for(int i = 1; i < points.size()-1; ++i){
             if(points.get(i).isLast()){
