@@ -152,6 +152,17 @@ root {
 /*    -fx-background-radius: 10;*/
 }
 
+.tab-header-background{
+    -fx-background-color: transparent;
+}
+
+.tab{
+    -fx-background-color: darkgray;
+}
+
+.tab:selected{
+    -fx-background-color: gray;
+}
 
 
 
