@@ -19,10 +19,30 @@ public class ModelImage {
     public ModelImage(){
         words = new java.util.ArrayList<>();
         wordCount = 0;
+        // Force a new Word initially
+        right = 0;
+        left = 1000;
+        top = 1000;
+        bottom = 0;
     }
     
-    public boolean addPoint(double x, double y){
-        
-        
+    // Returns TRUE when the Point is forming a new Word
+    public boolean isNewWord(double x, double y){
+        if(right + spaceFactor < x || left - spaceFactor > x){
+            System.out.println("New Word");
+            ++wordCount;
+            return true;
+        }
+        else{
+            System.out.println("Still in Word");
+            return false;
+        }
+    }
+    
+    public void addPoint(double x, double y){
+        left = left > x ? x : left;
+        right = right < x ? x : right;
+        top = top > y ? y : top;
+        bottom = bottom < y ? y : bottom;
     }
 }
