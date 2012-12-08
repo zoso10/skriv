@@ -402,11 +402,11 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         t.reset();
         // If point is not in current Word then take snapshot and make new Word then draw it to the page
         if(modelI.isNewWord(e.getX(), e.getY())){
-            System.out.println("in here yo");
             image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
             WordImage w = new WordImage(image);
             modelI.addWord(w);
             viewI.drawWord(w);
+            image = null;
         }
     }
     
@@ -419,6 +419,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
 //        model.addPointDirect(sp);
         
         if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
+        modelI.addPoint(e.getX(), e.getY());
         viewI.updateLine(e.getX(), e.getY());
     }
     

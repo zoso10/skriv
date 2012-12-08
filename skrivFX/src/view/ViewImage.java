@@ -57,6 +57,10 @@ public class ViewImage {
     }
     
     public void drawWord(classes.WordImage w){
+        if(pageCanvas.getWidth()-cursorX < w.getWidth()){
+            cursorX = 10;
+            cursorY = cursorY + w.getHeight() + 20;
+        } 
         pageGC.drawImage(w.getImage(), cursorX, cursorY, .65*w.getWidth(), .65*w.getHeight());
         cursorX = cursorX + 20 + w.getWidth();
     }
