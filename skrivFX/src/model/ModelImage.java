@@ -20,18 +20,23 @@ public class ModelImage {
     public ModelImage(){
         words = new java.util.ArrayList<>();
         wordCount = 0;
-        // Force a new Word initially
-        right = 0;
-        left = 1000;
-        top = 1000;
-        bottom = 0;
+        // Marker to show this is the first Word being drawn
+        right = -1;
+        left = -1;
+        top = -1;
+        bottom = -1;
         width = height = 0;
     }
     
     // Returns TRUE when the Point is forming a new Word
     public boolean isNewWord(double x, double y){
-        if(right + spaceFactor < x || left - spaceFactor > x){
-            System.out.println("New Word");
+        if(right == -1){
+            left = right = x;
+            top = bottom = y; 
+            return false;
+        }
+        else if(right + spaceFactor < x || left - spaceFactor > x){
+            //System.out.println("New Word");
             ++wordCount;
             return true;
         }
@@ -60,6 +65,10 @@ public class ModelImage {
     
     public int getHeight(){
         return (int)height;
+    }
+    
+    public void addWord(classes.WordImage w){
+        words.add(w);
     }
     
     private void checkBounds(double x, double y){

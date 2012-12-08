@@ -20,7 +20,8 @@ public class ViewImage {
     private double cursorX, cursorY;
     
     public ViewImage(){
-        cursorX = cursorY = 20;
+        cursorX = 20;
+        cursorY = 20;
     }
     
     public void makeWritingCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
