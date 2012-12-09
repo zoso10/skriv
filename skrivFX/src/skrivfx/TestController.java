@@ -393,7 +393,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         t.reset();
         // If point is not in current Word then take snapshot and make new Word then draw it to the page
         if(modelI.isNewWord(e.getX(), e.getY())){
-            image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
+//            image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
             WordImage w = new WordImage(image);
             modelI.addWord(w);
             viewI.drawWord(w);
@@ -406,7 +406,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         viewI.updateLine(e.getX(), e.getY());
     }
     
-    private void mouseReleasedEvent(MouseEvent e){       
+    private void mouseReleasedEvent(MouseEvent e){ 
+        image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
         if(hasReachedEnd){
             t.restart();
             hasReachedEnd = false;
@@ -429,6 +430,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
 //        view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
         viewI.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
         t = new ClearThread(modelI, viewI);
         t.start();
         
