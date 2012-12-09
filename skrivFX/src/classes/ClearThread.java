@@ -1,6 +1,8 @@
 package classes;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.WritableImage;
+import skrivfx.TestController;
 
 
 public class ClearThread extends Thread{
@@ -9,12 +11,14 @@ public class ClearThread extends Thread{
     private static final int MAX_WAIT = 300;
     private int _state;
     private int counter;
-    private GraphicsContext gc;
+    private model.ModelImage model;
+    private view.ViewImage view;
     
     
     // This needs cleaned up
-    public ClearThread(GraphicsContext gc){
-        this.gc = gc;
+    public ClearThread(model.ModelImage model, view.ViewImage view){
+        this.model = model;
+        this.view = view;
         counter = 0;
         _state = STATE_PAUSE;
     }
@@ -37,7 +41,11 @@ public class ClearThread extends Thread{
             }
             if(_state == STATE_STOP){ break; }
             System.out.println("Clearing Writing Box");
-            gc.clearRect(0, 0, 768, 247);
+//            javafx.scene.image.Image image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
+//            WordImage w = new WordImage(image);
+//            model.addWord(w);
+//            view.drawWord(w);
+            view.getWritingCanvas().getGraphicsContext2D().clearRect(0, 0, 768, 247);
             reset();
         }
     }

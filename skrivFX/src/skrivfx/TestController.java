@@ -386,16 +386,6 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     }
     
     private void mousePressedEvent(MouseEvent e){
-//        Point2D p2d = new Point2D(e.getX(), e.getY());
-//        SmartPoint sp = new SmartPoint(p2d, false);
-//        t.reset();
-//        view.startLine(p2d);
-//        // Add point to Model
-//        if(model.addPoint(sp)){
-//            view.addWord(model.getLast());
-//        }
-        
-        
         // Start drawing the Line in the writingBox (View)
         viewI.startLine(e.getX(), e.getY());
         // Reset Thread
@@ -406,33 +396,16 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             WordImage w = new WordImage(image);
             modelI.addWord(w);
             viewI.drawWord(w);
-            image = null;
         }
     }
     
-    private void mouseDraggedEvent(MouseEvent e){
-//        Point2D p2d = new Point2D(e.getX(), e.getY());
-//        SmartPoint sp = new SmartPoint(p2d, false);
-//        if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
-//        view.updateLine(p2d);
-//        // Add point direct to Model
-//        model.addPointDirect(sp);
-        
+    private void mouseDraggedEvent(MouseEvent e){       
         if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
         modelI.addPoint(e.getX(), e.getY());
         viewI.updateLine(e.getX(), e.getY());
     }
     
-    private void mouseReleasedEvent(MouseEvent e){
-//        Point2D p2d = new Point2D(e.getX(), e.getY());
-//        SmartPoint sp = new SmartPoint(p2d, true);
-//        if(hasReachedEnd){
-//            t.restart();
-//            hasReachedEnd = false;
-//        }
-//        // Add point direct to Model
-//        model.addPointDirect(sp);
-        
+    private void mouseReleasedEvent(MouseEvent e){       
         if(hasReachedEnd){
             t.restart();
             hasReachedEnd = false;
@@ -455,7 +428,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
 //        view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
         viewI.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
-        t = new ClearThread(viewI.getWritingGraphics());
+        t = new ClearThread(modelI, viewI);
         t.start();
         
         // Add Handlers

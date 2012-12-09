@@ -21,12 +21,7 @@ public class ModelImage {
         words = new java.util.ArrayList<>();
         wordCount = 0;
         // Marker to show this is the first Word being drawn
-        //reset();
-        right = 0;
-        left = 1000;
-        top = 1000;
-        bottom = 0;
-        width = height = 0;
+        reset();
     }
     
     // Returns TRUE when the Point is forming a new Word
@@ -70,11 +65,12 @@ public class ModelImage {
     
     public void addWord(classes.WordImage w){
         words.add(w);
-        //reset();
+        reset();
     }
     
     private void reset(){
-        right = left = bottom = top = -1;
+        right = bottom = 0;
+        left = top = 1000;
         width = height = 0;
     }
     
