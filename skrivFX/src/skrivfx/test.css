@@ -157,11 +157,15 @@ root {
 }
 
 .tab{
-    -fx-background-color: darkgray;
+    -fx-background-color: gray;
 }
 
 .tab:selected{
-    -fx-background-color: gray;
+    -fx-background-color: darkgray;
+}
+
+.tab:hover{
+    -fx-background-color: lightgray;
 }
 
 
