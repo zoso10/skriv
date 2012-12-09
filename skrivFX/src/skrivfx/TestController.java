@@ -3,6 +3,8 @@ package skrivfx;
 import classes.ClearThread;
 import classes.WordImage;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
@@ -323,10 +325,22 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             
             FileChooser fc = new FileChooser();
             fc.setTitle("Save skriv file...");
-            File defaultDirectory = new File(".");
-            fc.setInitialDirectory(defaultDirectory);
+            //File defaultDirectory = new File(".");
+            //fc.setInitialDirectory(defaultDirectory);
             //File selectedDirectory = dc.showDialog(new Stage());
-            fc.showSaveDialog(new Stage());
+            //fc.showSaveDialog(new Stage());
+            File f = fc.showSaveDialog(new Stage());
+            System.out.println(f.getName());
+            
+            try{
+                FileOutputStream fos = new FileOutputStream(f);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                for(WordImage w : modelI.getWords()){
+                    oos.writeObject(w);
+                }   
+                fos.close();
+                oos.close();
+            } catch(Exception e){ System.out.println("oh dang..."); }
         }
     }
     @FXML

@@ -68,6 +68,11 @@ public class ModelImage {
         reset();
     }
     
+    // For testing the Saving functionality
+    public java.util.List<classes.WordImage> getWords(){
+        return words;
+    }
+    
     private void reset(){
         right = bottom = 0;
         left = top = 1000;
