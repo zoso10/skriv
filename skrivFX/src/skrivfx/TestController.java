@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
@@ -279,7 +280,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     @FXML
     private void handleNewButtonAction(){
-        System.out.println("new button pressed");
+        tabPane.getTabs().add(new Tab("Untitled"));
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
@@ -330,7 +331,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     }
     @FXML
     private void handleCloseButtonAction(){
-        System.out.println("close button pressed");
+        tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedItem());
         //if(t != null){ t.kill(); }
         if(menuButton.isSelected()){
             this.menuButtonClose();
