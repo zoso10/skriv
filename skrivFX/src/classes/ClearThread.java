@@ -11,12 +11,12 @@ public class ClearThread extends Thread{
     private static final int MAX_WAIT = 300;
     private int _state;
     private int counter;
-    private model.ModelImage model;
-    private view.ViewImage view;
+    private model.Model model;
+    private view.View view;
     
     
     // This needs cleaned up
-    public ClearThread(model.ModelImage model, view.ViewImage view){
+    public ClearThread(model.Model model, view.View view){
         this.model = model;
         this.view = view;
         counter = 0;

@@ -1,6 +1,6 @@
 package view;
 
-import classes.Word;
+import classes.WordLegacy;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -18,7 +18,7 @@ public class ViewLegacy {
     private Canvas pageCanvas;
     private GraphicsContext writingGC;
     private GraphicsContext pageGC;
-    private List<Word> words;
+    private List<WordLegacy> words;
     private double cursorX;
     private double cursorY;
     private Thread drawThread;
@@ -73,7 +73,7 @@ public class ViewLegacy {
         return pageCanvas;
     }  
     
-    public void addWord(Word w){
+    public void addWord(WordLegacy w){
         // I don't think I need this
         //words.add(w);
         // Check to make sure there is room first

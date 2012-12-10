@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 
-public class ViewImage {
+public class View {
     
     private Canvas writingCanvas;
     private Canvas pageCanvas;
@@ -23,7 +23,7 @@ public class ViewImage {
     // holds the Current GraphicsContext from the Controller
     private GraphicsContext currentGraphics;
     
-    public ViewImage(){
+    public View(){
         cursorX = 20;
         cursorY = 20;
     }
@@ -68,7 +68,7 @@ public class ViewImage {
         return writingCanvas.snapshot(sp, null);
     }
     
-    public void drawWord(classes.WordImage w){
+    public void drawWord(classes.Word w){
         if(pageCanvas.getWidth()-cursorX < w.getWidth()){
             cursorX = 20;
             cursorY = cursorY + w.getHeight() + 20;

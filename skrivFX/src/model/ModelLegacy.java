@@ -8,8 +8,8 @@ import java.util.List;
 public class ModelLegacy {
     
     private final static int spaceFactor = 100;
-    private classes.Word liveWord; // May not need this, might be able to just keep bounds
-    private List<classes.Word> words;
+    private classes.WordLegacy liveWord; // May not need this, might be able to just keep bounds
+    private List<classes.WordLegacy> words;
     private int wordCount; // Also used to access the last word
     private double left, right;
     
@@ -26,15 +26,15 @@ public class ModelLegacy {
         if(liveWord == null){
             System.out.println("Word was null");
             left = right = p.getX();
-            liveWord = new Word(p);
+            liveWord = new WordLegacy(p);
             return false;
         } else if(liveWordContains(p)){
             // This is where the magic happens!!
             System.out.println("New Word");
             left = right = p.getX();
-            Word temp = liveWord;
+            WordLegacy temp = liveWord;
             words.add(temp);
-            liveWord = new Word(p);
+            liveWord = new WordLegacy(p);
             ++wordCount;
             return true;
         } else{
@@ -52,7 +52,7 @@ public class ModelLegacy {
         liveWord.addPoint(p);
     }
     
-    public Word getLast(){
+    public WordLegacy getLast(){
         System.out.println(wordCount + " words");
         return words.get(wordCount-1);
     }

@@ -1,7 +1,7 @@
 package skrivfx;
 
 import classes.ClearThread;
-import classes.WordImage;
+import classes.Word;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -35,8 +35,8 @@ import javafx.util.Duration;
 public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-    private model.ModelImage modelI;
-    private view.ViewImage viewI;
+    private model.Model modelI;
+    private view.View viewI;
     private Image image;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
@@ -345,7 +345,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             try{
                 FileOutputStream fos = new FileOutputStream(f);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
-                for(WordImage w : modelI.getWords()){
+                for(Word w : modelI.getWords()){
                     oos.writeObject(w);
                 }   
                 fos.close();
@@ -418,7 +418,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         // If point is not in current Word then take snapshot and make new Word then draw it to the page
         if(modelI.isNewWord(e.getX(), e.getY())){
 //            image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
-            WordImage w = new WordImage(image);
+            Word w = new Word(image);
             modelI.addWord(w);
             viewI.drawWord(w);
         }
@@ -446,9 +446,9 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     public void initialize(URL url, ResourceBundle rb){
         currentIndex = -1; // No tabs
         // Little more of an MVC structure
-        modelI = new model.ModelImage();
+        modelI = new model.Model();
         // SPLIT UP VIEW
-        viewI = new view.ViewImage();
+        viewI = new view.View();
         //viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
         viewI.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());

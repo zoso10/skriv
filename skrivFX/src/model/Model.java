@@ -8,16 +8,16 @@ package model;
  *
  * @author Tyler
  */
-public class ModelImage {
+public class Model {
     
     private static final int spaceFactor = 70;
     // Bounds of "current Word" that we'll end up using to take the snapshot
     private double left, right, top, bottom;
     private double width, height;
-    private java.util.List<classes.WordImage> words;
+    private java.util.List<classes.Word> words;
     private int wordCount;
     
-    public ModelImage(){
+    public Model(){
         words = new java.util.ArrayList<>();
         wordCount = 0;
         // Marker to show this is the first Word being drawn
@@ -63,13 +63,13 @@ public class ModelImage {
         return (int)height;
     }
     
-    public void addWord(classes.WordImage w){
+    public void addWord(classes.Word w){
         words.add(w);
         reset();
     }
     
     // For testing the Saving functionality
-    public java.util.List<classes.WordImage> getWords(){
+    public java.util.List<classes.Word> getWords(){
         return words;
     }
     
