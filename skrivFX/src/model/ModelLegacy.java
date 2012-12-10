@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Model {
+public class ModelLegacy {
     
     private final static int spaceFactor = 100;
     private classes.Word liveWord; // May not need this, might be able to just keep bounds
@@ -14,7 +14,7 @@ public class Model {
     private double left, right;
     
     
-    public Model(){
+    public ModelLegacy(){
         words = new ArrayList<>();
         wordCount = 0;
         //liveWord = new classes.Word();

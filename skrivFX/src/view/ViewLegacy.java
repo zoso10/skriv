@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 
-public class View {
+public class ViewLegacy {
     
     private Canvas writingCanvas;
     private Canvas pageCanvas;
@@ -24,7 +24,7 @@ public class View {
     private Thread drawThread;
     
     
-    public View(){
+    public ViewLegacy(){
         words = new ArrayList<>();
         cursorX = 10;
         cursorY = 10;

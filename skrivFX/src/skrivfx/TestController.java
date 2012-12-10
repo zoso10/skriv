@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -28,20 +29,19 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.Model;
-import view.View;
 
 
 public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-    private Model model;
-    private View view;
     private model.ModelImage modelI;
     private view.ViewImage viewI;
     private Image image;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
+    
+    private List<Tab> tabs;
+    private int currentIndex;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -290,8 +290,11 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             openButton.setVisible(false);
             saveButton.setVisible(false);
             closeButton.setVisible(false);
-
         }
+        
+        // Call Model to make new Canvas
+        
+        // Add canvas to Tab
     }
     
     @FXML
@@ -435,27 +438,23 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @Override
     public void initialize(URL url, ResourceBundle rb){
         // Little more of an MVC structure
-        //model = new Model();
         modelI = new model.ModelImage();
         // SPLIT UP VIEW
-        //view = new View();
         viewI = new view.ViewImage();
-//        view.makePageCanvas(page.widthProperty(), page.heightProperty());
-//        view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
-        viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
+        //viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
         viewI.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
         t = new ClearThread(modelI, viewI);
         t.start();
         
         // Add Handlers
-//        view.addHandlers(this);
         viewI.addHandlers(this);
         
         // Add Canvas to Drawing Pane
         drawingPane.getChildren().add(viewI.getWritingCanvas());
         
         // Add Canvas to Page Pane
-        page.getChildren().add(viewI.getPageCanvas());
+        // This functionality will get moved to the button action
+        //page.getChildren().add(viewI.getPageCanvas());
     }
 }

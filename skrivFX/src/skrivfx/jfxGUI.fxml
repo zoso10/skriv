@@ -62,7 +62,7 @@
         </InnerShadow>
       </effect>
       <tabs>
-        <Tab id="" text="Page 1">
+<!--        <Tab id="" text="Page 1">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="557.0">
               <children>
@@ -70,7 +70,7 @@
               </children>
             </AnchorPane>
           </content>
-        </Tab>
+        </Tab>-->
       </tabs>
     </TabPane>
   </children>

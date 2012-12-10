@@ -44,6 +44,14 @@ public class ViewImage {
         pageGC.setLineWidth(1);
     }
     
+    private void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
+        Canvas c = new Canvas();
+        c.widthProperty().bind(width);
+        c.heightProperty().bind(height);
+        
+        
+    }
+    
     public void addHandlers(EventHandler<MouseEvent> e){
         writingCanvas.setOnMousePressed(e);
         writingCanvas.setOnMouseDragged(e);
