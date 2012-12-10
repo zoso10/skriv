@@ -18,6 +18,10 @@ public class ViewImage {
     // Maybe?
     //private Hashmap<WordImage, Point2D> words;
     private double cursorX, cursorY;
+    // holds the Current Canvas from the Controller
+    private Canvas currentCanvas;
+    // holds the Current GraphicsContext from the Controller
+    private GraphicsContext currentGraphics;
     
     public ViewImage(){
         cursorX = 20;
@@ -93,6 +97,10 @@ public class ViewImage {
     
     public GraphicsContext getWritingGraphics(){
         return writingGC;
+    }
+    
+    public void setCurrentCanvas(Canvas c){
+        currentCanvas = c;
     }
 }
 

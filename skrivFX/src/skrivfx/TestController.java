@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -40,7 +41,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private boolean hasReachedEnd = false;
     private static ClearThread t;
     
-    private List<Tab> tabs;
+    //private List<Tab> tabs; // No need for this
     private int currentIndex;
     
     //These are objects injected from the FXML file:
@@ -283,7 +284,11 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @FXML
     private void handleNewButtonAction(){
         Tab t = new Tab("Untitled");
+        t.setContent(new Canvas());
+        ++currentIndex;
         tabPane.getTabs().add(t);
+        //viewI.setCurrentCanvas(tabPane.getTabs().get(currentIndex).);
+        
         
         if(menuButton.isSelected()){
             this.menuButtonClose();
@@ -439,6 +444,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         
     @Override
     public void initialize(URL url, ResourceBundle rb){
+        currentIndex = -1; // No tabs
         // Little more of an MVC structure
         modelI = new model.ModelImage();
         // SPLIT UP VIEW
