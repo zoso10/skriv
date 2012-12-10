@@ -282,7 +282,9 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     @FXML
     private void handleNewButtonAction(){
-        tabPane.getTabs().add(new Tab("Untitled"));
+        Tab t = new Tab("Untitled");
+        tabPane.getTabs().add(t);
+        
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
@@ -448,6 +450,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         t.start();
         
         // Add Handlers
+        // These needs tweakedz 
         viewI.addHandlers(this);
         
         // Add Canvas to Drawing Pane
