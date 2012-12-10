@@ -69,11 +69,13 @@ public class View {
     }
     
     public void drawWord(classes.Word w){
-        if(pageCanvas.getWidth()-cursorX < w.getWidth()){
+        //if(pageCanvas.getWidth()-cursorX < w.getWidth()){
+        if(currentCanvas.getWidth()-cursorX < w.getWidth()){
             cursorX = 20;
             cursorY = cursorY + w.getHeight() + 20;
         } 
-        pageGC.drawImage(w.getImage(), cursorX, cursorY, .65*w.getWidth(), .65*w.getHeight());
+        //pageGC.drawImage(w.getImage(), cursorX, cursorY, .65*w.getWidth(), .65*w.getHeight());
+        currentGraphics.drawImage(w.getImage(), cursorX, cursorY, .65*w.getWidth(), .65*w.getHeight());
         cursorX = cursorX + 20 + w.getWidth();
     }
     
@@ -101,6 +103,7 @@ public class View {
     
     public void setCurrentCanvas(Canvas c){
         currentCanvas = c;
+        currentGraphics = c.getGraphicsContext2D();
     }
 }
 

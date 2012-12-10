@@ -284,9 +284,13 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @FXML
     private void handleNewButtonAction(){
         Tab t = new Tab("Untitled");
-        t.setContent(new Canvas());
+        Canvas c = new Canvas(tabPane.getWidth(), tabPane.getHeight());
+        t.setContent(c);
         ++currentIndex;
         tabPane.getTabs().add(t);
+        tabPane.getSelectionModel().select(currentIndex);
+        // I hate casting...
+        view.setCurrentCanvas((Canvas)(tabPane.getTabs().get(currentIndex).getContent()));
         //view.setCurrentCanvas(tabPane.getTabs().get(currentIndex).);
         
         
