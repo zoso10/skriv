@@ -35,8 +35,8 @@ import javafx.util.Duration;
 public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-    private model.Model modelI;
-    private view.View viewI;
+    private model.Model model;
+    private view.View view;
     private Image image;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
@@ -287,7 +287,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         t.setContent(new Canvas());
         ++currentIndex;
         tabPane.getTabs().add(t);
-        //viewI.setCurrentCanvas(tabPane.getTabs().get(currentIndex).);
+        //view.setCurrentCanvas(tabPane.getTabs().get(currentIndex).);
         
         
         if(menuButton.isSelected()){
@@ -345,7 +345,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             try{
                 FileOutputStream fos = new FileOutputStream(f);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
-                for(Word w : modelI.getWords()){
+                for(Word w : model.getWords()){
                     oos.writeObject(w);
                 }   
                 fos.close();
@@ -412,26 +412,26 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     private void mousePressedEvent(MouseEvent e){
         // Start drawing the Line in the writingBox (View)
-        viewI.startLine(e.getX(), e.getY());
+        view.startLine(e.getX(), e.getY());
         // Reset Thread
         t.reset();
         // If point is not in current Word then take snapshot and make new Word then draw it to the page
-        if(modelI.isNewWord(e.getX(), e.getY())){
+        if(model.isNewWord(e.getX(), e.getY())){
 //            image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
             Word w = new Word(image);
-            modelI.addWord(w);
-            viewI.drawWord(w);
+            model.addWord(w);
+            view.drawWord(w);
         }
     }
     
     private void mouseDraggedEvent(MouseEvent e){       
         if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
-        modelI.addPoint(e.getX(), e.getY());
-        viewI.updateLine(e.getX(), e.getY());
+        model.addPoint(e.getX(), e.getY());
+        view.updateLine(e.getX(), e.getY());
     }
     
     private void mouseReleasedEvent(MouseEvent e){ 
-        image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
+        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
         if(hasReachedEnd){
             t.restart();
             hasReachedEnd = false;
@@ -446,21 +446,21 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     public void initialize(URL url, ResourceBundle rb){
         currentIndex = -1; // No tabs
         // Little more of an MVC structure
-        modelI = new model.Model();
+        model = new model.Model();
         // SPLIT UP VIEW
-        viewI = new view.View();
+        view = new view.View();
         //viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
-        viewI.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
-        image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
-        t = new ClearThread(modelI, viewI);
+        view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
+        t = new ClearThread(model, view);
         t.start();
         
         // Add Handlers
         // These needs tweakedz 
-        viewI.addHandlers(this);
+        view.addHandlers(this);
         
         // Add Canvas to Drawing Pane
-        drawingPane.getChildren().add(viewI.getWritingCanvas());
+        drawingPane.getChildren().add(view.getWritingCanvas());
         
         // Add Canvas to Page Pane
         // This functionality will get moved to the button action
