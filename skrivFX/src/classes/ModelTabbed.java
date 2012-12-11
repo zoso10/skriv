@@ -6,13 +6,18 @@ public class ModelTabbed {
     private static final int spaceFactor = 70;
     private double left, right, top, bottom;
     private double width, height;
-    private java.util.List<classes.Notes> pages;
+    private java.util.List<Notes> pages;
     private int currentIndex;
     
     public ModelTabbed(){
         pages = new java.util.ArrayList<>();
         currentIndex = -1;
         reset();
+    }
+    
+    public void addPage(){
+        pages.add(new Notes());
+        currentIndex = pages.size()-1;
     }
     
     private void reset(){
