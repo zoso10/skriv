@@ -20,6 +20,7 @@
       </effect>
       <items>
         <ToggleButton id="WriteButton" fx:id="writeButton" mnemonicParsing="false" onAction="#handleWriteButtonAction" prefHeight="50.0" prefWidth="50.0" />
+        <Button mnemonicParsing="false" text="Button" translateX="100.0" />
       </items>
     </ToolBar>
     <Pane id="mini-map-pane" prefHeight="717.0" prefWidth="106.0" AnchorPane.rightAnchor="0.0">
@@ -55,23 +56,12 @@
     </Pane>
     <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
       <effect>
-        <InnerShadow height="37.5" radius="21.375" width="50.0">
+        <InnerShadow height="25.0" radius="18.25" width="50.0">
           <input>
-            <DropShadow height="37.5" radius="21.375" width="50.0" />
+            <DropShadow height="46.875" radius="23.71875" width="50.0" />
           </input>
         </InnerShadow>
       </effect>
-      <tabs>
-        <Tab id="" text="Page 1">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="717.0" prefWidth="557.0">
-              <children>
-                <Pane id="Page" fx:id="page" prefHeight="717.0" prefWidth="556.0" />
-              </children>
-            </AnchorPane>
-          </content>
-        </Tab>
-      </tabs>
     </TabPane>
   </children>
   <stylesheets>
