@@ -378,7 +378,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         }
     }
 
-/*------------------------  Mouse & Keyboard  ------------------------*/
+/*------------------------      MiniMap      -------------------------*/
     
     @FXML
     private void scrollDragAction(MouseEvent evt){
@@ -405,6 +405,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private void onMouseExited(MouseEvent evt){
         thumb.setOpacity(0.3);
     }
+    
+/*------------------------  Mouse & Keyboard  ------------------------*/
     
     @FXML
     private void keyboardShortcut(KeyEvent kp){ 
