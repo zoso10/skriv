@@ -6,8 +6,7 @@ public class ModelTabbed {
     private static final int spaceFactor = 70;
     private double left, right, top, bottom;
     private double width, height;
-    private java.util.List<classes.Page> pages; // Tabs
-    private classes.Page currentPage;
+    private java.util.List<classes.Notes> pages;
     private int currentIndex;
     
     public ModelTabbed(){
