@@ -37,6 +37,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     // Other stuff
     private model.Model model;
     private view.View view;
+    private classes.ModelTabbed modelT;
+    private classes.ViewTabbed viewT;
     private Image image;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
@@ -283,15 +285,19 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     @FXML
     private void handleNewButtonAction(){
-        Tab t = new Tab("Untitled");
-        Canvas c = new Canvas(tabPane.getWidth(), tabPane.getHeight());
-        t.setContent(c);
-        ++currentIndex;
-        tabPane.getTabs().add(t);
-        tabPane.getSelectionModel().select(currentIndex);
-        // I hate casting...
-        view.setCurrentCanvas((Canvas)(tabPane.getTabs().get(currentIndex).getContent()));
-        //view.setCurrentCanvas(tabPane.getTabs().get(currentIndex).);
+//        Tab t = new Tab("Untitled");
+//        Canvas c = new Canvas(tabPane.getWidth(), tabPane.getHeight());
+//        t.setContent(c);
+//        ++currentIndex;
+//        tabPane.getTabs().add(t);
+//        tabPane.getSelectionModel().select(currentIndex);
+//        // I hate casting...
+//        view.setCurrentCanvas((Canvas)(tabPane.getTabs().get(currentIndex).getContent()));
+//        //view.setCurrentCanvas(tabPane.getTabs().get(currentIndex).);
+        
+        //++currentIndex;
+        //tabPane.getTabs().add(new classes.Page(tabPane.widthProperty(), tabPane.heightProperty(), "Untitled"));
+        //tabPane.getSelectionModel().select(currentIndex);
         
         
         if(menuButton.isSelected()){
@@ -379,7 +385,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         //System.out.println("Druggeded");
        // if (thumb.getHeight() track.getFitHeight())
         thumb.setOpacity(0.5);
-        if(evt.getY()-thumb.getHeight()/2>0&&evt.getY()+thumb.getHeight()/2<track.getFitHeight()) {
+        if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getFitHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
         if (evt.getY()-thumb.getHeight()/2<=0) {
@@ -448,6 +454,11 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         
     @Override
     public void initialize(URL url, ResourceBundle rb){
+        // I don't even know
+        modelT = new classes.ModelTabbed();
+        viewT = new classes.ViewTabbed();
+        
+        
         currentIndex = -1; // No tabs
         // Little more of an MVC structure
         model = new model.Model();
