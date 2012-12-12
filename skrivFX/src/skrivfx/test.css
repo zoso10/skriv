@@ -94,10 +94,11 @@ root {
 }
 
 .tool-bar{
-    -fx-background-color: black;
-    -fx-background-radius: 25 0 0 0;
+/*    -fx-background-color: black;*/
+    -fx-background-color:  linear-gradient(from 0% 0% to 0% 100%, black, #222222);
+    -fx-background-radius: 25 25 0 0;
     -fx-border-color: black;
-    -fx-border-radius: 25 0 0 0;
+    -fx-border-radius: 25 25 0 0;
     -fx-border-width: 3;
 }
 
@@ -132,7 +133,8 @@ root {
 
 #writeMenu{
 /*    -fx-background-color: rgb(61, 61, 61);*/
-    -fx-background-color: black;
+/*    -fx-background-color: black;*/
+    -fx-background-color:  linear-gradient(from 0% 0% to 0% 100%, #222222, black);
     -fx-background-radius: 25;
     -fx-border-color: white;
     -fx-border-radius: 25;

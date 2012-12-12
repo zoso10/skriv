@@ -37,9 +37,9 @@
         </HBox>
         <Button id="undo" fx:id="undoButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" rotate="315.0" />
         <Button id="redo" fx:id="redoButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" rotate="135.0" />
-        <Button id="return" fx:id="returnButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" translateX="15.0" />
+        <Button id="return" fx:id="returnButton" mnemonicParsing="false" onAction="#handleReturnButtonPressed" prefHeight="50.0" prefWidth="50.0" translateX="15.0" />
         <Button id="settings" fx:id="settingsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" translateX="150.0" />
-        <ToggleButton id="chat" fx:id="chatButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="button" text="chat" translateX="150.0" />
+        <ToggleButton id="chat" fx:id="chatButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="button" translateX="150.0" />
       </items>
     </ToolBar>
     <Pane id="mini-map-pane" prefHeight="717.0" prefWidth="106.0" AnchorPane.rightAnchor="0.0">
@@ -75,13 +75,14 @@
     </Pane>
     <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
       <effect>
-        <InnerShadow height="49.993896484375" radius="24.49847412109375" width="50.0">
+        <InnerShadow height="49.99999995343387" radius="24.499999988358468" width="50.0">
           <input>
-            <DropShadow height="49.999237060546875" radius="24.49980926513672" width="50.0" />
+            <DropShadow height="49.999999994179234" radius="24.49999999854481" width="50.0" />
           </input>
         </InnerShadow>
       </effect>
     </TabPane>
+    <Rectangle fx:id="viewport" arcHeight="15.0" arcWidth="15.0" fill="DODGERBLUE" height="50.0" layoutX="106.0" opacity="0.3" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="556.0" />
   </children>
   <stylesheets>
     <URL value="@test.css" />

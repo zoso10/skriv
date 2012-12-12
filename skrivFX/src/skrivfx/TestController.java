@@ -74,21 +74,34 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private ToggleButton chatButton;
     @FXML
     private Button settingsButton;
-    
+    @FXML
+    private Rectangle viewport;
     
     
     //attributes
     private ParallelTransition parallelTransition;
+   
     
-    //Button action methods:
+/*------------------------    Write Button    ------------------------*/
     @FXML
     private void handleWriteButtonAction(ActionEvent e){
+        if(highlightButton.isSelected()){
+            highlightButton.setSelected(false);
+        }
+        
         if (writeButton.isSelected()){
             writeMenu.setVisible(true);
             this.writeButtonOpen();
+            
+            
+            if(tabPane.getTabs().size() != 0){    
+                viewport.setVisible(true);
+                
+            }
         }
         else{
             this.writeButtonClose();
+            viewport.setVisible(false);
             Thread t = new Thread(new Runnable(){
                 @Override
                 public void run(){
@@ -418,6 +431,10 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             this.menuButtonClose();
             menuButton.setSelected(false);
             this.hideAllMenuButtons();
+            if(tabPane.getTabs().size() == 0){
+                this.writeButton.setSelected(false);
+                this.handleWriteButtonAction(null);
+            }
         }
     }
     
@@ -428,6 +445,40 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         closeButton.setVisible(false);
     }
 
+/*------------------------  Toolbar Buttons  -------------------------*/
+    @FXML
+    private void handleReturnButtonPressed(){
+        if(viewport.isVisible()){
+            this.moveViewportDown();
+            System.out.println("return button pressed");
+            System.out.println(this.viewport.getY());
+            System.out.println(this.viewport.isVisible());
+        }
+        else{
+            System.out.println("viewport not initialized");
+            System.out.println(this.viewport.getY());
+            System.out.println(this.viewport.isVisible());
+        }
+    }
+    
+/*------------------------      Viewport     -------------------------*/
+    private void moveViewportDown(){
+        if(viewport.getY() < 325){
+            TranslateTransition vpTranslate =
+            new TranslateTransition(Duration.millis(100), viewport);
+            vpTranslate.setFromY(viewport.getY());
+            vpTranslate.setToY(viewport.getY() + (viewport.getHeight()/2));
+            vpTranslate.setCycleCount(1);
+            vpTranslate.play();
+            viewport.setY(viewport.getY() + (viewport.getHeight()/2));
+        }
+        else{
+            viewport.setY(340);
+            System.out.println("viewport is at end of page");
+        }
+        
+    }
+    
 /*------------------------      MiniMap      -------------------------*/
     
     @FXML
