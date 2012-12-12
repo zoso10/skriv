@@ -58,8 +58,6 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @FXML
     private Pane drawingPane;
     @FXML
-    private Pane page;
-    @FXML
     private TabPane tabPane;
     
     
@@ -404,7 +402,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     /*---------------- Overridden MouseEvent Handler -----------------*/
     @Override
     public void handle(MouseEvent e){
-        if(e.getEventType() == MouseEvent.MOUSE_PRESSED){ mousePressedEvent(e); }
+        if(tabPane.getTabs().size() == 0){ System.out.println("Cannot write without a page!"); }
+        else if(e.getEventType() == MouseEvent.MOUSE_PRESSED){ mousePressedEvent(e); }
         else if(e.getEventType() == MouseEvent.MOUSE_DRAGGED){ mouseDraggedEvent(e); }
         else{ mouseReleasedEvent(e); }
     }
