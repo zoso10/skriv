@@ -1,4 +1,4 @@
-package view;
+package views;
 
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.EventHandler;

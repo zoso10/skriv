@@ -7,12 +7,12 @@ public class ClearThread extends Thread{
     private static final int MAX_WAIT = 300;
     private int _state;
     private int counter;
-    private view.View view;
+    //private view.View view;
     
     
     // This needs cleaned up
-    public ClearThread(view.View view){
-        this.view = view;
+    public ClearThread(){
+        //this.view = view;
         counter = 0;
         _state = STATE_PAUSE;
     }
@@ -35,9 +35,10 @@ public class ClearThread extends Thread{
             }
             if(_state == STATE_STOP){ break; }
             System.out.println("Clearing Writing Box");
-            double w = view.getWritingCanvas().getWidth();
-            double h = view.getWritingCanvas().getHeight();
-            view.getWritingCanvas().getGraphicsContext2D().clearRect(0, 0, w, h);
+//            double w = view.getWritingCanvas().getWidth();
+//            double h = view.getWritingCanvas().getHeight();
+//            view.getWritingCanvas().getGraphicsContext2D().clearRect(0, 0, w, h);
+            views.ViewSingleton.getInstance().clearWritingCanvas();
             reset();
         }
     }

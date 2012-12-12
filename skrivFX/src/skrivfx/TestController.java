@@ -33,8 +33,8 @@ import javafx.util.Duration;
 public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-    private model.Model model;
-    private view.View view;
+    private models.Model model;
+    private views.ViewSingleton view;
     private Image image;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
@@ -558,13 +558,13 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        model = new model.Model();
-        view = new view.View();
+        model = new models.Model();
+        view = views.ViewSingleton.getInstance();
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         view.addHandlers(this);
         
         image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
-        t = new ClearThread(view);
+        t = new ClearThread();
         t.start();
 
         drawingPane.getChildren().add(view.getWritingCanvas());

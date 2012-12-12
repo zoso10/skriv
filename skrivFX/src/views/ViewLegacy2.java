@@ -1,4 +1,4 @@
-package view;
+package views;
 
 import classes.WordLegacy;
 import java.util.ArrayList;
