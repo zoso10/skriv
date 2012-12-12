@@ -1,6 +1,5 @@
 package classes;
 
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Tab;
@@ -20,18 +19,21 @@ public class Page extends Tab {
     }
 
     public Page(String title) {
-        super(title);
-        super.setContent(canvas);
+        super();
+        this.setText(title);
+        makeCanvas();
+        this.setContent(canvas);
         curX = 20;
         curY = 20;
     }
 
-    public void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
+    private void makeCanvas() {
         canvas = new Canvas();
-        canvas.widthProperty().bind(width);
-        canvas.heightProperty().bind(height);
+        canvas.setWidth(2000);
+        canvas.setHeight(2000);
 
         gc = canvas.getGraphicsContext2D();
+        gc.fillRect(0, 0, 200, 200);
     }
 
     public void drawWord(Word w) {
@@ -41,16 +43,6 @@ public class Page extends Tab {
         }
         gc.drawImage(w.getImage(), curX, curY, .65 * w.getWidth(), .65 * w.getHeight());
         curX = curX + 20 + w.getWidth();
-    }
-
-    public void startLine(double x, double y) {
-        gc.beginPath();
-        gc.moveTo(x, y);
-    }
-
-    public void updateLine(double x, double y) {
-        gc.lineTo(x, y);
-        gc.stroke();
     }
 
     public void handle(MouseEvent e) {

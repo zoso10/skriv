@@ -300,6 +300,13 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         //tabPane.getSelectionModel().select(currentIndex);
         
         
+        tabPane.getTabs().add(viewT.addTab());
+        modelT.addPage();
+        tabPane.getSelectionModel().select(modelT.getCurrentIndex());
+        
+        
+        
+        
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
@@ -424,26 +431,33 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     private void mousePressedEvent(MouseEvent e){
         // Start drawing the Line in the writingBox (View)
-        view.startLine(e.getX(), e.getY());
+//        view.startLine(e.getX(), e.getY());
+        viewT.startLine(e.getX(), e.getY());
         // Reset Thread
         t.reset();
         // If point is not in current Word then take snapshot and make new Word then draw it to the page
-        if(model.isNewWord(e.getX(), e.getY())){
+        if(modelT.isNewWord(e.getX(), e.getY())){
 //            image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
             Word w = new Word(image);
-            model.addWord(w);
-            view.drawWord(w);
+//            model.addWord(w);
+//            view.drawWord(w);
+            modelT.addWord(w);
+            viewT.drawWord(w);
         }
     }
     
     private void mouseDraggedEvent(MouseEvent e){       
         if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
-        model.addPoint(e.getX(), e.getY());
-        view.updateLine(e.getX(), e.getY());
+//        model.addPoint(e.getX(), e.getY());
+//        view.updateLine(e.getX(), e.getY());
+        modelT.addPoint(e.getX(), e.getY());
+        viewT.updateLine(e.getX(), e.getY());
     }
     
     private void mouseReleasedEvent(MouseEvent e){ 
-        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
+//        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
+        image = viewT.getSnapshot(modelT.left(), modelT.top(), modelT.getWidth(), modelT.getHeight());
+        
         if(hasReachedEnd){
             t.restart();
             hasReachedEnd = false;
@@ -459,25 +473,27 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         // I don't even know
         modelT = new classes.ModelTabbed();
         viewT = new classes.ViewTabbed();
-        
+        viewT.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        viewT.addHandlers(this);
         
         currentIndex = -1; // No tabs
         // Little more of an MVC structure
-        model = new model.Model();
+        //model = new model.Model();
         // SPLIT UP VIEW
-        view = new view.View();
+        //view = new view.View();
         //viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
-        view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
-        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
+        //view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        image = viewT.getSnapshot(modelT.left(), modelT.top(), modelT.getWidth(), modelT.getHeight());
         t = new ClearThread(model, view);
         t.start();
         
         // Add Handlers
         // These needs tweakedz 
-        view.addHandlers(this);
+        //view.addHandlers(this);
         
         // Add Canvas to Drawing Pane
-        drawingPane.getChildren().add(view.getWritingCanvas());
+        drawingPane.getChildren().add(viewT.getWritingCanvas());
+//        drawingPane.getChildren().add(view.getWritingCanvas());
         
         // Add Canvas to Page Pane
         // This functionality will get moved to the button action

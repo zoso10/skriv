@@ -20,6 +20,51 @@ public class ModelTabbed {
         currentIndex = pages.size()-1;
     }
     
+    public void setCurrentIndex(int i){
+        currentIndex = i;
+    }
+    
+    public int getCurrentIndex(){
+        return currentIndex;
+    }
+    
+    public boolean isNewWord(double x, double y){
+        if(right + spaceFactor < x || left - spaceFactor > x){
+            System.out.println("New Word");
+            return true;
+        }
+        else{
+            System.out.println("Still in Word");
+            checkBounds(x,y);
+            return false;
+        }
+    }
+    
+    public void addPoint(double x, double y){
+        checkBounds(x, y);
+    }
+    
+    public void addWord(Word w){
+        pages.get(currentIndex).addWord(w);
+        reset();
+    }
+    
+    public int left(){
+        return (int)left;
+    }
+    
+    public int top(){
+        return (int)top;
+    }
+    
+    public int getWidth(){
+        return (int)width;
+    }
+    
+    public int getHeight(){
+        return (int)height;
+    }
+    
     private void reset(){
         right = bottom = 0;
         left = top = 1000;
