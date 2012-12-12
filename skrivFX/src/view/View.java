@@ -6,14 +6,17 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 
 public class View {
     
     private java.util.List<Page> tabs;
     private Canvas writingCanvas; // Writing Box
+    private GraphicsContext writingGC;
     private int currentIndex; // Current tab
     
     public View(){
@@ -24,6 +27,7 @@ public class View {
         writingCanvas = new Canvas();
         writingCanvas.widthProperty().bind(width);
         writingCanvas.heightProperty().bind(height);
+        writingGC = writingCanvas.getGraphicsContext2D();
     }
     
     public void addHandlers(EventHandler<MouseEvent> e){
@@ -37,6 +41,14 @@ public class View {
         tabs.add(new Page(width, height));
         currentIndex = tabs.size()-1;
         return tabs.get(currentIndex);
+    }
+    
+    public void setLineWidth(double d){
+        writingGC.setLineWidth(d);
+    }
+    
+    public void setStrokeColor(Color c){
+        writingGC.setStroke(c);
     }
     
     public void setCurrentIndex(int i){
@@ -54,13 +66,13 @@ public class View {
     }
     
     public void startLine(double x, double y){
-        writingCanvas.getGraphicsContext2D().beginPath();
-        writingCanvas.getGraphicsContext2D().moveTo(x, y);
+        writingGC.beginPath();
+        writingGC.moveTo(x, y);
     }
     
     public void updateLine(double x, double y){
-        writingCanvas.getGraphicsContext2D().lineTo(x, y);
-        writingCanvas.getGraphicsContext2D().stroke();
+        writingGC.lineTo(x, y);
+        writingGC.stroke();
     }
     
     public Canvas getWritingCanvas(){
