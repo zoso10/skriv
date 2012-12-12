@@ -1,5 +1,6 @@
 package classes;
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Tab;
@@ -14,26 +15,25 @@ public class Page extends Tab {
     // A Page can only have one set of Notes
     //private Notes notes;
 
-    public Page() {
-        this("Untitled");
+    public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
+        this(width, height, "Untitled");
     }
 
-    public Page(String title) {
+    public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, String title) {
         super();
         this.setText(title);
-        makeCanvas();
+        makeCanvas(width, height);
         this.setContent(canvas);
         curX = 20;
         curY = 20;
     }
 
-    private void makeCanvas() {
+    private void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
         canvas = new Canvas();
-        canvas.setWidth(2000);
-        canvas.setHeight(2000);
+        canvas.widthProperty().bind(width);
+        canvas.heightProperty().bind(height);
 
         gc = canvas.getGraphicsContext2D();
-        gc.fillRect(0, 0, 200, 200);
     }
 
     public void drawWord(Word w) {

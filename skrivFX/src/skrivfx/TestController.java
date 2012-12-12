@@ -298,9 +298,18 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         //++currentIndex;
         //tabPane.getTabs().add(new classes.Page(tabPane.widthProperty(), tabPane.heightProperty(), "Untitled"));
         //tabPane.getSelectionModel().select(currentIndex);
+       
+        if(tabPane.getTabs().size() != 0){
+            Word word = new Word(image);
+            modelT.addWord(word);
+            viewT.drawWord(word);
+            double w = viewT.getWritingCanvas().getWidth();
+            double h = viewT.getWritingCanvas().getHeight();
+            viewT.getWritingCanvas().getGraphicsContext2D().clearRect(0, 0, w, h);
+            image = viewT.getSnapshot(modelT.left(), modelT.top(), modelT.getWidth(), modelT.getHeight());
+        }
         
-        
-        tabPane.getTabs().add(viewT.addTab());
+        tabPane.getTabs().add(viewT.addTab(tabPane.widthProperty(), tabPane.heightProperty()));
         modelT.addPage();
         tabPane.getSelectionModel().select(modelT.getCurrentIndex());
         
@@ -484,7 +493,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         //viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
         //view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         image = viewT.getSnapshot(modelT.left(), modelT.top(), modelT.getWidth(), modelT.getHeight());
-        t = new ClearThread(model, view);
+        t = new ClearThread(viewT);
         t.start();
         
         // Add Handlers
