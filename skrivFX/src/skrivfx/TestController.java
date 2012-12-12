@@ -22,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -59,6 +60,20 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private Pane drawingPane;
     @FXML
     private TabPane tabPane;
+    @FXML
+    private ToggleButton highlightButton;
+    @FXML
+    private HBox writeMenu;
+    @FXML
+    private Button undoButton;
+    @FXML
+    private Button redoButton;
+    @FXML
+    private Button returnButton;
+    @FXML
+    private ToggleButton chatButton;
+    @FXML
+    private Button settingsButton;
     
     
     
@@ -69,11 +84,69 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @FXML
     private void handleWriteButtonAction(ActionEvent e){
         if (writeButton.isSelected()){
-            System.out.println("write button on");
+            writeMenu.setVisible(true);
+            this.writeButtonOpen();
         }
         else{
-            System.out.println("write button off");
+            this.writeButtonClose();
+            Thread t = new Thread(new Runnable(){
+                @Override
+                public void run(){
+                    try{
+                        Thread.sleep(50);
+                    } catch(Exception e){ System.out.println("pause exception in write button"); }
+                    writeMenu.setVisible(false);
+                }
+            });
+            t.start(); 
         } 
+    }
+    
+    private void writeButtonOpen(){
+        FadeTransition writeFade = 
+        new FadeTransition(Duration.millis(250), writeMenu);
+        writeFade.setFromValue(0.0);
+        writeFade.setToValue(1.0);
+        writeFade.setCycleCount(1);
+        writeFade.setAutoReverse(true);
+        
+        TranslateTransition writeTranslate =
+        new TranslateTransition(Duration.millis(100), writeMenu);
+        writeTranslate.setFromX(-100);
+        writeTranslate.setToX(-55);
+        writeTranslate.setCycleCount(1);
+        writeTranslate.setAutoReverse(true);
+        
+        parallelTransition = new ParallelTransition();
+        parallelTransition.getChildren().addAll(
+                writeFade,
+                writeTranslate
+        );
+        parallelTransition.setCycleCount(1);
+        parallelTransition.play();
+    }
+    
+    private void writeButtonClose(){
+        FadeTransition writeFade = 
+        new FadeTransition(Duration.millis(50), writeMenu);
+        writeFade.setFromValue(1.0);
+        writeFade.setToValue(0.0);
+        writeFade.setCycleCount(1);
+        writeFade.setAutoReverse(true);
+        
+        TranslateTransition writeTranslate =
+        new TranslateTransition(Duration.millis(50), writeMenu);
+        writeTranslate.setToX(-300);
+        writeTranslate.setCycleCount(1);
+        writeTranslate.setAutoReverse(true);
+        
+        parallelTransition = new ParallelTransition();
+        parallelTransition.getChildren().addAll(
+                writeFade,
+                writeTranslate
+        );
+        parallelTransition.setCycleCount(1);
+        parallelTransition.play();
     }
     
 /*------------------------Animated Menu Button------------------------*/
@@ -95,10 +168,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
                     try{
                         Thread.sleep(250);
                     } catch(Exception e){ System.out.println("pause exception"); }
-                    newButton.setVisible(false);
-                    openButton.setVisible(false);
-                    saveButton.setVisible(false);
-                    closeButton.setVisible(false);
+                    TestController.this.hideAllMenuButtons();
                 }
             });
             t.start(); 
@@ -294,10 +364,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
-            newButton.setVisible(false);
-            openButton.setVisible(false);
-            saveButton.setVisible(false);
-            closeButton.setVisible(false);
+            this.hideAllMenuButtons();
         }
     }
     
@@ -307,10 +374,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
-            newButton.setVisible(false);
-            openButton.setVisible(false);
-            saveButton.setVisible(false);
-            closeButton.setVisible(false);
+            this.hideAllMenuButtons();
             FileChooser fc = new FileChooser();
             fc.setTitle("Open skriv file...");
             File defaultDirectory = new File(".");
@@ -325,10 +389,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
-            newButton.setVisible(false);
-            openButton.setVisible(false);
-            saveButton.setVisible(false);
-            closeButton.setVisible(false);
+            this.hideAllMenuButtons();
             
             FileChooser fc = new FileChooser();
             fc.setTitle("Save skriv file...");
@@ -356,12 +417,15 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
-            newButton.setVisible(false);
-            openButton.setVisible(false);
-            saveButton.setVisible(false);
-            closeButton.setVisible(false);
-            
+            this.hideAllMenuButtons();
         }
+    }
+    
+    private void hideAllMenuButtons(){
+        newButton.setVisible(false);
+        openButton.setVisible(false);
+        saveButton.setVisible(false);
+        closeButton.setVisible(false);
     }
 
 /*------------------------      MiniMap      -------------------------*/

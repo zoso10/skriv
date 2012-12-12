@@ -12,6 +12,7 @@ root {
 
 .background{
     -fx-background-image: url("linenBG.png");
+    -fx-background-position: 0 -100;
 }
 
 .mini-map-pane{
@@ -38,7 +39,7 @@ root {
 
 #MenuButton{
     -fx-background-image: url("MenuButton.png");
-    -fx-opacity: 25%;
+    -fx-opacity: 50%;
     -fx-scale-shape: true;
 }
 #MenuButton:selected{
@@ -143,6 +144,7 @@ root {
 }
 
 #highlighter{
+    -fx-background-image: url("HighlightButton.png");
     -fx-opacity: 25%;
 }
 #highlighter:hover{
@@ -150,6 +152,7 @@ root {
 }
 #highlighter:selected{
     -fx-opacity: 100%;
+    -fx-background-image: url("HighlightButtonGlow.png");
 }
 
 #undo{
