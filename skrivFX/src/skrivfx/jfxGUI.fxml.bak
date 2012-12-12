@@ -38,8 +38,7 @@
         <Button id="undo" fx:id="undoButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" rotate="315.0" />
         <Button id="redo" fx:id="redoButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" rotate="135.0" />
         <Button id="return" fx:id="returnButton" mnemonicParsing="false" onAction="#handleReturnButtonPressed" prefHeight="50.0" prefWidth="50.0" translateX="15.0" />
-        <Button id="settings" fx:id="settingsButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" translateX="150.0" />
-        <ToggleButton id="chat" fx:id="chatButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="button" translateX="150.0" />
+        <ToggleButton id="chat" fx:id="chatButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="button" translateX="180.0" />
       </items>
     </ToolBar>
     <Pane id="mini-map-pane" prefHeight="717.0" prefWidth="106.0" AnchorPane.rightAnchor="0.0">
@@ -68,6 +67,11 @@
     <Button id="OpenButton" fx:id="openButton" effect="$x1" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleOpenButtonAction" opacity="0.0" prefHeight="50.0" prefWidth="50.0" visible="false" />
     <Button id="SaveButton" fx:id="saveButton" effect="$x1" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" opacity="0.0" prefHeight="50.0" prefWidth="50.0" visible="false" />
     <Button id="CloseButton" fx:id="closeButton" effect="$x1" layoutX="15.0" layoutY="255.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" opacity="0.0" prefHeight="50.0" prefWidth="50.0" visible="false" />
+    <Button id="settings" fx:id="settingsButton" layoutX="-135.0" layoutY="320.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" translateX="150.0">
+      <effect>
+        <DropShadow />
+      </effect>
+    </Button>
     <Pane id="DrawingPane" fx:id="drawingPane" layoutY="783.0" prefHeight="241.0" prefWidth="768.0">
       <effect>
         <InnerShadow height="50.0" radius="24.5" width="50.0" />
@@ -75,14 +79,27 @@
     </Pane>
     <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
       <effect>
-        <InnerShadow height="49.99999995343387" radius="24.499999988358468" width="50.0">
+        <InnerShadow height="49.9999999998181" radius="24.499999999954525" width="50.0">
           <input>
-            <DropShadow height="49.999999994179234" radius="24.49999999854481" width="50.0" />
+            <DropShadow height="49.99999999997726" radius="24.499999999994316" width="50.0" />
           </input>
         </InnerShadow>
       </effect>
     </TabPane>
     <Rectangle fx:id="viewport" arcHeight="15.0" arcWidth="15.0" fill="DODGERBLUE" height="50.0" layoutX="106.0" opacity="0.3" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="556.0" />
+    <AnchorPane fx:id="chatPane" layoutX="428.0" layoutY="367.0" prefHeight="351.0" prefWidth="332.0">
+      <children>
+        <TextArea layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="304.0" wrapText="true">
+          <effect>
+            <InnerShadow height="74.4965034965035" radius="35.85664335664336" width="70.93006993006993" />
+          </effect>
+        </TextArea>
+        <TextField layoutX="14.0" layoutY="275.0" prefHeight="38.0" prefWidth="304.0" />
+      </children>
+      <effect>
+        <DropShadow />
+      </effect>
+    </AnchorPane>
   </children>
   <stylesheets>
     <URL value="@test.css" />
