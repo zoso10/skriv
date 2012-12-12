@@ -1,50 +1,55 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-/**
- *
- * @author Tyler
- */
+import classes.Notes;
+import classes.Word;
+
+
 public class Model {
     
     private static final int spaceFactor = 70;
-    // Bounds of "current Word" that we'll end up using to take the snapshot
     private double left, right, top, bottom;
     private double width, height;
-    private java.util.List<classes.Word> words;
-    private int wordCount;
+    private java.util.List<Notes> pages;
+    private int currentIndex;
     
     public Model(){
-        words = new java.util.ArrayList<>();
-        wordCount = 0;
-        // Marker to show this is the first Word being drawn
+        pages = new java.util.ArrayList<>();
+        currentIndex = -1;
         reset();
     }
     
-    // Returns TRUE when the Point is forming a new Word
+    public void addPage(){
+        pages.add(new Notes());
+        currentIndex = pages.size()-1;
+    }
+    
+    public void setCurrentIndex(int i){
+        currentIndex = i;
+    }
+    
+    public int getCurrentIndex(){
+        return currentIndex;
+    }
+    
     public boolean isNewWord(double x, double y){
-//        if(right == -1){
-//            left = right = x;
-//            top = bottom = y; 
-//            return false;
-//        }
         if(right + spaceFactor < x || left - spaceFactor > x){
             System.out.println("New Word");
-            ++wordCount;
             return true;
         }
         else{
             System.out.println("Still in Word");
-            checkBounds(x, y);
+            checkBounds(x,y);
             return false;
         }
     }
     
     public void addPoint(double x, double y){
         checkBounds(x, y);
+    }
+    
+    public void addWord(Word w){
+        pages.get(currentIndex).addWord(w);
+        reset();
     }
     
     public int left(){
@@ -61,16 +66,6 @@ public class Model {
     
     public int getHeight(){
         return (int)height;
-    }
-    
-    public void addWord(classes.Word w){
-        words.add(w);
-        reset();
-    }
-    
-    // For testing the Saving functionality
-    public java.util.List<classes.Word> getWords(){
-        return words;
     }
     
     private void reset(){

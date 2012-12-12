@@ -1,75 +1,90 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model;
 
-import classes.*;
-import java.util.ArrayList;
-import java.util.List;
-
-
+/**
+ *
+ * @author Tyler
+ */
 public class ModelLegacy {
     
-    private final static int spaceFactor = 100;
-    private classes.WordLegacy liveWord; // May not need this, might be able to just keep bounds
-    private List<classes.WordLegacy> words;
-    private int wordCount; // Also used to access the last word
-    private double left, right;
-    
+    private static final int spaceFactor = 70;
+    // Bounds of "current Word" that we'll end up using to take the snapshot
+    private double left, right, top, bottom;
+    private double width, height;
+    private java.util.List<classes.Word> words;
+    private int wordCount;
     
     public ModelLegacy(){
-        words = new ArrayList<>();
+        words = new java.util.ArrayList<>();
         wordCount = 0;
-        //liveWord = new classes.Word();
+        // Marker to show this is the first Word being drawn
+        reset();
     }
     
-    // Called for Mouse Pressed
-    // Returns TRUE when it is a new Word
-    public boolean addPoint(SmartPoint p){
-        if(liveWord == null){
-            System.out.println("Word was null");
-            left = right = p.getX();
-            liveWord = new WordLegacy(p);
-            return false;
-        } else if(liveWordContains(p)){
-            // This is where the magic happens!!
+    // Returns TRUE when the Point is forming a new Word
+    public boolean isNewWord(double x, double y){
+//        if(right == -1){
+//            left = right = x;
+//            top = bottom = y; 
+//            return false;
+//        }
+        if(right + spaceFactor < x || left - spaceFactor > x){
             System.out.println("New Word");
-            left = right = p.getX();
-            WordLegacy temp = liveWord;
-            words.add(temp);
-            liveWord = new WordLegacy(p);
             ++wordCount;
             return true;
-        } else{
-            left = left > p.getX() ? p.getX() : left;
-            right = right < p.getX() ? p.getX() : right;
-            liveWord.addPoint(p);
+        }
+        else{
+            System.out.println("Still in Word");
+            checkBounds(x, y);
             return false;
         }
     }
     
-    // Called for Dragging
-    public void addPointDirect(SmartPoint p){
-        left = left > p.getX() ? p.getX() : left;
-        right = right < p.getX() ? p.getX() : right;
-        liveWord.addPoint(p);
+    public void addPoint(double x, double y){
+        checkBounds(x, y);
     }
     
-    public WordLegacy getLast(){
-        System.out.println(wordCount + " words");
-        return words.get(wordCount-1);
+    public int left(){
+        return (int)left;
     }
     
-    public void endWord(){
-        System.out.println("Ended Word");
-        // Do stuff to the words List
-        liveWord = null;
-        
-//        Word temp = liveWord;
-//        words.add(temp);
-//        liveWord = null;        
+    public int top(){
+        return (int)top;
     }
     
-    // I think we'll use this for the Clear Thread as well
-    public boolean liveWordContains(SmartPoint p){
-        if(liveWord == null){ return false; }
-        else{ return right + spaceFactor < p.getX() || left - spaceFactor > p.getX(); }
+    public int getWidth(){
+        return (int)width;
+    }
+    
+    public int getHeight(){
+        return (int)height;
+    }
+    
+    public void addWord(classes.Word w){
+        words.add(w);
+        reset();
+    }
+    
+    // For testing the Saving functionality
+    public java.util.List<classes.Word> getWords(){
+        return words;
+    }
+    
+    private void reset(){
+        right = bottom = 0;
+        left = top = 1000;
+        width = height = 0;
+    }
+    
+    private void checkBounds(double x, double y){
+        left = left > x ? x : left;
+        right = right < x ? x : right;
+        top = top > y ? y : top;
+        bottom = bottom < y ? y : bottom;
+        width = right - left;
+        height = bottom - top;
     }
 }

@@ -1,11 +1,8 @@
 package view;
 
-import classes.WordLegacy;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.EventHandler;
-import javafx.geometry.Point2D;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
@@ -18,16 +15,17 @@ public class ViewLegacy {
     private Canvas pageCanvas;
     private GraphicsContext writingGC;
     private GraphicsContext pageGC;
-    private List<WordLegacy> words;
-    private double cursorX;
-    private double cursorY;
-    private Thread drawThread;
-    
+    // Maybe?
+    //private Hashmap<WordImage, Point2D> words;
+    private double cursorX, cursorY;
+    // holds the Current Canvas from the Controller
+    private Canvas currentCanvas;
+    // holds the Current GraphicsContext from the Controller
+    private GraphicsContext currentGraphics;
     
     public ViewLegacy(){
-        words = new ArrayList<>();
-        cursorX = 10;
-        cursorY = 10;
+        cursorX = 20;
+        cursorY = 20;
     }
     
     public void makeWritingCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
@@ -50,65 +48,64 @@ public class ViewLegacy {
         pageGC.setLineWidth(1);
     }
     
+    private void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
+        Canvas c = new Canvas();
+        c.widthProperty().bind(width);
+        c.heightProperty().bind(height);
+        
+        
+    }
+    
     public void addHandlers(EventHandler<MouseEvent> e){
         writingCanvas.setOnMousePressed(e);
         writingCanvas.setOnMouseDragged(e);
         writingCanvas.setOnMouseReleased(e);
-        //pageCanvas.setOnMouseDragged(e);
+    }
+    
+    public javafx.scene.image.Image getSnapshot(int x, int y, int width, int height){
+        SnapshotParameters sp = new SnapshotParameters();
+        sp.setViewport(new javafx.geometry.Rectangle2D(x, y, width, height));
+        return writingCanvas.snapshot(sp, null);
+    }
+    
+    public void drawWord(classes.Word w){
+        //if(pageCanvas.getWidth()-cursorX < w.getWidth()){
+        if(currentCanvas.getWidth()-cursorX < w.getWidth()){
+            cursorX = 20;
+            cursorY = cursorY + w.getHeight() + 20;
+        } 
+        //pageGC.drawImage(w.getImage(), cursorX, cursorY, .65*w.getWidth(), .65*w.getHeight());
+        currentGraphics.drawImage(w.getImage(), cursorX, cursorY, .65*w.getWidth(), .65*w.getHeight());
+        cursorX = cursorX + 20 + w.getWidth();
+    }
+    
+    public Canvas getWritingCanvas(){
+        return writingCanvas;
+    }
+    
+    public Canvas getPageCanvas(){
+        return pageCanvas;
+    }
+    
+    public void startLine(double x, double y){
+        writingGC.beginPath();
+        writingGC.moveTo(x, y);
+    }
+    
+    public void updateLine(double x, double y){
+        writingGC.lineTo(x, y);
+        writingGC.stroke();
     }
     
     public GraphicsContext getWritingGraphics(){
         return writingGC;
     }
     
-    public GraphicsContext getPageGraphics(){
-        return pageGC;
-    }
-    
-    public Canvas getWritingCanvas(){
-        return writingCanvas;
-    } 
-    
-    public Canvas getPageCanvas(){
-        return pageCanvas;
-    }  
-    
-    public void addWord(WordLegacy w){
-        // I don't think I need this
-        //words.add(w);
-        // Check to make sure there is room first
-        // Let's trying threading this because, holy moley it is SLOWWWW
-//        final Word wFinal = w;
-//        drawThread = new Thread(new Runnable(){
-//            @Override
-//            public void run(){
-//                if(pageCanvas.getWidth()-cursorX < wFinal.getWidth()){
-//                    cursorX = 10;
-//                    cursorY = cursorY + wFinal.getHeight() + 20;
-//                }     
-//                wFinal.draw(pageGC, cursorX, cursorY);
-//                cursorX = cursorX + wFinal.getWidth() + 20;
-//            }
-//        });
-//        drawThread.start();
-        if(pageCanvas.getWidth()-cursorX < w.getWidth()){
-            cursorX = 10;
-            cursorY = cursorY + w.getHeight() + 20;
-        }     
-        w.draw(pageGC, cursorX, cursorY);
-        cursorX = cursorX + w.getWidth() + 20;
-    }
-   
-    // This is all for drawing the Words in the Writing Box
-    public void startLine(Point2D p){
-        writingGC.beginPath();
-        writingGC.moveTo(p.getX(), p.getY());
-        writingGC.lineTo(p.getX()+.01, p.getY()+.01);
-        writingGC.stroke();
-    }
-    
-    public void updateLine(Point2D p){
-        writingGC.lineTo(p.getX(), p.getY());
-        writingGC.stroke();
+    public void setCurrentCanvas(Canvas c){
+        currentCanvas = c;
+        currentGraphics = c.getGraphicsContext2D();
     }
 }
+
+
+

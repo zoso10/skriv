@@ -32,10 +32,10 @@ import javafx.util.Duration;
 public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-    private model.Model model;
-    private view.View view;
-    private classes.ModelTabbed modelT;
-    private classes.ViewTabbed viewT;
+    private model.ModelLegacy model;
+    private view.ViewLegacy view;
+    private model.Model modelT;
+    private view.View viewT;
     private Image image;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
@@ -448,8 +448,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        modelT = new classes.ModelTabbed();
-        viewT = new classes.ViewTabbed();
+        modelT = new model.Model();
+        viewT = new view.View();
         viewT.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         viewT.addHandlers(this);
         

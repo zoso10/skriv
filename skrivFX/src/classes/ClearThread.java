@@ -7,11 +7,11 @@ public class ClearThread extends Thread{
     private static final int MAX_WAIT = 300;
     private int _state;
     private int counter;
-    private classes.ViewTabbed view;
+    private view.View view;
     
     
     // This needs cleaned up
-    public ClearThread(classes.ViewTabbed view){
+    public ClearThread(view.View view){
         this.view = view;
         counter = 0;
         _state = STATE_PAUSE;

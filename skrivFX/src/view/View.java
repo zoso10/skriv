@@ -1,59 +1,29 @@
 package view;
 
+import classes.Page;
+import classes.Word;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 
 public class View {
     
-    private Canvas writingCanvas;
-    private Canvas pageCanvas;
-    private GraphicsContext writingGC;
-    private GraphicsContext pageGC;
-    // Maybe?
-    //private Hashmap<WordImage, Point2D> words;
-    private double cursorX, cursorY;
-    // holds the Current Canvas from the Controller
-    private Canvas currentCanvas;
-    // holds the Current GraphicsContext from the Controller
-    private GraphicsContext currentGraphics;
+    private java.util.List<Page> tabs;
+    private Canvas writingCanvas; // Writing Box
+    private int currentIndex; // Current tab
     
     public View(){
-        cursorX = 20;
-        cursorY = 20;
+        tabs = new java.util.ArrayList<>();
     }
     
     public void makeWritingCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
         writingCanvas = new Canvas();
         writingCanvas.widthProperty().bind(width);
         writingCanvas.heightProperty().bind(height);
-        
-        writingGC = writingCanvas.getGraphicsContext2D();
-        writingGC.setFill(Color.BLACK);
-        writingGC.setLineWidth(2);
-    }
-    
-    public void makePageCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
-        pageCanvas = new Canvas();
-        pageCanvas.widthProperty().bind(width);
-        pageCanvas.heightProperty().bind(height);
-        
-        pageGC = pageCanvas.getGraphicsContext2D();       
-        pageGC.setFill(Color.BLACK);
-        pageGC.setLineWidth(1);
-    }
-    
-    private void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
-        Canvas c = new Canvas();
-        c.widthProperty().bind(width);
-        c.heightProperty().bind(height);
-        
-        
     }
     
     public void addHandlers(EventHandler<MouseEvent> e){
@@ -62,50 +32,38 @@ public class View {
         writingCanvas.setOnMouseReleased(e);
     }
     
-    public javafx.scene.image.Image getSnapshot(int x, int y, int width, int height){
+    // Must return a page so that it can be added to the TabPane
+    public Page addTab(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
+        tabs.add(new Page(width, height));
+        currentIndex = tabs.size()-1;
+        return tabs.get(currentIndex);
+    }
+    
+    public void setCurrentIndex(int i){
+        currentIndex = i;
+    }
+    
+    public void drawWord(Word w){
+        tabs.get(currentIndex).drawWord(w);
+    }
+    
+    public Image getSnapshot(int x, int y, int width, int height){
         SnapshotParameters sp = new SnapshotParameters();
         sp.setViewport(new javafx.geometry.Rectangle2D(x, y, width, height));
         return writingCanvas.snapshot(sp, null);
     }
     
-    public void drawWord(classes.Word w){
-        //if(pageCanvas.getWidth()-cursorX < w.getWidth()){
-        if(currentCanvas.getWidth()-cursorX < w.getWidth()){
-            cursorX = 20;
-            cursorY = cursorY + w.getHeight() + 20;
-        } 
-        //pageGC.drawImage(w.getImage(), cursorX, cursorY, .65*w.getWidth(), .65*w.getHeight());
-        currentGraphics.drawImage(w.getImage(), cursorX, cursorY, .65*w.getWidth(), .65*w.getHeight());
-        cursorX = cursorX + 20 + w.getWidth();
+    public void startLine(double x, double y){
+        writingCanvas.getGraphicsContext2D().beginPath();
+        writingCanvas.getGraphicsContext2D().moveTo(x, y);
+    }
+    
+    public void updateLine(double x, double y){
+        writingCanvas.getGraphicsContext2D().lineTo(x, y);
+        writingCanvas.getGraphicsContext2D().stroke();
     }
     
     public Canvas getWritingCanvas(){
         return writingCanvas;
     }
-    
-    public Canvas getPageCanvas(){
-        return pageCanvas;
-    }
-    
-    public void startLine(double x, double y){
-        writingGC.beginPath();
-        writingGC.moveTo(x, y);
-    }
-    
-    public void updateLine(double x, double y){
-        writingGC.lineTo(x, y);
-        writingGC.stroke();
-    }
-    
-    public GraphicsContext getWritingGraphics(){
-        return writingGC;
-    }
-    
-    public void setCurrentCanvas(Canvas c){
-        currentCanvas = c;
-        currentGraphics = c.getGraphicsContext2D();
-    }
 }
-
-
-
