@@ -17,6 +17,12 @@ root {
 .mini-map-pane{
     -fx-background-color: black;
 }
+.button{
+    -fx-background-radius: 25;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
 
 /*.titled-pane .title{
     -fx-padding: 20;
@@ -31,13 +37,9 @@ root {
 }*/
 
 #MenuButton{
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("MenuButton.png");
     -fx-opacity: 25%;
-    -fx-background-position: center;
     -fx-scale-shape: true;
-    -fx-background-radius: 25;
 }
 #MenuButton:selected{
     /*-fx-rotate: 90deg;*/
@@ -50,85 +52,44 @@ root {
 
 
 #WriteButton{
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("WriteButton.png");
-    -fx-background-position: center;
-    -fx-background-radius: 25;
     -fx-opacity: 25%;
 }
 #WriteButton:hover{
-    
     -fx-opacity: 100%;
 }
 #WriteButton:selected{
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("WriteBtnSelected.png");
-    -fx-background-position: center;
-    -fx-background-radius: 25;
     -fx-opacity: 100%;
 }
 
 
 #NewButton{
-    -fx-background-radius: 25;
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("NewButton.png");
-    -fx-background-position: center;
 }
 #NewButton:hover{
-    -fx-background-radius: 25;
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("NewButtonGlow.png");
-    -fx-background-position: center;
 }
 
 #OpenButton{
-    -fx-background-radius: 25;
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("OpenButton.png");
-    -fx-background-position: center;
 }
 #OpenButton:hover{
-    -fx-background-radius: 25;
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("OpenButtonGlow.png");
-    -fx-background-position: center;
 }
 
 #SaveButton{
-    -fx-background-radius: 25;
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("SaveButton.png");
-    -fx-background-position: center;
 }
 #SaveButton:hover{
-    -fx-background-radius: 25;
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("SaveButtonGlow.png");
-    -fx-background-position: center;
 }
 
 #CloseButton{
-    -fx-background-radius: 25;
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("CloseButton.png");
-    -fx-background-position: center;
 }
 #CloseButton:hover{
-    -fx-background-radius: 25;
-    -fx-background-color: transparent;
-    -fx-background-repeat: no-repeat;
     -fx-background-image: url("CloseButtonGlow.png");
-    -fx-background-position: center;
 }
 
 .tool-bar{
@@ -168,5 +129,68 @@ root {
     -fx-background-color: lightgray;
 }
 
+#writeMenu{
+/*    -fx-background-color: rgb(61, 61, 61);*/
+    -fx-background-color: black;
+    -fx-background-radius: 25;
+    -fx-border-color: white;
+    -fx-border-radius: 25;
+    -fx-border-width: 2; 
+}
 
+.color-picker{
+    -fx-background-radius: 25;
+}
 
+#highlighter{
+    -fx-opacity: 25%;
+}
+#highlighter:hover{
+    -fx-opacity: 100%;
+}
+#highlighter:selected{
+    -fx-opacity: 100%;
+}
+
+#undo{
+    -fx-background-image: url("UndoButton.png");
+    -fx-opacity: 25%;
+}
+#undo:hover{
+    -fx-opacity: 100%
+}
+
+#redo{
+    -fx-background-image: url("UndoButton.png");
+    -fx-opacity: 25%;
+}
+#redo:hover{
+    -fx-opacity: 100%;
+}
+
+#chat{
+    -fx-background-image: url("ChatButton.png");
+    -fx-opacity: 25%;
+}
+#chat:hover{
+    -fx-opacity: 100%;
+}
+#chat:selected{
+    -fx-opacity: 100%;
+}
+
+#settings{
+    -fx-background-image: url("SettingsButton.png");
+    -fx-opacity: 25%;
+}
+#settings:hover{
+    -fx-opacity: 100%;
+}
+
+#return{
+    -fx-background-image: url("ReturnButton.png");
+    -fx-opacity: 25%;
+}
+#return:hover{
+    -fx-opacity: 100%;
+}

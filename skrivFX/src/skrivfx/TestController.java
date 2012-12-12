@@ -61,6 +61,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private TabPane tabPane;
     
     
+    
     //attributes
     private ParallelTransition parallelTransition;
     
