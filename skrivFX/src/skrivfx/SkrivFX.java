@@ -35,8 +35,7 @@ public class SkrivFX extends Application implements EventHandler<WindowEvent>{
     
     @Override
     public void handle(WindowEvent e){
-        // This is a bad way of doing it
-        TestController.getThread().kill();
+        classes.ClearThread.getInstance().kill();
     }
 
     /**

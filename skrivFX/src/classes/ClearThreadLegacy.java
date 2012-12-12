@@ -1,27 +1,21 @@
 package classes;
 
 
-public class ClearThread extends Thread{
+public class ClearThreadLegacy extends Thread{
     
     private static final int STATE_RUN = 2, STATE_PAUSE = 3, STATE_STOP = 5;
     private static final int MAX_WAIT = 300;
     private int _state;
     private int counter;
-    private static ClearThread instance;
     
-    private ClearThread(){
+    
+    // This needs cleaned up
+    public ClearThreadLegacy(){
         counter = 0;
         _state = STATE_PAUSE;
     }
-    
-    public static ClearThread getInstance(){
-        if(instance == null){
-            instance = new ClearThread();
-        }
-        return instance;
-    }
-    
-        @Override
+  
+    @Override
     public void run(){
         while(_state != STATE_STOP){
             while(counter < MAX_WAIT){

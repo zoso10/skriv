@@ -1,6 +1,6 @@
 package skrivfx;
 
-import classes.ClearThread;
+import classes.ClearThreadLegacy;
 import classes.Word;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -37,7 +37,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private views.ViewSingleton view;
     private Image image;
     private boolean hasReachedEnd = false;
-    private static ClearThread t;
+    //private static ClearThread t;
+    private classes.ClearThread t;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -551,10 +552,6 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             hasReachedEnd = false;
         }
     }
-    
-    public static ClearThread getThread(){
-        return t;
-    }
         
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -564,7 +561,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         view.addHandlers(this);
         
         image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
-        t = new ClearThread();
+        
+        t = classes.ClearThread.getInstance();
         t.start();
 
         drawingPane.getChildren().add(view.getWritingCanvas());
