@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -16,9 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
@@ -285,20 +282,6 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     @FXML
     private void handleNewButtonAction(){
-//        Tab t = new Tab("Untitled");
-//        Canvas c = new Canvas(tabPane.getWidth(), tabPane.getHeight());
-//        t.setContent(c);
-//        ++currentIndex;
-//        tabPane.getTabs().add(t);
-//        tabPane.getSelectionModel().select(currentIndex);
-//        // I hate casting...
-//        view.setCurrentCanvas((Canvas)(tabPane.getTabs().get(currentIndex).getContent()));
-//        //view.setCurrentCanvas(tabPane.getTabs().get(currentIndex).);
-        
-        //++currentIndex;
-        //tabPane.getTabs().add(new classes.Page(tabPane.widthProperty(), tabPane.heightProperty(), "Untitled"));
-        //tabPane.getSelectionModel().select(currentIndex);
-       
         if(tabPane.getTabs().size() != 0){
             Word word = new Word(image);
             modelT.addWord(word);
@@ -314,8 +297,6 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         tabPane.getSelectionModel().select(modelT.getCurrentIndex());
         
         
-        
-        
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
@@ -324,10 +305,6 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             saveButton.setVisible(false);
             closeButton.setVisible(false);
         }
-        
-        // Call Model to make new Canvas
-        
-        // Add canvas to Tab
     }
     
     @FXML
@@ -382,7 +359,6 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @FXML
     private void handleCloseButtonAction(){
         tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedItem());
-        //if(t != null){ t.kill(); }
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
@@ -440,16 +416,12 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     private void mousePressedEvent(MouseEvent e){
         // Start drawing the Line in the writingBox (View)
-//        view.startLine(e.getX(), e.getY());
         viewT.startLine(e.getX(), e.getY());
         // Reset Thread
         t.reset();
         // If point is not in current Word then take snapshot and make new Word then draw it to the page
         if(modelT.isNewWord(e.getX(), e.getY())){
-//            image = viewI.getSnapshot(modelI.left(), modelI.top(), modelI.getWidth(), modelI.getHeight());
             Word w = new Word(image);
-//            model.addWord(w);
-//            view.drawWord(w);
             modelT.addWord(w);
             viewT.drawWord(w);
         }
@@ -457,14 +429,11 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     private void mouseDraggedEvent(MouseEvent e){       
         if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
-//        model.addPoint(e.getX(), e.getY());
-//        view.updateLine(e.getX(), e.getY());
         modelT.addPoint(e.getX(), e.getY());
         viewT.updateLine(e.getX(), e.getY());
     }
     
     private void mouseReleasedEvent(MouseEvent e){ 
-//        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
         image = viewT.getSnapshot(modelT.left(), modelT.top(), modelT.getWidth(), modelT.getHeight());
         
         if(hasReachedEnd){
@@ -479,33 +448,16 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        // I don't even know
         modelT = new classes.ModelTabbed();
         viewT = new classes.ViewTabbed();
         viewT.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         viewT.addHandlers(this);
         
         currentIndex = -1; // No tabs
-        // Little more of an MVC structure
-        //model = new model.Model();
-        // SPLIT UP VIEW
-        //view = new view.View();
-        //viewI.makePageCanvas(page.widthProperty(), page.heightProperty());
-        //view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         image = viewT.getSnapshot(modelT.left(), modelT.top(), modelT.getWidth(), modelT.getHeight());
         t = new ClearThread(viewT);
         t.start();
-        
-        // Add Handlers
-        // These needs tweakedz 
-        //view.addHandlers(this);
-        
-        // Add Canvas to Drawing Pane
+
         drawingPane.getChildren().add(viewT.getWritingCanvas());
-//        drawingPane.getChildren().add(view.getWritingCanvas());
-        
-        // Add Canvas to Page Pane
-        // This functionality will get moved to the button action
-        //page.getChildren().add(viewI.getPageCanvas());
     }
 }
