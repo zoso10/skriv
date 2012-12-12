@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 
 public class Page extends Tab {
 
+    private static final double scale = .65;
     private Canvas canvas;
     private GraphicsContext gc;
     private double curX, curY; // Cursor
@@ -41,7 +42,7 @@ public class Page extends Tab {
             curX = 20;
             curY = curY + w.getHeight() + 20;
         }
-        gc.drawImage(w.getImage(), curX, curY, .65 * w.getWidth(), .65 * w.getHeight());
+        gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), scale * w.getHeight());
         curX = curX + 20 + w.getWidth();
     }
 

@@ -32,16 +32,11 @@ import javafx.util.Duration;
 public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-    private model.ModelLegacy model;
-    private view.ViewLegacy view;
-    private model.Model modelT;
-    private view.View viewT;
+    private model.Model model;
+    private view.View view;
     private Image image;
     private boolean hasReachedEnd = false;
     private static ClearThread t;
-    
-    //private List<Tab> tabs; // No need for this
-    private int currentIndex;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -284,17 +279,17 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private void handleNewButtonAction(){
         if(tabPane.getTabs().size() != 0){
             Word word = new Word(image);
-            modelT.addWord(word);
-            viewT.drawWord(word);
-            double w = viewT.getWritingCanvas().getWidth();
-            double h = viewT.getWritingCanvas().getHeight();
-            viewT.getWritingCanvas().getGraphicsContext2D().clearRect(0, 0, w, h);
-            image = viewT.getSnapshot(modelT.left(), modelT.top(), modelT.getWidth(), modelT.getHeight());
+            model.addWord(word);
+            view.drawWord(word);
+            double w = view.getWritingCanvas().getWidth();
+            double h = view.getWritingCanvas().getHeight();
+            view.getWritingCanvas().getGraphicsContext2D().clearRect(0, 0, w, h);
+            image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
         }
         
-        tabPane.getTabs().add(viewT.addTab(tabPane.widthProperty(), tabPane.heightProperty()));
-        modelT.addPage();
-        tabPane.getSelectionModel().select(modelT.getCurrentIndex());
+        tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty()));
+        model.addPage();
+        tabPane.getSelectionModel().select(model.getCurrentIndex());
         
         
         if(menuButton.isSelected()){
@@ -416,25 +411,25 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     private void mousePressedEvent(MouseEvent e){
         // Start drawing the Line in the writingBox (View)
-        viewT.startLine(e.getX(), e.getY());
+        view.startLine(e.getX(), e.getY());
         // Reset Thread
         t.reset();
         // If point is not in current Word then take snapshot and make new Word then draw it to the page
-        if(modelT.isNewWord(e.getX(), e.getY())){
+        if(model.isNewWord(e.getX(), e.getY())){
             Word w = new Word(image);
-            modelT.addWord(w);
-            viewT.drawWord(w);
+            model.addWord(w);
+            view.drawWord(w);
         }
     }
     
     private void mouseDraggedEvent(MouseEvent e){       
         if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
-        modelT.addPoint(e.getX(), e.getY());
-        viewT.updateLine(e.getX(), e.getY());
+        model.addPoint(e.getX(), e.getY());
+        view.updateLine(e.getX(), e.getY());
     }
     
     private void mouseReleasedEvent(MouseEvent e){ 
-        image = viewT.getSnapshot(modelT.left(), modelT.top(), modelT.getWidth(), modelT.getHeight());
+        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
         
         if(hasReachedEnd){
             t.restart();
@@ -448,16 +443,15 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        modelT = new model.Model();
-        viewT = new view.View();
-        viewT.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
-        viewT.addHandlers(this);
+        model = new model.Model();
+        view = new view.View();
+        view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        view.addHandlers(this);
         
-        currentIndex = -1; // No tabs
-        image = viewT.getSnapshot(modelT.left(), modelT.top(), modelT.getWidth(), modelT.getHeight());
-        t = new ClearThread(viewT);
+        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
+        t = new ClearThread(view);
         t.start();
 
-        drawingPane.getChildren().add(viewT.getWritingCanvas());
+        drawingPane.getChildren().add(view.getWritingCanvas());
     }
 }

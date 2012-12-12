@@ -52,6 +52,10 @@ public class Model {
         reset();
     }
     
+    public java.util.List<Word> getWords(){
+        return pages.get(currentIndex).getWords();
+    }
+    
     public int left(){
         return (int)left;
     }
