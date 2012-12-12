@@ -8,10 +8,11 @@ import javafx.scene.input.MouseEvent;
 
 public class Page extends Tab {
 
-    private static final double scale = .65;
+    private static double scale = .65;
     private Canvas canvas;
     private GraphicsContext gc;
     private double curX, curY; // Cursor
+    private boolean isFirst = true;
     // Maybe...
     // A Page can only have one set of Notes
     //private Notes notes;
@@ -26,7 +27,7 @@ public class Page extends Tab {
         makeCanvas(width, height);
         this.setContent(canvas);
         curX = 20;
-        curY = 20;
+        curY = 10;
     }
 
     private void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
@@ -40,9 +41,18 @@ public class Page extends Tab {
     public void drawWord(Word w) {
         if (canvas.getWidth() - curX < w.getWidth()) {
             curX = 20;
-            curY = curY + w.getHeight() + 20;
+            curY = curY + 50;
+            // Move blue bar down
         }
-        gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), scale * w.getHeight());
+        // Change stuff around, maybe keep it within bounds?
+        if(isFirst && w.getHeight() > 1 || scale*w.getHeight() > 40){ 
+            scale = 40/w.getHeight(); 
+            isFirst = false;
+            gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), 40);
+        }
+        else{
+            gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), scale * w.getHeight());
+        }
         curX = curX + 20 + w.getWidth();
     }
 

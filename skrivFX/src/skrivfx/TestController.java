@@ -558,6 +558,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         view = views.ViewSingleton.getInstance();
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         view.addHandlers(this);
+        view.setLineWidth(3);
         
         image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
         
