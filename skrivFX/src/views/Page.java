@@ -1,5 +1,6 @@
-package classes;
+package views;
 
+import classes.Word;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

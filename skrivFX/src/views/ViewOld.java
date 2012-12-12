@@ -1,6 +1,5 @@
 package views;
 
-import classes.Page;
 import classes.Word;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.EventHandler;
@@ -12,14 +11,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 
-public class View {
+public class ViewOld {
     
     private java.util.List<Page> tabs;
     private Canvas writingCanvas; // Writing Box
     private GraphicsContext writingGC;
     private int currentIndex; // Current tab
     
-    public View(){
+    public ViewOld(){
         tabs = new java.util.ArrayList<>();
     }
     

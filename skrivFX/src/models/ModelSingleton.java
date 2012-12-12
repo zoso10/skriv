@@ -6,7 +6,7 @@ public class ModelSingleton {
     private static final int spaceFactor = 70;
     private double left, right, top, bottom;
     private double width, height;
-    private java.util.List<classes.Notes> pages;
+    private java.util.List<models.Notes> pages;
     private int currentIndex;
     private static ModelSingleton instance;
     
@@ -24,7 +24,7 @@ public class ModelSingleton {
     }
     
         public void addPage(){
-        pages.add(new classes.Notes());
+        pages.add(new models.Notes());
         currentIndex = pages.size()-1;
     }
     

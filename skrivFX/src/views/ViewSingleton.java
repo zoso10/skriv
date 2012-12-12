@@ -1,6 +1,5 @@
 package views;
 
-import classes.Page;
 import classes.Word;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.EventHandler;
@@ -12,7 +11,7 @@ import javafx.scene.paint.Color;
 
 public class ViewSingleton {
     
-    private java.util.List<classes.Page> tabs;
+    private java.util.List<views.Page> tabs;
     private javafx.scene.canvas.Canvas writingCanvas; // Writing box
     private javafx.scene.canvas.GraphicsContext writingGC;
     private int currentIndex; // Current tab

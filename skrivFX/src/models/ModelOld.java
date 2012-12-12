@@ -1,10 +1,9 @@
 package models;
 
-import classes.Notes;
 import classes.Word;
 
 
-public class Model {
+public class ModelOld {
     
     private static final int spaceFactor = 70;
     private double left, right, top, bottom;
@@ -12,7 +11,7 @@ public class Model {
     private java.util.List<Notes> pages;
     private int currentIndex;
     
-    public Model(){
+    public ModelOld(){
         pages = new java.util.ArrayList<>();
         currentIndex = -1;
         reset();

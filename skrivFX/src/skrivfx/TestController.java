@@ -519,8 +519,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @Override
     public void handle(MouseEvent e){
         if(tabPane.getTabs().size() == 0 || !writeButton.isSelected()){ System.out.println("Cannot write!"); }
-        else if(e.getEventType() == MouseEvent.MOUSE_PRESSED){ mousePressedEvent(e); }
-        else if(e.getEventType() == MouseEvent.MOUSE_DRAGGED){ mouseDraggedEvent(e); }
+        else if(e.getEventType().equals(MouseEvent.MOUSE_PRESSED)){ mousePressedEvent(e); }
+        else if(e.getEventType().equals(MouseEvent.MOUSE_DRAGGED)){ mouseDraggedEvent(e); }
         else{ mouseReleasedEvent(e); }
     }
     
