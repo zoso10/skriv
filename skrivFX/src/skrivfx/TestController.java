@@ -1,6 +1,5 @@
 package skrivfx;
 
-import classes.ClearThreadLegacy;
 import classes.Word;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,11 +32,11 @@ import javafx.util.Duration;
 public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-    private models.Model model;
+//    private models.Model model;
+    private models.ModelSingleton model;
     private views.ViewSingleton view;
     private Image image;
     private boolean hasReachedEnd = false;
-    //private static ClearThread t;
     private classes.ClearThread t;
     
     //These are objects injected from the FXML file:
@@ -519,7 +518,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     /*---------------- Overridden MouseEvent Handler -----------------*/
     @Override
     public void handle(MouseEvent e){
-        if(tabPane.getTabs().size() == 0){ System.out.println("Cannot write without a page!"); }
+        if(tabPane.getTabs().size() == 0 || !writeButton.isSelected()){ System.out.println("Cannot write!"); }
         else if(e.getEventType() == MouseEvent.MOUSE_PRESSED){ mousePressedEvent(e); }
         else if(e.getEventType() == MouseEvent.MOUSE_DRAGGED){ mouseDraggedEvent(e); }
         else{ mouseReleasedEvent(e); }
@@ -555,7 +554,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        model = new models.Model();
+        model = models.ModelSingleton.getInstance();
         view = views.ViewSingleton.getInstance();
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         view.addHandlers(this);
