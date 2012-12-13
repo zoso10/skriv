@@ -438,6 +438,8 @@ public class TestController implements Initializable{
 //        ((views.Page)tabPane.getSelectionModel().getSelectedItem()).addPageHandlers(new PageEvent(this));
 //        track.getChildren().add(view.getCurrentPageMiniMap());
         
+
+        
         
         if(menuButton.isSelected()){
             this.menuButtonClose();
