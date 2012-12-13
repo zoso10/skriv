@@ -37,7 +37,7 @@ public class ViewOld {
     
     // Must return a page so that it can be added to the TabPane
     public Page addTab(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
-        tabs.add(new Page(width, height));
+        //tabs.add(new Page(width, height));
         currentIndex = tabs.size()-1;
         return tabs.get(currentIndex);
     }
