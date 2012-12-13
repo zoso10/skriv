@@ -33,10 +33,8 @@ import javafx.util.Duration;
 public class TestController implements Initializable, EventHandler<MouseEvent>{
     
     // Other stuff
-//    private models.Model model;
     private models.ModelSingleton model;
     private views.ViewSingleton view;
-    private Image image;
     private boolean hasReachedEnd = false;
     private classes.ClearThread t;
     
@@ -398,13 +396,10 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @FXML
     private void handleNewButtonAction(){
         if(tabPane.getTabs().size() != 0){
-            Word word = new Word(image);
+            Word word = new Word(view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight()));
             model.addWord(word);
             view.drawWord(word);
-            double w = view.getWritingCanvas().getWidth();
-            double h = view.getWritingCanvas().getHeight();
-            view.getWritingCanvas().getGraphicsContext2D().clearRect(0, 0, w, h);
-            image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
+            view.clearWritingCanvas();
         }
         
         tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty()));
@@ -614,9 +609,9 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         t.reset();
         // If point is not in current Word then take snapshot and make new Word then draw it to the page
         if(model.isNewWord(e.getX(), e.getY())){
-            Word w = new Word(image);
-            model.addWord(w);
-            view.drawWord(w);
+           // Word w = new Word(image);
+//            model.addWord(w);
+//            view.drawWord(w);
         }
     }
     
@@ -626,9 +621,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         view.updateLine(e.getX(), e.getY());
     }
     
-    private void mouseReleasedEvent(MouseEvent e){ 
-        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
-        
+    private void mouseReleasedEvent(MouseEvent e){      
         if(hasReachedEnd){
             t.restart();
             hasReachedEnd = false;
@@ -640,10 +633,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         model = models.ModelSingleton.getInstance();
         view = views.ViewSingleton.getInstance();
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
-        view.addHandlers(this);
+        view.addHandlers(new PageEvent());
         view.setLineWidth(3);
-        
-        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
         
         t = classes.ClearThread.getInstance();
         t.start();

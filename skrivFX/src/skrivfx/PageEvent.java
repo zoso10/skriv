@@ -17,14 +17,13 @@ public class PageEvent implements EventHandler<MouseEvent>{
     private views.ViewSingleton view;
     private models.ModelSingleton model;
     private classes.ClearThread t;
-    private TestController tc;
+    private javafx.scene.image.Image image;
     private boolean hasReachedEnd = false;
     
-    public PageEvent(TestController tc){
+    public PageEvent(){
         view = views.ViewSingleton.getInstance();
         model = models.ModelSingleton.getInstance();
         t = classes.ClearThread.getInstance();
-        this.tc = tc;
     }
     
     @Override
@@ -38,10 +37,10 @@ public class PageEvent implements EventHandler<MouseEvent>{
     public void mousePressedEvent(MouseEvent e){
         view.startLine(e.getX(), e.getY());
         t.reset();
-        if(model.isNewWord(e.getX(), e.getY())){
-//            classes.Word w = new classes.Word(image);
-//            model.addWord(w);
-//            view.drawWord(w);
+        if(model.isNewWord(e.getX(), e.getY()) && image != null){
+            classes.Word w = new classes.Word(image);
+            model.addWord(w);
+            view.drawWord(w);
         }
     }
     
@@ -52,7 +51,7 @@ public class PageEvent implements EventHandler<MouseEvent>{
     }
     
     public void mouseReleased(MouseEvent e){
-        // image = stuff
+        image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
         if(hasReachedEnd){
             t.reset();
             hasReachedEnd = false;
