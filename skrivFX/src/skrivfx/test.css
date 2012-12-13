@@ -201,3 +201,8 @@ root {
 #chatPane{
     -fx-background-image: url("ChatBG.png");
 }
+
+#SettingsTriangle{
+    -fx-stroke: linear-gradient(from 0% 50% to 0% 100%, white 83%, #111111 87%, transparent 100%);
+    -fx-stroke-width: 8;
+}
