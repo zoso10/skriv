@@ -11,14 +11,11 @@ import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,13 +27,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-public class TestController implements Initializable, EventHandler<MouseEvent>{
+public class TestController implements Initializable{
     
     // Other stuff
     private models.ModelSingleton model;
     private views.ViewSingleton view;
     private boolean hasReachedEnd = false;
-    private classes.ClearThread t;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -633,42 +629,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         System.out.println(kp.getText());
         
     }
-    
-    /*---------------- Overridden MouseEvent Handler -----------------*/
-    @Override
-    public void handle(MouseEvent e){
-        if(tabPane.getTabs().size() == 0 || !writeButton.isSelected()){ System.out.println("Cannot write!"); }
-        else if(e.getEventType().equals(MouseEvent.MOUSE_PRESSED)){ mousePressedEvent(e); }
-        else if(e.getEventType().equals(MouseEvent.MOUSE_DRAGGED)){ mouseDraggedEvent(e); }
-        else{ mouseReleasedEvent(e); }
-    }
-    
-    private void mousePressedEvent(MouseEvent e){
-        // Start drawing the Line in the writingBox (View)
-        view.startLine(e.getX(), e.getY());
-        // Reset Thread
-        t.reset();
-        // If point is not in current Word then take snapshot and make new Word then draw it to the page
-        if(model.isNewWord(e.getX(), e.getY())){
-           // Word w = new Word(image);
-//            model.addWord(w);
-//            view.drawWord(w);
-        }
-    }
-    
-    private void mouseDraggedEvent(MouseEvent e){       
-        if(e.getX() > drawingPane.getWidth()*.9){ hasReachedEnd = true; }
-        model.addPoint(e.getX(), e.getY());
-        view.updateLine(e.getX(), e.getY());
-    }
-    
-    private void mouseReleasedEvent(MouseEvent e){      
-        if(hasReachedEnd){
-            t.restart();
-            hasReachedEnd = false;
-        }
-    }
         
+    
     @Override
     public void initialize(URL url, ResourceBundle rb){
         model = models.ModelSingleton.getInstance();
@@ -678,9 +640,6 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
      
         view.addHandlers(new PageEvent());
         view.setLineWidth(3);
-        
-        t = classes.ClearThread.getInstance();
-        t.start();
 
         drawingPane.getChildren().add(view.getWritingCanvas());
     }

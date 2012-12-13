@@ -24,6 +24,7 @@ public class PageEvent implements EventHandler<MouseEvent>{
         view = views.ViewSingleton.getInstance();
         model = models.ModelSingleton.getInstance();
         t = classes.ClearThread.getInstance();
+        t.start();
     }
     
     @Override
