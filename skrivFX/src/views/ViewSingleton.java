@@ -2,6 +2,7 @@ package views;
 
 import classes.Word;
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.Image;
@@ -49,8 +50,8 @@ public class ViewSingleton {
         return tabs.get(currentIndex);
     }
     
-    public void addPageHandlers(EventHandler<MouseEvent> e){
-        tabs.get(currentIndex).addHandlers(e);
+    public void addPageHandlers(EventHandler<Event> e){
+        tabs.get(currentIndex).addPageHandlers(e);
     }
     
     public void carriageReturn(){

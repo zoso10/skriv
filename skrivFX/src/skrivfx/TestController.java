@@ -426,11 +426,17 @@ public class TestController implements Initializable{
             
         }
         
-        tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this));
+        views.Page p = view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this);
+        tabPane.getTabs().add(p);
         model.addPage();
-        tabPane.getSelectionModel().select(model.getCurrentIndex());
-        ((views.Page)tabPane.getSelectionModel().getSelectedItem()).addHandlers(new PageEvent());
-        track.getChildren().add(view.getCurrentPageMiniMap());
+        p.addPageHandlers(new PageEvent(this));
+        track.getChildren().add(p.getMiniMap());
+//        
+//        tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this));
+//        model.addPage();
+//        tabPane.getSelectionModel().select(model.getCurrentIndex());
+//        ((views.Page)tabPane.getSelectionModel().getSelectedItem()).addPageHandlers(new PageEvent(this));
+//        track.getChildren().add(view.getCurrentPageMiniMap());
         
         
         if(menuButton.isSelected()){
@@ -710,11 +716,11 @@ public class TestController implements Initializable{
     }
 /*------------------------  Mouse & Keyboard  ------------------------*/
     
-    @FXML
-    private void keyboardShortcut(KeyEvent kp){ 
-        System.out.println(kp.getText());
-        
-    }
+//    @FXML
+//    private void keyboardShortcut(KeyEvent kp){ 
+//        System.out.println(kp.getText());
+//        
+//    }
         
     
     @Override
@@ -756,5 +762,16 @@ public class TestController implements Initializable{
                 view.setStrokeColor(colorPicker.getValue());
             }  
         });
+        
+        PageEvent pe = new PageEvent(this);
+        tabPane.setOnMousePressed(pe);
+        tabPane.setOnMouseDragged(pe);
+        tabPane.setOnMouseReleased(pe);
+        tabPane.setOnKeyPressed(pe);
+        tabPane.setOnKeyReleased(pe);
     }
+    
+    public Rectangle getViewport(){
+        return this.viewport;
+    };
 }

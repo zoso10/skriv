@@ -4,22 +4,93 @@
  */
 package skrivfx;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Path;
 
 /**
  *
  * @author Tyler
  */
-public class PageEvent implements EventHandler<MouseEvent>{
+public class PageEvent implements EventHandler<Event>{
 
+    
+    private views.ViewSingleton view;
+    private models.ModelSingleton model;
+    private TestController tc;
+    private Path path;
+    
+    public PageEvent(TestController t){
+        tc = t;
+        view = views.ViewSingleton.getInstance();
+        model = models.ModelSingleton.getInstance();
+        
+    }
+    
     @Override
-    public void handle(MouseEvent e) {
-         if(e.getEventType().equals(MouseEvent.MOUSE_PRESSED)){  }
-         else if(e.getEventType().equals(MouseEvent.MOUSE_DRAGGED)){ }
-         else{ }
+    public void handle(Event e) {
+         
+         if (e.getEventType() == MouseEvent.MOUSE_PRESSED){
+             mousePressed((MouseEvent)e);
+         }
+         if (e.getEventType() == MouseEvent.MOUSE_DRAGGED){
+             mouseDragged((MouseEvent)e);
+         }
+         if (e.getEventType() == MouseEvent.MOUSE_RELEASED){
+             mouseReleased((MouseEvent)e);
+         }
+         if (e.getEventType() == KeyEvent.KEY_PRESSED){
+             keyPressed((KeyEvent) e);
+         }
+         if (e.getEventType() == KeyEvent.KEY_RELEASED){
+             keyReleased((KeyEvent) e);
+         }
+         
+    }
+    
+    public void mousePressed(MouseEvent e){
+        if(e.isShiftDown()){
+            view.getCurrentPageCanvas().getGraphicsContext2D().beginPath();
+            view.getCurrentPageCanvas().getGraphicsContext2D().moveTo(e.getX(), e.getY());
+            System.out.println("mouse pressed");
+        }
+        System.out.println("inside mouse pressed");
     }
     
     // We need clever ways of identifying what the user is doing
+
+    private void mouseDragged(MouseEvent e) {
+        if(e.isShiftDown()){
+            view.getCurrentPageCanvas().getGraphicsContext2D().lineTo(e.getX(), e.getY());
+            view.getCurrentPageCanvas().getGraphicsContext2D().stroke();
+            System.out.println("mouse dragged");
+            System.out.println((e.getX()) + ", " + e.getY());            
+            
+        }
+        System.out.println("inside mouse dragged");
+    }
+
+    private void mouseReleased(MouseEvent e) {
+        System.out.println("inside mouse released");
+        
+    }
+
+    private void keyPressed(KeyEvent e) {
+        if(e.isShiftDown()){
+            System.out.println("shiftdown");
+            tc.getViewport().setVisible(false);
+            
+        }
+    }
+    
+    private void keyReleased(KeyEvent e){
+        if(!tc.getViewport().isVisible()){
+            tc.getViewport().setVisible(true);
+            
+        }
+    }
     
 }

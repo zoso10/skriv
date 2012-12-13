@@ -90,7 +90,7 @@
       <children>
         <TextArea editable="false" layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="304.0" wrapText="true">
           <effect>
-            <InnerShadow height="70.93006993671293" radius="34.96503496669571" width="70.93006993006993" />
+            <InnerShadow height="70.93006993339142" radius="34.96503496586534" width="70.93006993006993" />
           </effect>
         </TextArea>
         <TextField layoutX="14.0" layoutY="275.0" prefHeight="38.0" prefWidth="304.0" />
@@ -122,7 +122,7 @@
             <CheckBox fx:id="hostCheckBox" mnemonicParsing="false" />
             <TextField fx:id="portField" prefWidth="112.0" />
             <TextField fx:id="iPField" prefWidth="112.0" />
-            <ToggleButton id="CollabToggle" fx:id="collabToggle" contentDisplay="CENTER" mnemonicParsing="false" text="Off" />
+            <ToggleButton id="CollabToggle" fx:id="collabToggle" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCollabToggle" text="Off" />
           </children>
           <padding>
             <Insets left="5.0" />

@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyboardShortcut" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
   <children>
     <ToolBar layoutY="717.0" prefHeight="50.9998779296875" prefWidth="768.0">
       <effect>
@@ -90,7 +90,7 @@
       <children>
         <TextArea editable="false" layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="304.0" wrapText="true">
           <effect>
-            <InnerShadow height="70.93006993339142" radius="34.96503496586534" width="70.93006993006993" />
+            <InnerShadow height="70.93006993173069" radius="34.96503496545016" width="70.93006993006993" />
           </effect>
         </TextArea>
         <TextField layoutX="14.0" layoutY="275.0" prefHeight="38.0" prefWidth="304.0" />
