@@ -23,7 +23,7 @@
         <ToggleButton id="highlighter" fx:id="highlightButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="button" />
         <HBox fx:id="writeMenu" alignment="CENTER" opacity="0.0" prefHeight="50.0" prefWidth="210.0" translateX="-265.0" visible="false">
           <children>
-            <Slider fx:id="strokeSlider" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefWidth="100.0" value="3.0">
+            <Slider fx:id="strokeSlider" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefWidth="100.0" snapToTicks="true" value="3.0">
               <HBox.margin>
                 <Insets left="10.0" right="5.0" />
               </HBox.margin>
@@ -78,9 +78,9 @@
     </Pane>
     <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
       <effect>
-        <InnerShadow height="49.99999999999996" radius="24.49999999999999" width="50.0">
+        <InnerShadow height="49.99999999999998" radius="24.499999999999993" width="50.0">
           <input>
-            <DropShadow height="49.99999999999999" radius="24.5" width="50.0" />
+            <DropShadow height="50.0" radius="24.5" width="50.0" />
           </input>
         </InnerShadow>
       </effect>
@@ -90,7 +90,7 @@
       <children>
         <TextArea editable="false" layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="304.0" wrapText="true">
           <effect>
-            <InnerShadow height="70.93094064138987" radius="34.965252642864954" width="70.93006993006993" />
+            <InnerShadow height="70.93050528572991" radius="34.96514380394996" width="70.93006993006993" />
           </effect>
         </TextArea>
         <TextField layoutX="14.0" layoutY="275.0" prefHeight="38.0" prefWidth="304.0" />

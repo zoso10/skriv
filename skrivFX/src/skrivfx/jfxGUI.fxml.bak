@@ -28,7 +28,7 @@
                 <Insets left="10.0" right="5.0" />
               </HBox.margin>
             </Slider>
-            <ColorPicker fx:id="colorPicker" editable="true" promptText="Choose a stroke color">
+            <ColorPicker fx:id="colorPicker">
               <HBox.margin>
                 <Insets right="10.0" />
               </HBox.margin>
