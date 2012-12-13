@@ -54,7 +54,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     @FXML
     private Rectangle thumb;
     @FXML
-    private ImageView track;
+    private Pane track;
     @FXML
     private Pane drawingPane;
     @FXML
