@@ -633,6 +633,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         model = models.ModelSingleton.getInstance();
         view = views.ViewSingleton.getInstance();
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        view.makeMinimapCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+     
         view.addHandlers(new PageEvent());
         view.setLineWidth(3);
         
