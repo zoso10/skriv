@@ -569,6 +569,7 @@ public class TestController implements Initializable{
     private void handleReturnButtonPressed(){
         if(viewport.isVisible()){
             this.moveViewportDown();
+            view.carriageReturn();
             System.out.println("return button pressed");
             System.out.println(this.viewport.getY());
             System.out.println(this.viewport.isVisible());

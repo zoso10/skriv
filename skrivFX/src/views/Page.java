@@ -57,7 +57,7 @@ public class Page extends Tab {
         else{
             gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), scale * w.getHeight());
         }
-        curX = curX + 20 + w.getWidth();
+        curX = curX + 40 + scale * w.getWidth();
     }
     
     public void carriageReturn(){
