@@ -6,11 +6,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import skrivfx.TestController;
 
 public class Page extends Tab {
 
     private static double scale = .65;
+    private final double mmScale = .1727;
+    private Canvas mmCanvas;
+    private GraphicsContext mmGC;
     private Canvas canvas;
     private GraphicsContext gc;
     private double curX, curY; // Cursor
@@ -36,10 +40,27 @@ public class Page extends Tab {
 
     private void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
         canvas = new Canvas();
-        canvas.widthProperty().bind(width);
-        canvas.heightProperty().bind(height);
+//        canvas.widthProperty().bind(width);
+//        canvas.heightProperty().bind(height);
+        canvas.setWidth(width.doubleValue());
+        canvas.setHeight(height.doubleValue());
+        
+        // 106 X 717
+        mmCanvas = new Canvas();
+        mmCanvas.setWidth(106);
+        mmCanvas.setHeight(717);
+        
 
         gc = canvas.getGraphicsContext2D();
+        mmGC = mmCanvas.getGraphicsContext2D();
+    }
+    
+    public Canvas getCanvas(){
+        return canvas;
+    }
+    
+    public Canvas getMiniMap(){
+        return mmCanvas;
     }
 
     public void drawWord(Word w) {
@@ -53,9 +74,11 @@ public class Page extends Tab {
             scale = 40/w.getHeight(); 
             isFirst = false;
             gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), 40);
+            mmGC.drawImage(w.getImage(), mmScale*curX, mmScale*curY, mmScale*w.getWidth(), mmScale*40);
         }
         else{
             gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), scale * w.getHeight());
+            mmGC.drawImage(w.getImage(), mmScale*curX, mmScale*curY, mmScale*w.getWidth(), mmScale*w.getHeight());
         }
         curX = curX + 40 + scale * w.getWidth();
     }
@@ -64,17 +87,6 @@ public class Page extends Tab {
         curX = 20;
         curY = curY + 50;
     }
-
-    public void handle(MouseEvent e) {
-        if (e.getEventType() == MouseEvent.MOUSE_PRESSED) {
-            mousePressedEvent(e);
-        }
-    }
-
-    private void mousePressedEvent(MouseEvent e) {
-        // this is obvious but it needs  reference to the list of words to check
-        // if the x,y pair are within bounds... hmmm
-        double posX = e.getSceneX();
-        double posY = e.getSceneY();
-    }
+    
+    
 }

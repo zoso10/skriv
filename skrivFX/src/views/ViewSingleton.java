@@ -15,8 +15,6 @@ public class ViewSingleton {
     private java.util.List<views.Page> tabs;
     private javafx.scene.canvas.Canvas writingCanvas; // Writing box
     private javafx.scene.canvas.GraphicsContext writingGC;
-        private javafx.scene.canvas.Canvas minimapCanvas;
-    private javafx.scene.canvas.GraphicsContext minimapGC; 
     private int currentIndex; // Current tab
     private static ViewSingleton instance;
     
@@ -91,18 +89,26 @@ public class ViewSingleton {
         return writingCanvas;
     }
     
+    public javafx.scene.canvas.Canvas getCurrentPageCanvas(){
+        return tabs.get(currentIndex).getCanvas();
+    }
+    
+    public javafx.scene.canvas.Canvas getCurrentPageMiniMap(){
+        return tabs.get(currentIndex).getMiniMap();
+    }
+    
     public void clearWritingCanvas(){
         writingGC.clearRect(0, 0, writingCanvas.getWidth(), writingCanvas.getHeight());
     }
-        public void makeMinimapCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
-        minimapCanvas = new javafx.scene.canvas.Canvas();
-        minimapCanvas.widthProperty().bind(width);
-        minimapCanvas.heightProperty().bind(height);
-        minimapGC = writingCanvas.getGraphicsContext2D();
-    }
-    public void updateMinimapCanvas()
-    {
-        
-    }
+//        public void makeMinimapCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
+//        minimapCanvas = new javafx.scene.canvas.Canvas();
+//        minimapCanvas.widthProperty().bind(width);
+//        minimapCanvas.heightProperty().bind(height);
+//        minimapGC = writingCanvas.getGraphicsContext2D();
+//    }
+//    public void updateMinimapCanvas()
+//    {
+//        
+//    }
 
 }

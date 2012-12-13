@@ -423,11 +423,13 @@ public class TestController implements Initializable{
 //            view.drawWord(word);
 //            view.clearWritingCanvas();
             //wbe.commitWord();
+            
         }
         
         tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this));
         model.addPage();
         tabPane.getSelectionModel().select(model.getCurrentIndex());
+        track.getChildren().add(view.getCurrentPageMiniMap());
         
         
         if(menuButton.isSelected()){
@@ -628,6 +630,10 @@ public class TestController implements Initializable{
         else{
             viewport.setY(340);
             System.out.println("viewport is at end of page");
+            //view.getCurrentPageCanvas().getGraphicsContext2D().translate(0, 10);
+            view.getCurrentPageCanvas().setTranslateY(view.getCurrentPageCanvas().getTranslateY() - 10);
+            view.getCurrentPageCanvas().setHeight(view.getCurrentPageCanvas().getHeight() + 10);        
+            
         }
         
     }
@@ -715,13 +721,14 @@ public class TestController implements Initializable{
         model = models.ModelSingleton.getInstance();
         view = views.ViewSingleton.getInstance();
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
-        view.makeMinimapCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
+        //view.makeMinimapCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
      
         wbe = new WritingBoxEvent();
         view.addHandlers(wbe);
         view.setLineWidth(3);
 
         drawingPane.getChildren().add(view.getWritingCanvas());
+        
         colorPicker.setValue(javafx.scene.paint.Color.BLACK);
         
         // For when a different Tab is selected
