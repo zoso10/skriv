@@ -15,9 +15,7 @@ root {
     -fx-background-position: 0 -100;
 }
 
-.mini-map-pane{
-    -fx-background-color: black;
-}
+
 .button{
     -fx-background-radius: 25;
     -fx-background-color: transparent;
