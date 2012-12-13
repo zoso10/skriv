@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -421,7 +422,7 @@ public class TestController implements Initializable{
 //            model.addWord(word);
 //            view.drawWord(word);
 //            view.clearWritingCanvas();
-            wbe.commitWord();
+            //wbe.commitWord();
         }
         
         tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this));
@@ -721,6 +722,17 @@ public class TestController implements Initializable{
 
         drawingPane.getChildren().add(view.getWritingCanvas());
         colorPicker.setValue(javafx.scene.paint.Color.BLACK);
+        
+        // For when a different Tab is selected
+        tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>(){
+            @Override
+            public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
+                wbe.commitWord();
+                view.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
+                model.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
+                
+            }
+        });
         
         strokeSlider.valueProperty().addListener(new ChangeListener<Number>(){
             @Override

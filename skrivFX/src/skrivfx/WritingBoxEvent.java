@@ -28,11 +28,13 @@ public class WritingBoxEvent implements EventHandler<MouseEvent>{
     }
     
     public void commitWord(){
-        classes.Word w = new classes.Word(image);
-        model.addWord(w);
-        view.drawWord(w);
-        view.clearWritingCanvas();
-        image = null;
+        if(image != null){
+            classes.Word w = new classes.Word(image);
+            model.addWord(w);
+            view.drawWord(w);
+            view.clearWritingCanvas();
+            image = null;
+        }
     }
     
     @Override
