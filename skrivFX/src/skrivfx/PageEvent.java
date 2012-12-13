@@ -53,7 +53,7 @@ public class PageEvent implements EventHandler<MouseEvent>{
     public void mouseReleased(MouseEvent e){
         image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
         if(hasReachedEnd){
-            t.reset();
+            t.restart();
             hasReachedEnd = false;
         }
     }
