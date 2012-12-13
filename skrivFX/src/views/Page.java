@@ -80,6 +80,7 @@ public class Page extends Tab {
         }
         // Change stuff around, maybe keep it within bounds?
         if(isFirst && w.getHeight() > 1 || scale*w.getHeight() > 40){ 
+            System.out.println("in here");
             scale = 40/w.getHeight(); 
             isFirst = false;
             gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), 40);
@@ -87,6 +88,7 @@ public class Page extends Tab {
         }
         else{
             gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), scale * w.getHeight());
+            //gc.drawImage(w.getImage(), curX, curY + 50-w.getHeight(), scale * w.getWidth(), scale * w.getHeight());
             mmGC.drawImage(w.getImage(), mmScale*curX, mmScale*curY, mmScale*w.getWidth(), mmScale*w.getHeight());
         }
         curX = curX + 40 + scale * w.getWidth();
