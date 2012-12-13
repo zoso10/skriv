@@ -43,7 +43,7 @@ public class WritingBoxEvent implements EventHandler<MouseEvent>{
         else{ mouseReleased(e); }
     }
     
-    public void mousePressedEvent(MouseEvent e){
+    private void mousePressedEvent(MouseEvent e){
         view.startLine(e.getX(), e.getY());
         t.reset();
         if(model.isNewWord(e.getX(), e.getY()) && image != null){
@@ -53,13 +53,13 @@ public class WritingBoxEvent implements EventHandler<MouseEvent>{
         }
     }
     
-    public void mouseDraggedEvent(MouseEvent e){
+    private void mouseDraggedEvent(MouseEvent e){
         if(e.getX() > view.getWritingCanvas().widthProperty().doubleValue()*howFar){ hasReachedEnd = true; }
         model.addPoint(e.getX(), e.getY());
         view.updateLine(e.getX(), e.getY());
     }
     
-    public void mouseReleased(MouseEvent e){
+    private void mouseReleased(MouseEvent e){
         image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
         if(hasReachedEnd){
             t.restart();
