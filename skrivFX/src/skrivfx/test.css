@@ -93,9 +93,17 @@ root {
     -fx-background-image: url("CloseButtonGlow.png");
 }
 
+#settings{
+    -fx-background-image: url("SettingsButton.png");
+}
+#settings:hover{
+    -fx-background-image: url("SettingsButtonGlow.png");
+}
+
+
 .tool-bar{
 /*    -fx-background-color: black;*/
-    -fx-background-color:  linear-gradient(from 0% 0% to 0% 100%, black, #222222);
+    -fx-background-color:  linear-gradient(from 0% 0% to 0% 100%, black, #333333);
     -fx-background-radius: 25 25 0 0;
     -fx-border-color: black;
     -fx-border-radius: 25 25 0 0;
@@ -134,7 +142,7 @@ root {
 #writeMenu{
 /*    -fx-background-color: rgb(61, 61, 61);*/
 /*    -fx-background-color: black;*/
-    -fx-background-color:  linear-gradient(from 0% 0% to 0% 100%, #222222, black);
+    -fx-background-color:  linear-gradient(from 0% 0% to 0% 100%, #333333, black);
     -fx-background-radius: 25;
     -fx-border-color: white;
     -fx-border-radius: 25;
@@ -184,18 +192,14 @@ root {
     -fx-opacity: 100%;
 }
 
-#settings{
-    -fx-background-image: url("SettingsButton.png");
-    -fx-opacity: 25%;
-}
-#settings:hover{
-    -fx-opacity: 100%;
-}
-
 #return{
     -fx-background-image: url("ReturnButton.png");
     -fx-opacity: 25%;
 }
 #return:hover{
     -fx-opacity: 100%;
+}
+
+#chatPane{
+    -fx-background-image: url("ChatBG.png");
 }
