@@ -29,7 +29,8 @@ public class PageEvent implements EventHandler<MouseEvent>{
     
     @Override
     public void handle(MouseEvent e) {
-        if(e.getEventType().equals(MouseEvent.MOUSE_PRESSED)){ mousePressedEvent(e); }
+        if(model.getCurrentIndex() == -1){ System.out.println("Cannot write!!"); }
+        else if(e.getEventType().equals(MouseEvent.MOUSE_PRESSED)){ mousePressedEvent(e); }
         else if(e.getEventType().equals(MouseEvent.MOUSE_DRAGGED)){ mouseDraggedEvent(e); }
         else{ mouseReleased(e); }
     }

@@ -14,10 +14,12 @@ import javafx.scene.input.MouseEvent;
 public class WritingBoxEvent implements EventHandler<MouseEvent>{
 
     @Override
-    public void handle(MouseEvent t) {
-         System.out.println("stuff");
+    public void handle(MouseEvent e) {
+         if(e.getEventType().equals(MouseEvent.MOUSE_PRESSED)){ }
+         else if(e.getEventType().equals(MouseEvent.MOUSE_DRAGGED)){ }
+         else{ }
     }
     
-    
+    // We need clever ways of identifying what the user is doing
     
 }
