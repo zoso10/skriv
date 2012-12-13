@@ -564,14 +564,14 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         //System.out.println("Druggeded");
        // if (thumb.getHeight() track.getFitHeight())
         thumb.setOpacity(0.5);
-        if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getFitHeight()) {
+        if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
         if (evt.getY()-thumb.getHeight()/2<=0) {
             thumb.setY(0);
         }
-        if (evt.getY()+thumb.getHeight()>=track.getFitHeight()) {
-            thumb.setY(track.getFitHeight()-thumb.getHeight());
+        if (evt.getY()+thumb.getHeight()>=track.getHeight()) {
+            thumb.setY(track.getHeight()-thumb.getHeight());
         }
     }
     
@@ -585,6 +585,47 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         thumb.setOpacity(0.3);
     }
     
+    @FXML
+    private void minimouserelease(MouseEvent evt){
+        thumb.setOpacity(0.5);
+        if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
+            thumb.setY(evt.getY()-thumb.getHeight()/2);
+        }
+        if (evt.getY()-thumb.getHeight()/2<=0) {
+            thumb.setY(0);
+        }
+        if (evt.getY()+thumb.getHeight()>=track.getHeight()) {
+            thumb.setY(track.getHeight()-thumb.getHeight());
+        }
+    }
+    
+    @FXML
+    private void minimousedragged(MouseEvent evt){
+        thumb.setOpacity(0.5);
+        if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
+            thumb.setY(evt.getY()-thumb.getHeight()/2);
+        }
+        if (evt.getY()-thumb.getHeight()/2<=0) {
+            thumb.setY(0);
+        }
+        if (evt.getY()+thumb.getHeight()>=track.getHeight()) {
+            thumb.setY(track.getHeight()-thumb.getHeight());
+        }
+    }
+    
+    @FXML
+    private void minimousepress(MouseEvent evt){
+        thumb.setOpacity(0.5);
+        if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
+            thumb.setY(evt.getY()-thumb.getHeight()/2);
+        }
+        if (evt.getY()-thumb.getHeight()/2<=0) {
+            thumb.setY(0);
+        }
+        if (evt.getY()+thumb.getHeight()>=track.getHeight()) {
+            thumb.setY(track.getHeight()-thumb.getHeight());
+        }
+    }
 /*------------------------  Mouse & Keyboard  ------------------------*/
     
     @FXML
