@@ -4,13 +4,13 @@ This is a project to create an advanced note-taking application.
 
 **Team Leader**
 
-* Tyler Ewing
+* Tyler Ewing :shipit:
 
 **Team Members**
 
-* David Ecker
-* Jacob Shaffer
-* Matthew Swenson
+* David Ecker :shit:
+* Jacob Shaffer :hamster:
+* Matthew Swenson :bikini:
 
 **Motivation**
 
