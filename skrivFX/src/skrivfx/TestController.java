@@ -1,6 +1,7 @@
 package skrivfx;
 
 import classes.Word;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -14,6 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyEvent;
@@ -73,6 +76,10 @@ public class TestController implements Initializable{
     private Rectangle viewport;
     @FXML
     private AnchorPane chatPane;
+    @FXML
+    private ColorPicker colorPicker;
+    @FXML
+    private Slider strokeSlider;
     
     
     //attributes
@@ -642,5 +649,8 @@ public class TestController implements Initializable{
         view.setLineWidth(3);
 
         drawingPane.getChildren().add(view.getWritingCanvas());
+        colorPicker.setValue(javafx.scene.paint.Color.BLACK);
+        
+        
     }
 }
