@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -76,6 +77,8 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
     private Button settingsButton;
     @FXML
     private Rectangle viewport;
+    @FXML
+    private AnchorPane chatPane;
     
     
     //attributes
@@ -171,6 +174,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
             openButton.setVisible(true);
             saveButton.setVisible(true);
             closeButton.setVisible(true);
+            settingsButton.setVisible(true);
             this.menuButtonOpen();          
         }
         else{
@@ -234,18 +238,32 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         saveTranslate.setAutoReverse(true);
         
         FadeTransition closeFade = 
-        new FadeTransition(Duration.millis(250), closeButton);
+        new FadeTransition(Duration.millis(200), closeButton);
         closeFade.setFromValue(0.0);
         closeFade.setToValue(1.0);
         closeFade.setCycleCount(1);
         closeFade.setAutoReverse(true);
         
         TranslateTransition closeTranslate =
-        new TranslateTransition(Duration.millis(250), closeButton);
+        new TranslateTransition(Duration.millis(200), closeButton);
         closeTranslate.setFromY(-100);
         closeTranslate.setToY(5);
         closeTranslate.setCycleCount(1);
         closeTranslate.setAutoReverse(true);
+        
+        FadeTransition settingsFade = 
+        new FadeTransition(Duration.millis(250), settingsButton);
+        settingsFade.setFromValue(0.0);
+        settingsFade.setToValue(1.0);
+        settingsFade.setCycleCount(1);
+        settingsFade.setAutoReverse(true);
+        
+        TranslateTransition settingsTranslate =
+        new TranslateTransition(Duration.millis(250), settingsButton);
+        settingsTranslate.setFromY(-100);
+        settingsTranslate.setToY(5);
+        settingsTranslate.setCycleCount(1);
+        settingsTranslate.setAutoReverse(true);
         
         RotateTransition rotateTransition = 
         new RotateTransition(Duration.millis(150), menuButton);
@@ -266,6 +284,9 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
                 
                 closeFade,
                 closeTranslate,
+                
+                settingsFade,
+                settingsTranslate,
                 
                 rotateTransition
         );
@@ -316,7 +337,7 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         saveTranslate.setAutoReverse(true);
         
         FadeTransition closeFade = 
-        new FadeTransition(Duration.millis(75), closeButton);
+        new FadeTransition(Duration.millis(150), closeButton);
         closeFade.setFromValue(1.0);
         closeFade.setToValue(0.0);
         closeFade.setCycleCount(1);
@@ -328,6 +349,20 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         closeTranslate.setToY(-100);
         closeTranslate.setCycleCount(1);
         closeTranslate.setAutoReverse(true);
+        
+        FadeTransition settingsFade = 
+        new FadeTransition(Duration.millis(175), settingsButton);
+        settingsFade.setFromValue(1.0);
+        settingsFade.setToValue(0.0);
+        settingsFade.setCycleCount(1);
+        settingsFade.setAutoReverse(true);
+        
+        TranslateTransition settingsTranslate =
+        new TranslateTransition(Duration.millis(175), settingsButton);
+        settingsTranslate.setFromY(5);
+        settingsTranslate.setToY(-100);
+        settingsTranslate.setCycleCount(1);
+        settingsTranslate.setAutoReverse(true);
         
         RotateTransition rotateTransition = 
         new RotateTransition(Duration.millis(150), menuButton);
@@ -348,6 +383,9 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
                 
                 closeFade,
                 closeTranslate,
+                
+                settingsFade,
+                settingsTranslate,
                 
                 rotateTransition
         );
@@ -438,11 +476,23 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         }
     }
     
+    @FXML
+    private void handleSettingsButtonAction(){
+        if(menuButton.isSelected()){
+            this.menuButtonClose();
+            menuButton.setSelected(false);
+            this.hideAllMenuButtons();
+            System.out.println("settings button pressed");
+        }
+        
+    }
+    
     private void hideAllMenuButtons(){
         newButton.setVisible(false);
         openButton.setVisible(false);
         saveButton.setVisible(false);
         closeButton.setVisible(false);
+        settingsButton.setVisible(false);
     }
 
 /*------------------------  Toolbar Buttons  -------------------------*/
@@ -461,6 +511,39 @@ public class TestController implements Initializable, EventHandler<MouseEvent>{
         }
     }
     
+    @FXML
+    private void handleChatButtonPressed(){
+    if (chatButton.isSelected()){
+        this.chatPane.setVisible(true);
+        FadeTransition chatFade = 
+        new FadeTransition(Duration.millis(100), chatPane);
+        chatFade.setFromValue(0.0);
+        chatFade.setToValue(1.0);
+        chatFade.setCycleCount(1);
+        chatFade.setAutoReverse(true);
+        chatFade.play();
+    }
+    else{
+        FadeTransition chatFade = 
+        new FadeTransition(Duration.millis(100), chatPane);
+        chatFade.setFromValue(1.0);
+        chatFade.setToValue(0.0);
+        chatFade.setCycleCount(1);
+        chatFade.setAutoReverse(true);
+        chatFade.play();
+        Thread t = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                try{
+                    Thread.sleep(100);
+                } catch(Exception e){ System.out.println("pause exception"); }
+                chatPane.setVisible(false);
+            }
+        });
+        t.start(); 
+        
+    }
+}
 /*------------------------      Viewport     -------------------------*/
     private void moveViewportDown(){
         if(viewport.getY() < 325){
