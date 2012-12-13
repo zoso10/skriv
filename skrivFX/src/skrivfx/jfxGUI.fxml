@@ -71,7 +71,7 @@
         <DropShadow />
       </effect>
     </Button>
-    <TabPane fx:id="tabPane" layoutX="89.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
+    <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
       <effect>
         <InnerShadow height="50.0" radius="24.5" width="50.0">
           <input>
@@ -90,7 +90,7 @@
       <children>
         <TextArea editable="false" layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="304.0" wrapText="true">
           <effect>
-            <InnerShadow height="70.93007078037397" radius="34.96503517761097" width="70.93006993006993" />
+            <InnerShadow height="70.93006993339142" radius="34.96503496586534" width="70.93006993006993" />
           </effect>
         </TextArea>
         <TextField layoutX="14.0" layoutY="275.0" prefHeight="38.0" prefWidth="304.0" />
@@ -99,15 +99,9 @@
         <DropShadow />
       </effect>
     </AnchorPane>
-    <AnchorPane fx:id="settingsPane" layoutX="59.0" layoutY="244.0" opacity="0.0" prefHeight="200.0" prefWidth="250.0" visible="false">
+    <AnchorPane fx:id="settingsPane" layoutX="60.0" layoutY="244.0" opacity="0.0" prefHeight="200.0" prefWidth="250.0" visible="false">
       <children>
-        <Rectangle height="50.0" layoutX="17.0" layoutY="75.0" rotate="45.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="50.0">
-          <fill>
-            <LinearGradient fx:id="x2" />
-          </fill>
-        </Rectangle>
         <Rectangle arcHeight="15.0" arcWidth="15.0" fill="linear-gradient(from 0.0% 0.0% to 0.0% 100.0%, 0x333333ff 0.0%, 0x000000ff 100.0%)" height="200.0" layoutX="25.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" width="235.6446533203125" />
-        <Line endX="-121.0" endY="24.0" fill="BLACK" layoutX="148.0" layoutY="89.0" startX="-121.0" startY="-2.0" stroke="$x2" strokeLineCap="ROUND" strokeWidth="5.0" />
         <VBox alignment="CENTER_RIGHT" layoutX="27.0" prefHeight="200.0" prefWidth="100.0" spacing="40.0">
           <children>
             <Label alignment="CENTER" text="Host:">
@@ -117,6 +111,7 @@
             </Label>
             <Label text="Port:" textFill="$x3" />
             <Label text="IP:" textFill="WHITE" />
+            <Label text="Collaboration:" textFill="$x3" />
           </children>
           <padding>
             <Insets right="5.0" />
@@ -124,14 +119,25 @@
         </VBox>
         <VBox alignment="CENTER_LEFT" layoutX="130.0" prefHeight="200.0" prefWidth="125.0" spacing="35.0">
           <children>
-            <CheckBox mnemonicParsing="false" />
-            <TextField prefWidth="112.0" />
-            <TextField prefWidth="112.0" />
+            <CheckBox fx:id="hostCheckBox" mnemonicParsing="false" />
+            <TextField fx:id="portField" prefWidth="112.0" />
+            <TextField fx:id="iPField" prefWidth="112.0" />
+            <ToggleButton id="CollabToggle" fx:id="collabToggle" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCollabToggle" text="Off" />
           </children>
           <padding>
             <Insets left="5.0" />
           </padding>
         </VBox>
+        <Polygon id="SettingsTriangle" fill="linear-gradient(from 50.0% 0.0% to 50.0% 100.0%, 0x222222ff 0.0%, 0x111111ff 100.0%)" layoutX="17.0" layoutY="110.0" rotate="270.0" scaleX="0.32999999427795407" scaleY="0.23999999599456787" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0">
+          <points>
+            <Double fx:value="-50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-60.0" />
+          </points>
+        </Polygon>
       </children>
       <effect>
         <DropShadow />

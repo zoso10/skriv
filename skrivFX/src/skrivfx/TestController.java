@@ -16,9 +16,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -84,7 +86,14 @@ public class TestController implements Initializable{
     private Slider strokeSlider;
     @FXML
     private AnchorPane settingsPane;
-    
+    @FXML
+    private CheckBox hostCheckBox;
+    @FXML
+    private TextField portField;
+    @FXML
+    private TextField iPField;
+    @FXML
+    private ToggleButton collabToggle;
     
     //attributes
     private ParallelTransition parallelTransition;
@@ -529,6 +538,18 @@ public class TestController implements Initializable{
         });
         t.start();
         
+    }
+    
+    @FXML
+    private void handleCollabToggle(){
+        if (collabToggle.isSelected()){
+            collabToggle.setText("On");
+            System.out.println("collaboration mode on");
+        }
+        else{
+            collabToggle.setText("Off");
+            System.out.println("collaboration mode off");
+        }
     }
     
     private void hideAllMenuButtons(){
