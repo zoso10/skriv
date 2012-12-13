@@ -49,6 +49,10 @@ public class ViewSingleton {
         return tabs.get(currentIndex);
     }
     
+    public void addPageHandlers(EventHandler<MouseEvent> e){
+        tabs.get(currentIndex).addHandlers(e);
+    }
+    
     public void carriageReturn(){
         tabs.get(currentIndex).carriageReturn();
     }
@@ -100,15 +104,4 @@ public class ViewSingleton {
     public void clearWritingCanvas(){
         writingGC.clearRect(0, 0, writingCanvas.getWidth(), writingCanvas.getHeight());
     }
-//        public void makeMinimapCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
-//        minimapCanvas = new javafx.scene.canvas.Canvas();
-//        minimapCanvas.widthProperty().bind(width);
-//        minimapCanvas.heightProperty().bind(height);
-//        minimapGC = writingCanvas.getGraphicsContext2D();
-//    }
-//    public void updateMinimapCanvas()
-//    {
-//        
-//    }
-
 }

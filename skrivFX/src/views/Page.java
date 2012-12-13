@@ -2,6 +2,7 @@ package views;
 
 import classes.Word;
 import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Tab;
@@ -53,6 +54,12 @@ public class Page extends Tab {
 
         gc = canvas.getGraphicsContext2D();
         mmGC = mmCanvas.getGraphicsContext2D();
+    }
+    
+    public void addHandlers(EventHandler<MouseEvent> e){
+        canvas.setOnMousePressed(e);
+        canvas.setOnMouseDragged(e);
+        canvas.setOnMouseReleased(e);
     }
     
     public Canvas getCanvas(){

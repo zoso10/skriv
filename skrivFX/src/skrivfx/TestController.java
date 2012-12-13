@@ -429,6 +429,7 @@ public class TestController implements Initializable{
         tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this));
         model.addPage();
         tabPane.getSelectionModel().select(model.getCurrentIndex());
+        ((views.Page)tabPane.getSelectionModel().getSelectedItem()).addHandlers(new PageEvent());
         track.getChildren().add(view.getCurrentPageMiniMap());
         
         

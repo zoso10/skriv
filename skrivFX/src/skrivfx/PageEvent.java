@@ -15,7 +15,7 @@ public class PageEvent implements EventHandler<MouseEvent>{
 
     @Override
     public void handle(MouseEvent e) {
-         if(e.getEventType().equals(MouseEvent.MOUSE_PRESSED)){ }
+         if(e.getEventType().equals(MouseEvent.MOUSE_PRESSED)){  }
          else if(e.getEventType().equals(MouseEvent.MOUSE_DRAGGED)){ }
          else{ }
     }
