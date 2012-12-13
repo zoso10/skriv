@@ -41,7 +41,7 @@
         <ToggleButton id="chat" fx:id="chatButton" mnemonicParsing="false" onAction="#handleChatButtonPressed" prefHeight="50.0" prefWidth="50.0" styleClass="button" translateX="180.0" />
       </items>
     </ToolBar>
-    <Pane id="mini-map-pane" prefHeight="717.0" prefWidth="106.0" AnchorPane.rightAnchor="0.0">
+    <Pane id="mini-map-pane" fx:id="track" onMouseDragged="#minimousedragged" onMousePressed="#minimousepress" onMouseReleased="minimouserelease" prefHeight="717.0" prefWidth="106.0" AnchorPane.rightAnchor="0.0">
       <children>
         <Rectangle fx:id="thumb" arcHeight="15.0" arcWidth="15.0" blendMode="HARD_LIGHT" fill="#dfdfdf" height="124.0" layoutX="5.0" onMouseDragged="#scrollDragAction" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.3" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="3.6" width="96.0">
           <effect>
@@ -78,9 +78,9 @@
     </Pane>
     <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
       <effect>
-        <InnerShadow height="49.99999999999929" radius="24.499999999999822" width="50.0">
+        <InnerShadow height="49.999999999999915" radius="24.49999999999998" width="50.0">
           <input>
-            <DropShadow height="49.999999999999915" radius="24.49999999999998" width="50.0" />
+            <DropShadow height="49.999999999999986" radius="24.499999999999996" width="50.0" />
           </input>
         </InnerShadow>
       </effect>
@@ -90,7 +90,7 @@
       <children>
         <TextArea editable="false" layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="304.0" wrapText="true">
           <effect>
-            <InnerShadow height="70.94400131118883" radius="34.968517810314694" width="70.93006993006993" />
+            <InnerShadow height="70.93181135270979" radius="34.96547032069493" width="70.93006993006993" />
           </effect>
         </TextArea>
         <TextField layoutX="14.0" layoutY="275.0" prefHeight="38.0" prefWidth="304.0" />
