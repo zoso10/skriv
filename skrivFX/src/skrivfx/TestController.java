@@ -82,6 +82,8 @@ public class TestController implements Initializable{
     private ColorPicker colorPicker;
     @FXML
     private Slider strokeSlider;
+    @FXML
+    private AnchorPane settingsPane;
     
     
     //attributes
@@ -394,6 +396,10 @@ public class TestController implements Initializable{
         );
         parallelTransition.setCycleCount(1);
         parallelTransition.play();
+        if(settingsPane.isVisible()){
+            this.closeSettingsPane();
+        }
+        
 }
     
 /*------------------------    Menu Buttons    ------------------------*/
@@ -479,11 +485,49 @@ public class TestController implements Initializable{
     @FXML
     private void handleSettingsButtonAction(){
         if(menuButton.isSelected()){
-            this.menuButtonClose();
-            menuButton.setSelected(false);
-            this.hideAllMenuButtons();
-            System.out.println("settings button pressed");
+//            this.menuButtonClose();
+//            menuButton.setSelected(false);
+//            this.hideAllMenuButtons();
+            if(settingsPane.isVisible()){
+                this.closeSettingsPane();
+            }
+            else{
+                this.openSettingsPane();
+            }
         }
+        
+    }
+    
+    private void openSettingsPane(){
+        settingsPane.setVisible(true);
+        
+        FadeTransition spFade = 
+        new FadeTransition(Duration.millis(100), settingsPane);
+        spFade.setFromValue(0.0);
+        spFade.setToValue(1.0);
+        spFade.setCycleCount(1);
+        spFade.setAutoReverse(true);
+        spFade.play();
+    }
+    private void closeSettingsPane(){
+        FadeTransition spFade = 
+        new FadeTransition(Duration.millis(100), settingsPane);
+        spFade.setFromValue(1.0);
+        spFade.setToValue(0.0);
+        spFade.setCycleCount(1);
+        spFade.setAutoReverse(true);
+        spFade.play();
+        
+        Thread t = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                try{
+                    Thread.sleep(100);
+                } catch(Exception e){ System.out.println("pause exception"); }
+                settingsPane.setVisible(false);
+            }
+        });
+        t.start();
         
     }
     
@@ -493,6 +537,7 @@ public class TestController implements Initializable{
         saveButton.setVisible(false);
         closeButton.setVisible(false);
         settingsButton.setVisible(false);
+        
     }
 
 /*------------------------  Toolbar Buttons  -------------------------*/
