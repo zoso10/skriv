@@ -1,7 +1,6 @@
 package skrivfx;
 
 import classes.Word;
-import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -26,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -407,7 +407,7 @@ public class TestController implements Initializable{
             view.clearWritingCanvas();
         }
         
-        tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty()));
+        tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this));
         model.addPage();
         tabPane.getSelectionModel().select(model.getCurrentIndex());
         
@@ -545,7 +545,7 @@ public class TestController implements Initializable{
     }
 }
 /*------------------------      Viewport     -------------------------*/
-    private void moveViewportDown(){
+    public void moveViewportDown(){
         if(viewport.getY() < 325){
             TranslateTransition vpTranslate =
             new TranslateTransition(Duration.millis(100), viewport);
@@ -654,13 +654,17 @@ public class TestController implements Initializable{
         colorPicker.setValue(javafx.scene.paint.Color.BLACK);
         
         strokeSlider.valueProperty().addListener(new ChangeListener<Number>(){
-
             @Override
             public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
-                //System.out.println(strokeSlider.getValue());
                 view.setLineWidth(strokeSlider.getValue());
-            }
-            
+            }         
+        });
+        
+        colorPicker.valueProperty().addListener(new ChangeListener<Color>(){
+            @Override
+            public void changed(ObservableValue<? extends Color> ov, Color t, Color t1) {
+                view.setStrokeColor(colorPicker.getValue());
+            }  
         });
     }
 }

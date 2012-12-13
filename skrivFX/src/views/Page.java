@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
+import skrivfx.TestController;
 
 public class Page extends Tab {
 
@@ -14,21 +15,23 @@ public class Page extends Tab {
     private GraphicsContext gc;
     private double curX, curY; // Cursor
     private boolean isFirst = true;
+    private TestController tc;
     // Maybe...
     // A Page can only have one set of Notes
     //private Notes notes;
 
-    public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
-        this(width, height, "Untitled");
+    public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, TestController tc) {
+        this(width, height, "Untitled", tc);
     }
 
-    public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, String title) {
+    public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, String title, TestController tc) {
         super();
         this.setText(title);
         makeCanvas(width, height);
         this.setContent(canvas);
         curX = 20;
         curY = 10;
+        this.tc = tc;
     }
 
     private void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
@@ -43,7 +46,7 @@ public class Page extends Tab {
         if (canvas.getWidth() - curX < w.getWidth()) {
             curX = 20;
             curY = curY + 50;
-            // Move blue bar down
+            tc.moveViewportDown();
         }
         // Change stuff around, maybe keep it within bounds?
         if(isFirst && w.getHeight() > 1 || scale*w.getHeight() > 40){ 

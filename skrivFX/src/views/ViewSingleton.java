@@ -7,6 +7,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import skrivfx.TestController;
 
 
 public class ViewSingleton {
@@ -44,8 +45,8 @@ public class ViewSingleton {
     }
     
     // Must return a page so that it can be added to the TabPane
-    public Page addTab(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height){
-        tabs.add(new Page(width, height));
+    public Page addTab(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, TestController tc){
+        tabs.add(new Page(width, height, tc));
         currentIndex = tabs.size()-1;
         return tabs.get(currentIndex);
     }
