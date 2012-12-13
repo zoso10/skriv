@@ -40,6 +40,7 @@ public class TestController implements Initializable{
     private models.ModelSingleton model;
     private views.ViewSingleton view;
     private boolean hasReachedEnd = false;
+    private WritingBoxEvent wbe;
     
     //These are objects injected from the FXML file:
     @FXML
@@ -416,10 +417,11 @@ public class TestController implements Initializable{
     @FXML
     private void handleNewButtonAction(){
         if(tabPane.getTabs().size() != 0){
-            Word word = new Word(view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight()));
-            model.addWord(word);
-            view.drawWord(word);
-            view.clearWritingCanvas();
+//            Word word = new Word(view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight()));
+//            model.addWord(word);
+//            view.drawWord(word);
+//            view.clearWritingCanvas();
+            wbe.commitWord();
         }
         
         tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this));
@@ -713,7 +715,8 @@ public class TestController implements Initializable{
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         view.makeMinimapCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
      
-        view.addHandlers(new WritingBoxEvent());
+        wbe = new WritingBoxEvent();
+        view.addHandlers(wbe);
         view.setLineWidth(3);
 
         drawingPane.getChildren().add(view.getWritingCanvas());

@@ -27,6 +27,14 @@ public class WritingBoxEvent implements EventHandler<MouseEvent>{
         t.start();
     }
     
+    public void commitWord(){
+        classes.Word w = new classes.Word(image);
+        model.addWord(w);
+        view.drawWord(w);
+        view.clearWritingCanvas();
+        image = null;
+    }
+    
     @Override
     public void handle(MouseEvent e) {
         if(model.getCurrentIndex() == -1){ System.out.println("Cannot write!!"); }
