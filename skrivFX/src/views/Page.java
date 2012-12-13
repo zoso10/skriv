@@ -59,6 +59,11 @@ public class Page extends Tab {
         }
         curX = curX + 20 + w.getWidth();
     }
+    
+    public void carriageReturn(){
+        curX = 20;
+        curY = curY + 50;
+    }
 
     public void handle(MouseEvent e) {
         if (e.getEventType() == MouseEvent.MOUSE_PRESSED) {

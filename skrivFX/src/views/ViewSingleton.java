@@ -51,6 +51,10 @@ public class ViewSingleton {
         return tabs.get(currentIndex);
     }
     
+    public void carriageReturn(){
+        tabs.get(currentIndex).carriageReturn();
+    }
+    
     public void setLineWidth(double d){
         writingGC.setLineWidth(d);
     }
