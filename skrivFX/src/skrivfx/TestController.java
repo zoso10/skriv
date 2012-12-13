@@ -11,6 +11,8 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -651,6 +653,14 @@ public class TestController implements Initializable{
         drawingPane.getChildren().add(view.getWritingCanvas());
         colorPicker.setValue(javafx.scene.paint.Color.BLACK);
         
-        
+        strokeSlider.valueProperty().addListener(new ChangeListener<Number>(){
+
+            @Override
+            public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
+                //System.out.println(strokeSlider.getValue());
+                view.setLineWidth(strokeSlider.getValue());
+            }
+            
+        });
     }
 }
