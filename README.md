@@ -20,6 +20,8 @@ The original motivation for this project is to make it for iOS or Android tablet
 
 The application has intuitive features that enhances the user's experience while taking notes for a class, during a meeting, etc. These features are designed to assist the user without being intrusive or disruptive of workflow.
 
+Location of [Project Document](https://docs.google.com/document/d/1okCINTe163fr9JDWqGDj-NX_W_H1wbJyPUBfAmfTIEk/edit)
+
 
 ![JavaFX](https://github.com/zoso10/skriv/blob/master/Screen%20Shot.png?raw=true)
 
