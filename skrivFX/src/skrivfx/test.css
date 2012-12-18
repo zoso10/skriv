@@ -11,7 +11,7 @@ root {
 }
 
 .background{
-    -fx-background-image: url("linenBG.png");
+    -fx-background-image: url("/resources/linenBG.png");
     -fx-background-position: 0 -100;
 }
 
@@ -36,7 +36,7 @@ root {
 }*/
 
 #MenuButton{
-    -fx-background-image: url("MenuButton.png");
+    -fx-background-image: url("/resources/MenuButton.png");
     -fx-opacity: 50%;
     -fx-scale-shape: true;
 }
@@ -51,51 +51,51 @@ root {
 
 
 #WriteButton{
-    -fx-background-image: url("WriteButton.png");
+    -fx-background-image: url("/resources/WriteButton.png");
     -fx-opacity: 25%;
 }
 #WriteButton:hover{
     -fx-opacity: 100%;
 }
 #WriteButton:selected{
-    -fx-background-image: url("WriteBtnSelected.png");
+    -fx-background-image: url("/resources/WriteBtnSelected.png");
     -fx-opacity: 100%;
 }
 
 
 #NewButton{
-    -fx-background-image: url("NewButton.png");
+    -fx-background-image: url("/resources/NewButton.png");
 }
 #NewButton:hover{
-    -fx-background-image: url("NewButtonGlow.png");
+    -fx-background-image: url("/resources/NewButtonGlow.png");
 }
 
 #OpenButton{
-    -fx-background-image: url("OpenButton.png");
+    -fx-background-image: url("/resources/OpenButton.png");
 }
 #OpenButton:hover{
-    -fx-background-image: url("OpenButtonGlow.png");
+    -fx-background-image: url("/resources/OpenButtonGlow.png");
 }
 
 #SaveButton{
-    -fx-background-image: url("SaveButton.png");
+    -fx-background-image: url("/resources/SaveButton.png");
 }
 #SaveButton:hover{
-    -fx-background-image: url("SaveButtonGlow.png");
+    -fx-background-image: url("/resources/SaveButtonGlow.png");
 }
 
 #CloseButton{
-    -fx-background-image: url("CloseButton.png");
+    -fx-background-image: url("/resources/CloseButton.png");
 }
 #CloseButton:hover{
-    -fx-background-image: url("CloseButtonGlow.png");
+    -fx-background-image: url("/resources/CloseButtonGlow.png");
 }
 
 #settings{
-    -fx-background-image: url("SettingsButton.png");
+    -fx-background-image: url("/resources/SettingsButton.png");
 }
 #settings:hover{
-    -fx-background-image: url("SettingsButtonGlow.png");
+    -fx-background-image: url("/resources/SettingsButtonGlow.png");
 }
 
 
@@ -152,7 +152,7 @@ root {
 }
 
 #highlighter{
-    -fx-background-image: url("HighlightButton.png");
+    -fx-background-image: url("/resources/HighlightButton.png");
     -fx-opacity: 25%;
 }
 #highlighter:hover{
@@ -160,11 +160,11 @@ root {
 }
 #highlighter:selected{
     -fx-opacity: 100%;
-    -fx-background-image: url("HighlightButtonGlow.png");
+    -fx-background-image: url("/resources/HighlightButtonGlow.png");
 }
 
 #undo{
-    -fx-background-image: url("UndoButton.png");
+    -fx-background-image: url("/resources/UndoButton.png");
     -fx-opacity: 25%;
 }
 #undo:hover{
@@ -172,7 +172,7 @@ root {
 }
 
 #redo{
-    -fx-background-image: url("UndoButton.png");
+    -fx-background-image: url("/resources/UndoButton.png");
     -fx-opacity: 25%;
 }
 #redo:hover{
@@ -180,7 +180,7 @@ root {
 }
 
 #chat{
-    -fx-background-image: url("ChatButton.png");
+    -fx-background-image: url("/resources/ChatButton.png");
     -fx-opacity: 25%;
 }
 #chat:hover{
@@ -191,7 +191,7 @@ root {
 }
 
 #return{
-    -fx-background-image: url("ReturnButton.png");
+    -fx-background-image: url("/resources/ReturnButton.png");
     -fx-opacity: 25%;
 }
 #return:hover{
@@ -199,7 +199,7 @@ root {
 }
 
 #chatPane{
-    -fx-background-image: url("ChatBG.png");
+    -fx-background-image: url("/resources/ChatBG.png");
 }
 
 #SettingsTriangle{
