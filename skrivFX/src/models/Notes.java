@@ -15,8 +15,8 @@ public class Notes{
     }
     
     public void addWord(classes.Word w){
-        words.add(w);
         ++wordCount;
+        words.add(w);
     }
     
     public int getWordCount(){

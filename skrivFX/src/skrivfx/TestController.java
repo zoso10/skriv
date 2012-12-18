@@ -13,6 +13,8 @@ import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -789,6 +791,12 @@ public class TestController implements Initializable{
         
         
         PageEvent pe = new PageEvent(this);
+//        tabPane.getSelectionModel().getSelectedItem().setOnSelectionChanged(new EventHandler<Event>(){
+//            @Override
+//            public void handle(Event t) {
+//                System.out.println("Tab changed");
+//            }  
+//        });
         tabPane.setOnMousePressed(pe);
         tabPane.setOnMouseDragged(pe);
         tabPane.setOnMouseReleased(pe);

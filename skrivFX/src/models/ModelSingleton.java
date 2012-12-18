@@ -9,7 +9,6 @@ public class ModelSingleton {
     private java.util.List<models.Notes> pages;
     private int currentIndex;
     private static ModelSingleton instance;
-    private int wordCount = 0;
     
     private ModelSingleton(){
         pages = new java.util.ArrayList<>();
@@ -39,8 +38,7 @@ public class ModelSingleton {
     
     public boolean isNewWord(double x, double y){
         if(right + spaceFactor < x || left - spaceFactor > x){
-            wordCount++;
-            System.out.println("New Word: " + wordCount);
+            System.out.println("New Word: " + pages.get(currentIndex).getWordCount());
             return true;
         }
         else{
@@ -92,9 +90,5 @@ public class ModelSingleton {
         bottom = bottom < y ? y : bottom;
         width = right - left;
         height = bottom - top;
-    }
-    
-    private int getWordCount(){
-        return this.wordCount;
     }
 }
