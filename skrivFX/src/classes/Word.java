@@ -8,6 +8,7 @@ public class Word {
     
     private Image image; // This image holds the Word essentially
     private double width, height;
+    private double x, y;
     private Color c;
     // etc...
     
@@ -15,6 +16,11 @@ public class Word {
         this.image = image;
         width = image.getWidth();
         height = image.getHeight();
+    }
+    
+    public void setLocation(double x, double y){
+        this.x = x;
+        this.y = y;
     }
     
     public Image getImage(){

@@ -7,8 +7,6 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Tab;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import skrivfx.TestController;
 
 public class Page extends Tab {
@@ -83,10 +81,12 @@ public class Page extends Tab {
             System.out.println("in here");
             scale = 40/w.getHeight(); 
             isFirst = false;
+            w.setLocation(curX, curY);
             gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), 40);
             mmGC.drawImage(w.getImage(), mmScale*curX, mmScale*curY, mmScale*w.getWidth(), mmScale*40);
         }
         else{
+            w.setLocation(curX, curY);
             gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), scale * w.getHeight());
             //gc.drawImage(w.getImage(), curX, curY + 50-w.getHeight(), scale * w.getWidth(), scale * w.getHeight());
             mmGC.drawImage(w.getImage(), mmScale*curX, mmScale*curY, mmScale*w.getWidth(), mmScale*w.getHeight());
