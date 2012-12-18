@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="912.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
   <children>
     <ToolBar layoutY="717.0" prefHeight="50.9998779296875" prefWidth="768.0">
       <effect>
@@ -39,6 +39,7 @@
         <Button id="redo" fx:id="redoButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" rotate="135.0" />
         <Button id="return" fx:id="returnButton" mnemonicParsing="false" onAction="#handleReturnButtonPressed" prefHeight="50.0" prefWidth="50.0" translateX="15.0" />
         <ToggleButton id="chat" fx:id="chatButton" mnemonicParsing="false" onAction="#handleChatButtonPressed" prefHeight="50.0" prefWidth="50.0" styleClass="button" translateX="180.0" />
+        <Label fx:id="wordCountLabel" prefWidth="133.0" text="Words:" textFill="#9f9f9f" translateX="-25.0" wrapText="true" />
       </items>
     </ToolBar>
     <Pane id="mini-map-pane" fx:id="track" onMouseDragged="#minimousedragged" onMousePressed="#minimousepress" onMouseReleased="#minimouserelease" prefHeight="717.0" prefWidth="106.0" AnchorPane.rightAnchor="0.0">
@@ -71,7 +72,7 @@
         <DropShadow />
       </effect>
     </Button>
-    <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
+    <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="11.0">
       <effect>
         <InnerShadow height="50.0" radius="24.5" width="50.0">
           <input>
@@ -80,7 +81,7 @@
         </InnerShadow>
       </effect>
     </TabPane>
-    <Pane id="DrawingPane" fx:id="drawingPane" layoutY="783.0" prefHeight="241.0" prefWidth="768.0">
+    <Pane id="DrawingPane" fx:id="drawingPane" layoutY="783.0" prefHeight="129.0" prefWidth="768.0">
       <effect>
         <InnerShadow height="50.0" radius="24.5" width="50.0" />
       </effect>
@@ -90,7 +91,7 @@
       <children>
         <TextArea editable="false" layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="304.0" wrapText="true">
           <effect>
-            <InnerShadow height="70.93006993173069" radius="34.96503496545016" width="70.93006993006993" />
+            <InnerShadow height="70.93006993017374" radius="34.96503496506092" width="70.93006993006993" />
           </effect>
         </TextArea>
         <TextField layoutX="14.0" layoutY="275.0" prefHeight="38.0" prefWidth="304.0" />
