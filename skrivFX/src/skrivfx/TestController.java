@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -96,9 +97,12 @@ public class TestController implements Initializable{
     private TextField iPField;
     @FXML
     private ToggleButton collabToggle;
+    @FXML
+    private Label wordCountLabel;
     
     //attributes
     private ParallelTransition parallelTransition;
+    private int pageCount = 0;
    
     
 /*------------------------    Write Button    ------------------------*/
@@ -416,6 +420,7 @@ public class TestController implements Initializable{
 /*------------------------    Menu Buttons    ------------------------*/
     
     @FXML
+    @SuppressWarnings("empty-statement")
     private void handleNewButtonAction(){
         if(tabPane.getTabs().size() != 0){
 //            Word word = new Word(view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight()));
@@ -438,8 +443,16 @@ public class TestController implements Initializable{
 //        ((views.Page)tabPane.getSelectionModel().getSelectedItem()).addPageHandlers(new PageEvent(this));
 //        track.getChildren().add(view.getCurrentPageMiniMap());
         
+        //reset viewport 
+        //this.tabPane.getTabs().get(tabPane.getSelectionModel().getSelectedIndex()).
+        //gotta figure out some way to save the current postion of the viewport 
+        //and associate it with the old page, then reset its position
 
+        this.viewport.setTranslateY(0.0);
+        this.viewport.setY(0.0);
         
+        //select new tab
+        this.tabPane.getSelectionModel().selectNext();
         
         if(menuButton.isSelected()){
             this.menuButtonClose();
@@ -645,7 +658,14 @@ public class TestController implements Initializable{
             view.getCurrentPageCanvas().setHeight(view.getCurrentPageCanvas().getHeight() + 10);        
             
         }
-        
+    }
+    
+    public Rectangle getViewport(){
+        return viewport;
+    }
+    
+    public void setViewportPosition(double y){
+        this.viewport.setTranslateY(y);
     }
     
 /*------------------------      MiniMap      -------------------------*/
@@ -654,7 +674,7 @@ public class TestController implements Initializable{
     private void scrollDragAction(MouseEvent evt){
         //System.out.println("Druggeded");
        // if (thumb.getHeight() track.getFitHeight())
-        thumb.setOpacity(0.5);
+        //thumb.setOpacity(0.5);
         if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
@@ -678,7 +698,7 @@ public class TestController implements Initializable{
     
     @FXML
     private void minimouserelease(MouseEvent evt){
-        thumb.setOpacity(0.5);
+        //thumb.setOpacity(0.5);
         if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
@@ -692,7 +712,7 @@ public class TestController implements Initializable{
     
     @FXML
     private void minimousedragged(MouseEvent evt){
-        thumb.setOpacity(0.5);
+        //thumb.setOpacity(0.5);
         if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
@@ -706,7 +726,7 @@ public class TestController implements Initializable{
     
     @FXML
     private void minimousepress(MouseEvent evt){
-        thumb.setOpacity(0.5);
+        //thumb.setOpacity(0.5);
         if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
@@ -766,6 +786,8 @@ public class TestController implements Initializable{
             }  
         });
         
+        
+        
         PageEvent pe = new PageEvent(this);
         tabPane.setOnMousePressed(pe);
         tabPane.setOnMouseDragged(pe);
@@ -774,7 +796,17 @@ public class TestController implements Initializable{
         tabPane.setOnKeyReleased(pe);
     }
     
-    public Rectangle getViewport(){
-        return this.viewport;
-    };
+    
+    public void setPageCount(int i){
+        pageCount = i;
+    }
+    
+    public int getPageCount(){
+        return pageCount;
+    }
+    
+    public int newPageUpdateCount(){
+        pageCount++;
+        return pageCount;
+    }
 }

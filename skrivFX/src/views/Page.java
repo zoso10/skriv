@@ -20,12 +20,13 @@ public class Page extends Tab {
     private double curX, curY; // Cursor
     private boolean isFirst = true;
     private TestController tc;
+    private double viewportTranslatePostion = 0.0;
     // Maybe...
     // A Page can only have one set of Notes
     //private Notes notes;
 
     public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, TestController tc) {
-        this(width, height, "Untitled", tc);
+        this(width, height, "Untitled " + tc.newPageUpdateCount(), tc);
     }
 
     public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, String title, TestController tc) {
@@ -97,6 +98,14 @@ public class Page extends Tab {
     public void carriageReturn(){
         curX = 20;
         curY = curY + 50;
+    }
+    
+    public void setViewportTranslatePosition(double y){
+        this.viewportTranslatePostion = y;
+    }
+    
+    public double getViewportTranslatePosition(){
+        return this.viewportTranslatePostion;
     }
     
     

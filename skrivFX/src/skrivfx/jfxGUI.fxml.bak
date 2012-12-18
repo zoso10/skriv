@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyboardShortcut" prefHeight="1024.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="912.0" prefWidth="768.0" styleClass="background" xmlns:fx="http://javafx.com/fxml" fx:controller="skrivfx.TestController">
   <children>
     <ToolBar layoutY="717.0" prefHeight="50.9998779296875" prefWidth="768.0">
       <effect>
@@ -71,7 +71,7 @@
         <DropShadow />
       </effect>
     </Button>
-    <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="ALL_TABS" tabMinHeight="11.0">
+    <TabPane fx:id="tabPane" layoutX="80.0" prefHeight="717.0" prefWidth="582.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMinHeight="11.0">
       <effect>
         <InnerShadow height="50.0" radius="24.5" width="50.0">
           <input>
@@ -80,7 +80,7 @@
         </InnerShadow>
       </effect>
     </TabPane>
-    <Pane id="DrawingPane" fx:id="drawingPane" layoutY="783.0" prefHeight="241.0" prefWidth="768.0">
+    <Pane id="DrawingPane" fx:id="drawingPane" layoutY="783.0" prefHeight="129.0" prefWidth="768.0">
       <effect>
         <InnerShadow height="50.0" radius="24.5" width="50.0" />
       </effect>
@@ -90,7 +90,7 @@
       <children>
         <TextArea editable="false" layoutX="14.0" layoutY="14.0" prefHeight="250.0" prefWidth="304.0" wrapText="true">
           <effect>
-            <InnerShadow height="70.93006993339142" radius="34.96503496586534" width="70.93006993006993" />
+            <InnerShadow height="70.93006993027754" radius="34.96503496508687" width="70.93006993006993" />
           </effect>
         </TextArea>
         <TextField layoutX="14.0" layoutY="275.0" prefHeight="38.0" prefWidth="304.0" />
@@ -143,6 +143,7 @@
         <DropShadow />
       </effect>
     </AnchorPane>
+    <Label fx:id="wordCountLabel" layoutX="10.0" layoutY="890.0" prefWidth="216.0" text="Words:" />
   </children>
   <stylesheets>
     <URL value="@test.css" />
