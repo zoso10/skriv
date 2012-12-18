@@ -791,12 +791,7 @@ public class TestController implements Initializable{
         
         
         PageEvent pe = new PageEvent(this);
-//        tabPane.getSelectionModel().getSelectedItem().setOnSelectionChanged(new EventHandler<Event>(){
-//            @Override
-//            public void handle(Event t) {
-//                System.out.println("Tab changed");
-//            }  
-//        });
+
         tabPane.setOnMousePressed(pe);
         tabPane.setOnMouseDragged(pe);
         tabPane.setOnMouseReleased(pe);
