@@ -443,11 +443,11 @@ public class TestController implements Initializable{
 //        ((views.Page)tabPane.getSelectionModel().getSelectedItem()).addPageHandlers(new PageEvent(this));
 //        track.getChildren().add(view.getCurrentPageMiniMap());
         
+        //save previous position of the viewport before switching to new tab
+        double y = ((views.Page) tabPane.getSelectionModel().getSelectedItem()).getViewportTranslatePosition();
+        ((views.Page) tabPane.getSelectionModel().getSelectedItem()).setViewportTranslatePosition(y);
+        
         //reset viewport 
-        //this.tabPane.getTabs().get(tabPane.getSelectionModel().getSelectedIndex()).
-        //gotta figure out some way to save the current postion of the viewport 
-        //and associate it with the old page, then reset its position
-
         this.viewport.setTranslateY(0.0);
         this.viewport.setY(0.0);
         
