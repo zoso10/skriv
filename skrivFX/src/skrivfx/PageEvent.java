@@ -42,12 +42,6 @@ public class PageEvent implements EventHandler<Event>{
          if (e.getEventType() == MouseEvent.MOUSE_RELEASED){
              mouseReleased((MouseEvent)e);
          }
-         if (e.getEventType() == KeyEvent.KEY_PRESSED){
-             keyPressed((KeyEvent) e);
-         }
-         if (e.getEventType() == KeyEvent.KEY_RELEASED){
-             keyReleased((KeyEvent) e);
-         }
          
     }
     
@@ -76,21 +70,6 @@ public class PageEvent implements EventHandler<Event>{
     private void mouseReleased(MouseEvent e) {
         System.out.println("inside mouse released");
         
-    }
-
-    private void keyPressed(KeyEvent e) {
-        if(e.isShiftDown()){
-            System.out.println("shiftdown");
-            tc.getViewport().setVisible(false);
-            
-        }
-    }
-    
-    private void keyReleased(KeyEvent e){
-        if(!tc.getViewport().isVisible()){
-            tc.getViewport().setVisible(true);
-            
-        }
     }
     
 }

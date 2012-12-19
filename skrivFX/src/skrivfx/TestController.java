@@ -24,6 +24,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -109,31 +110,32 @@ public class TestController implements Initializable{
         if(highlightButton.isSelected()){
             highlightButton.setSelected(false);
         }
-        
-        if (writeButton.isSelected()){
-            writeMenu.setVisible(true);
-            this.writeButtonOpen();
-            
-            
-            if(tabPane.getTabs().size() != 0){    
-                viewport.setVisible(true);
-                
+        if(tabPane.getTabs().size() != 0){
+            if (writeButton.isSelected()){
+                writeMenu.setVisible(true);
+                this.writeButtonOpen();
+
+
+                if(tabPane.getTabs().size() != 0){    
+                    viewport.setVisible(true);
+
+                }
+            }
+            else{
+                this.writeButtonClose();
+                viewport.setVisible(false);
+                Thread t = new Thread(new Runnable(){
+                    @Override
+                    public void run(){
+                        try{
+                            Thread.sleep(50);
+                        } catch(Exception e){ System.out.println("pause exception in write button"); }
+                        writeMenu.setVisible(false);
+                    }
+                });
+                t.start(); 
             }
         }
-        else{
-            this.writeButtonClose();
-            viewport.setVisible(false);
-            Thread t = new Thread(new Runnable(){
-                @Override
-                public void run(){
-                    try{
-                        Thread.sleep(50);
-                    } catch(Exception e){ System.out.println("pause exception in write button"); }
-                    writeMenu.setVisible(false);
-                }
-            });
-            t.start(); 
-        } 
     }
     
     private void writeButtonOpen(){
@@ -488,15 +490,18 @@ public class TestController implements Initializable{
         }
     }
     @FXML
-    private void handleCloseButtonAction(){
-        tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedItem());
+    private void handleCloseButtonAction(ActionEvent e){
+        //tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedItem());
+        tabPane.getTabs().remove(model.getCurrentIndex());
+        System.out.println("tab removed");
         if(menuButton.isSelected()){
             this.menuButtonClose();
             menuButton.setSelected(false);
             this.hideAllMenuButtons();
             if(tabPane.getTabs().size() == 0){
                 this.writeButton.setSelected(false);
-                this.handleWriteButtonAction(null);
+                //this.handleWriteButtonAction(e);
+                this.writeButtonClose();
             }
         }
     }
@@ -723,11 +728,22 @@ public class TestController implements Initializable{
     }
 /*------------------------  Mouse & Keyboard  ------------------------*/
     
-//    @FXML
-//    private void keyboardShortcut(KeyEvent kp){ 
-//        System.out.println(kp.getText());
-//        
-//    }
+    @FXML
+    private void keyPressed(KeyEvent e) {
+        if(e.isShiftDown()){
+            System.out.println("shiftdown");
+            viewport.setVisible(false);
+            
+        }
+    }
+    
+    @FXML
+    private void keyReleased(KeyEvent e){
+        if(!viewport.isVisible() && writeButton.isSelected() && tabPane.getTabs().size() != 0){
+            viewport.setVisible(true);
+            
+        }
+    }
         
     
     @Override
