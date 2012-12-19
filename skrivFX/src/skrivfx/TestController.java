@@ -427,8 +427,8 @@ public class TestController implements Initializable{
         track.getChildren().add(p.getMiniMap());
         
         //save previous position of the viewport before switching to new tab
-        double y = ((views.Page) tabPane.getSelectionModel().getSelectedItem()).getViewportTranslatePosition();
-        ((views.Page) tabPane.getSelectionModel().getSelectedItem()).setViewportTranslatePosition(y);
+//        double y = ((views.Page) tabPane.getSelectionModel().getSelectedItem()).getViewportTranslatePosition();
+//        ((views.Page) tabPane.getSelectionModel().getSelectedItem()).setViewportTranslatePosition(y);
         
         //reset viewport 
         this.viewport.setTranslateY(0.0);
@@ -632,6 +632,7 @@ public class TestController implements Initializable{
             vpTranslate.setCycleCount(1);
             vpTranslate.play();
             viewport.setY(viewport.getY() + (viewport.getHeight()/2));
+            view.getCurrentPage().setViewportTranslatePosition(viewport.getY());
         }
         else{
             viewport.setY(340);
@@ -748,10 +749,11 @@ public class TestController implements Initializable{
         tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>(){
             @Override
             public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
-                wbe.commitWord();
-                view.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
-                model.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
-                System.out.println("Tab Changed");
+                tabChanged();
+//                wbe.commitWord();
+//                view.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
+//                model.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
+//                System.out.println("Tab Changed");
             }
         });
         
@@ -778,6 +780,19 @@ public class TestController implements Initializable{
         tabPane.setOnMouseReleased(pe);
         tabPane.setOnKeyPressed(pe);
         tabPane.setOnKeyReleased(pe);
+    }
+    
+    private void tabChanged(){
+        //save previous position of the viewport before switching to new tab
+        //double y = ((views.Page) tabPane.getSelectionModel().getSelectedItem()).getViewportTranslatePosition();
+        //((views.Page) tabPane.getSelectionModel().getSelectedItem()).setViewportTranslatePosition(y);
+        
+        wbe.commitWord();
+        view.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
+        model.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
+        System.out.println("Tab Changed");
+        
+        this.setViewportPosition(view.getCurrentPage().getViewportTranslatePosition());
     }
     
     
