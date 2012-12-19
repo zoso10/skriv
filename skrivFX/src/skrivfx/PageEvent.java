@@ -22,7 +22,7 @@ public class PageEvent implements EventHandler<Event>{
     private models.ModelSingleton model;
     private TestController tc;
     private Path path;
-    
+    private double x, y;
     public PageEvent(TestController t){
         tc = t;
         view = views.ViewSingleton.getInstance();
@@ -50,6 +50,8 @@ public class PageEvent implements EventHandler<Event>{
             view.getCurrentPageCanvas().getGraphicsContext2D().beginPath();
             view.getCurrentPageCanvas().getGraphicsContext2D().moveTo(e.getX(), e.getY());
             System.out.println("mouse pressed");
+            x=e.getX();
+            y=e.getY();
         }
         System.out.println("inside mouse pressed");
     }
@@ -58,7 +60,7 @@ public class PageEvent implements EventHandler<Event>{
 
     private void mouseDragged(MouseEvent e) {
         if(e.isShiftDown()){
-            view.getCurrentPageCanvas().getGraphicsContext2D().lineTo(e.getX(), e.getY());
+            //view.getCurrentPageCanvas().getGraphicsContext2D().lineTo(e.getX(), e.getY());
             view.getCurrentPageCanvas().getGraphicsContext2D().stroke();
             System.out.println("mouse dragged");
             System.out.println((e.getX()) + ", " + e.getY());            
@@ -69,7 +71,9 @@ public class PageEvent implements EventHandler<Event>{
 
     private void mouseReleased(MouseEvent e) {
         System.out.println("inside mouse released");
-        
+        //do word function, x and y in here are initial mouse places
+        //use getX anD getY to search the words for which things it passes through
+        //erase what it passes through. 
     }
     
 }

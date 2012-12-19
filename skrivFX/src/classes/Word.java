@@ -34,4 +34,6 @@ public class Word {
     public double getHeight(){
         return height;
     }
+    public double getX(){return x;}
+    public double getY(){return y;}
 }
