@@ -7,15 +7,12 @@ import javafx.scene.paint.Color;
 public class Word {
     
     private Image image; // This image holds the Word essentially
-    private double width, height;
     private double x, y;
     private Color c;
     // etc...
     
     public Word(Image image){
         this.image = image;
-        width = image.getWidth();
-        height = image.getHeight();
     }
     
     public void setLocation(double x, double y){
@@ -28,12 +25,14 @@ public class Word {
     }
     
     public double getWidth(){
-        return width;
+        return image.getWidth();
     }
     
     public double getHeight(){
-        return height;
+        return image.getHeight(); 
     }
-    public double getX(){return x;}
-    public double getY(){return y;}
+    
+    public double getX(){ return x; }
+    
+    public double getY(){ return y; }
 }
