@@ -753,7 +753,8 @@ public class TestController implements Initializable{
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
         //view.makeMinimapCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
      
-        wbe = new WritingBoxEvent();
+        // Pass it the toggle button
+        wbe = new WritingBoxEvent(writeButton);
         view.addHandlers(wbe);
         view.setLineWidth(3);
 
@@ -766,10 +767,6 @@ public class TestController implements Initializable{
             @Override
             public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
                 tabChanged();
-//                wbe.commitWord();
-//                view.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
-//                model.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
-//                System.out.println("Tab Changed");
             }
         });
         
@@ -788,7 +785,6 @@ public class TestController implements Initializable{
         });
         
         
-        
         PageEvent pe = new PageEvent(this);
         
         tabPane.setOnMousePressed(pe);
@@ -802,13 +798,18 @@ public class TestController implements Initializable{
         //save previous position of the viewport before switching to new tab
         //double y = ((views.Page) tabPane.getSelectionModel().getSelectedItem()).getViewportTranslatePosition();
         //((views.Page) tabPane.getSelectionModel().getSelectedItem()).setViewportTranslatePosition(y);
-        
-        wbe.commitWord();
-        view.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
-        model.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
-        System.out.println("Tab Changed");
-        
-        this.setViewportPosition(view.getCurrentPage().getViewportTranslatePosition());
+        if(tabPane.getTabs().size() != 0){
+            wbe.commitWord();
+            view.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
+            model.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
+            System.out.println("Tab Changed");
+
+            this.setViewportPosition(view.getCurrentPage().getViewportTranslatePosition());
+        }
+        else{
+            view.setCurrentIndex(-1);
+            model.setCurrentIndex(-1);
+        }
     }
     
     

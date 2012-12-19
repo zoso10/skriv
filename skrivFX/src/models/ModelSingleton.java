@@ -71,9 +71,17 @@ public class ModelSingleton {
         }
     }
     
+    public int getWordCount(){
+        return pages.get(currentIndex).getWordCount();
+    }
+    
     // Getters for bounds
     public int left(){
         return (int)left;
+    }
+    
+    public int right(){
+        return (int)right;
     }
     
     public int top(){
@@ -86,6 +94,10 @@ public class ModelSingleton {
     
     public int getHeight(){
         return (int)height;
+    }
+    
+    public int getSpaceFactor(){
+        return spaceFactor;
     }
     
     private void reset(){

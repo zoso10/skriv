@@ -4,10 +4,8 @@ public class Notes{
 
     private java.util.List<classes.Word> words;
     private java.util.Stack<classes.Word> undoStack;
-    private int wordCount; 
     
     public Notes(){
-        wordCount = 0;
         words = new java.util.ArrayList<>();
         undoStack = new java.util.Stack<>();
     }
@@ -17,7 +15,6 @@ public class Notes{
     }
     
     public void addWord(classes.Word w){
-        ++wordCount;
         words.add(w);
     }
     
@@ -32,6 +29,6 @@ public class Notes{
     }
     
     public int getWordCount(){
-        return wordCount;
+        return words.size();
     }
 }

@@ -60,11 +60,13 @@ public class PageEvent implements EventHandler<Event>{
                 // Check x-coords
                 if(w.getX() > endX && w.getX() < beginX){
                     System.out.println("Word should be removed");
-                    //model.deleteWord(w);
+//                    model.deleteWord(w);
                     view.eraseWord(w);
                     break;
                 }
             }
+
+            
         }
         //System.out.println("inside mouse released");
         //do word function, x and y in here are initial mouse places

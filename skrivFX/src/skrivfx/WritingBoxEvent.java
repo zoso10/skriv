@@ -5,6 +5,7 @@
 package skrivfx;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -16,13 +17,15 @@ public class WritingBoxEvent implements EventHandler<MouseEvent>{
     private static final double howFar = .9; // Wow I suck with var names...
     private views.ViewSingleton view;
     private models.ModelSingleton model;
+    private ToggleButton flag; //
     private classes.ClearThread t;
     private javafx.scene.image.Image image;
     private boolean hasReachedEnd = false;
     
-    public WritingBoxEvent(){
+    public WritingBoxEvent(ToggleButton flag){
         view = views.ViewSingleton.getInstance();
         model = models.ModelSingleton.getInstance();
+        this.flag = flag;
         t = classes.ClearThread.getInstance();
         t.start();
     }
@@ -39,7 +42,7 @@ public class WritingBoxEvent implements EventHandler<MouseEvent>{
     
     @Override
     public void handle(MouseEvent e) {
-        if(model.getCurrentIndex() == -1){ System.out.println("Cannot write!!"); }
+        if(model.getCurrentIndex() == -1 || !flag.isSelected()){ System.out.println("Cannot write!!"); }
         else if(e.getEventType().equals(MouseEvent.MOUSE_PRESSED)){ mousePressedEvent(e); }
         else if(e.getEventType().equals(MouseEvent.MOUSE_DRAGGED)){ mouseDraggedEvent(e); }
         else{ mouseReleased(e); }
@@ -48,10 +51,11 @@ public class WritingBoxEvent implements EventHandler<MouseEvent>{
     private void mousePressedEvent(MouseEvent e){
         view.startLine(e.getX(), e.getY());
         t.reset();
-        if(model.isNewWord(e.getX(), e.getY()) && image != null){
+        if(isNewWord(e.getX(), e.getY()) && image != null){
             classes.Word w = new classes.Word(image);
             model.addWord(w);
             view.drawWord(w);
+            System.out.println("New Word: " + model.getWordCount());
         }
     }
     
@@ -67,5 +71,9 @@ public class WritingBoxEvent implements EventHandler<MouseEvent>{
             t.restart();
             hasReachedEnd = false;
         }
+    }
+    
+    private boolean isNewWord(double x, double y){
+        return (model.right() + model.getSpaceFactor() < x || model.left() - model.getSpaceFactor() > x);
     }
 }
