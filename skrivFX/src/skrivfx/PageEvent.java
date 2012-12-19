@@ -58,16 +58,11 @@ public class PageEvent implements EventHandler<Event>{
             java.util.List<classes.Word> words = model.getWords();
             for(classes.Word w : words){
                 // Check x-coords
-                if(w.getX() > endX && w.getX() < beginX){
+                if(w.getX()+w.getWidth() > endX && w.getX() < beginX&& (endY < w.getY()+w.getHeight() && beginY > w.getY()) ){
                     System.out.println("Word should be removed");
 //                    model.deleteWord(w);
                     view.eraseWord(w);
-                    break;
-                }
-            }
-
-            
-        }
+                    break;}}}
         //System.out.println("inside mouse released");
         //do word function, x and y in here are initial mouse places
         //use getX anD getY to search the words for which things it passes through

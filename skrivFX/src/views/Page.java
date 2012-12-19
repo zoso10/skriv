@@ -98,7 +98,7 @@ public class Page extends Tab {
         javafx.scene.paint.Paint temp = gc.getFill();
         gc.setFill(Color.AQUAMARINE);
         // Just a little extra wiggle room
-        gc.fillRect(w.getX()-1, w.getY()-1, w.getWidth()+1, w.getHeight()+1);
+        gc.fillRect(w.getX()-1, w.getY(), w.getWidth()+1,41);
         gc.setFill(temp);
     }
     

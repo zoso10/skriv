@@ -24,6 +24,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -481,9 +482,11 @@ public class TestController implements Initializable{
             try{
                 FileOutputStream fos = new FileOutputStream(f);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
-                for(Word w : model.getWords()){
-                    oos.writeObject(w);
-                }   
+//                for(Word w : model.getWords()){
+//                    oos.writeObject(w);
+//                }   
+                System.out.println("Got ehre!");
+               //oos.writeObject(view.getSnapshot(0, 0, 100, 900)));
                 fos.close();
                 oos.close();
             } catch(Exception e){ System.out.println("oh dang..."); }
