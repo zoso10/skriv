@@ -7,7 +7,7 @@ public class ModelSingleton {
     private double left, right, top, bottom;
     private double width, height;
     private java.util.List<models.Notes> pages;
-    private int currentIndex;
+    private int currentIndex; // current Notes page
     private static ModelSingleton instance;
     
     private ModelSingleton(){
@@ -36,6 +36,29 @@ public class ModelSingleton {
         return currentIndex;
     }
     
+    // For adding/deleting Words
+    public void addWord(classes.Word w){
+        pages.get(currentIndex).addWord(w);
+        reset();
+    }
+    
+    public void deleteWord(classes.Word w){
+        pages.get(currentIndex).deleteWord(w);
+    }
+    
+    public void deleteWordAtIndex(int index){
+        pages.get(currentIndex).deleteWordAtIndex(index);
+    }
+    
+    public java.util.List<classes.Word> getWords(){
+        return pages.get(currentIndex).getWords();
+    }
+    
+    // For adding points to Word
+    public void addPoint(double x, double y){
+        checkBounds(x, y);
+    }
+    
     public boolean isNewWord(double x, double y){
         if(right + spaceFactor < x || left - spaceFactor > x){
             System.out.println("New Word: " + pages.get(currentIndex).getWordCount());
@@ -48,19 +71,7 @@ public class ModelSingleton {
         }
     }
     
-    public void addPoint(double x, double y){
-        checkBounds(x, y);
-    }
-    
-    public void addWord(classes.Word w){
-        pages.get(currentIndex).addWord(w);
-        reset();
-    }
-    
-    public java.util.List<classes.Word> getWords(){
-        return pages.get(currentIndex).getWords();
-    }
-    
+    // Getters for bounds
     public int left(){
         return (int)left;
     }

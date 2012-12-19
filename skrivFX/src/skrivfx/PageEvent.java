@@ -1,20 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package skrivfx;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Path;
 
-/**
- *
- * @author Tyler
- */
+
 public class PageEvent implements EventHandler<Event>{
 
     
@@ -23,16 +14,15 @@ public class PageEvent implements EventHandler<Event>{
     private TestController tc;
     private Path path;
     private double x, y;
+    private double beginX, beginY, endX, endY;
     public PageEvent(TestController t){
         tc = t;
         view = views.ViewSingleton.getInstance();
         model = models.ModelSingleton.getInstance();
-        
     }
     
     @Override
-    public void handle(Event e) {
-         
+    public void handle(Event e) {        
          if (e.getEventType() == MouseEvent.MOUSE_PRESSED){
              mousePressed((MouseEvent)e);
          }
@@ -41,36 +31,41 @@ public class PageEvent implements EventHandler<Event>{
          }
          if (e.getEventType() == MouseEvent.MOUSE_RELEASED){
              mouseReleased((MouseEvent)e);
-         }
-         
-    }
-    
-    public void mousePressed(MouseEvent e){
-        if(e.isShiftDown()){
-            view.getCurrentPageCanvas().getGraphicsContext2D().beginPath();
-            view.getCurrentPageCanvas().getGraphicsContext2D().moveTo(e.getX(), e.getY());
-            System.out.println("mouse pressed");
-            x=e.getX();
-            y=e.getY();
-        }
-        System.out.println("inside mouse pressed");
+         } 
     }
     
     // We need clever ways of identifying what the user is doing
-
-    private void mouseDragged(MouseEvent e) {
+    public void mousePressed(MouseEvent e){
         if(e.isShiftDown()){
-            //view.getCurrentPageCanvas().getGraphicsContext2D().lineTo(e.getX(), e.getY());
-            view.getCurrentPageCanvas().getGraphicsContext2D().stroke();
-            System.out.println("mouse dragged");
-            System.out.println((e.getX()) + ", " + e.getY());            
+            beginX = e.getX();
+            beginY = e.getY();
+            //System.out.println(x + " " + y);
+        }
+    }
+    
+    // No real need for this
+    private void mouseDragged(MouseEvent e) {
+        if(e.isShiftDown()){          
             
         }
-        System.out.println("inside mouse dragged");
     }
 
     private void mouseReleased(MouseEvent e) {
-        System.out.println("inside mouse released");
+        if(e.isShiftDown()){
+            endX = e.getX();
+            endY = e.getY();
+            
+            java.util.List<classes.Word> words = model.getWords();
+            for(classes.Word w : words){
+                // Check x-coords
+                if(w.getX() > endX && w.getX() < beginX){
+                    System.out.println("Word should be removed");
+                    //model.deleteWord(w);
+                    view.eraseWord(w);
+                }
+            }
+        }
+        //System.out.println("inside mouse released");
         //do word function, x and y in here are initial mouse places
         //use getX anD getY to search the words for which things it passes through
         //erase what it passes through. 

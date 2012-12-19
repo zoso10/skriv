@@ -74,6 +74,10 @@ public class ViewSingleton {
         tabs.get(currentIndex).drawWord(w);
     }
     
+    public void eraseWord(Word w){
+        tabs.get(currentIndex).eraseWord(w);
+    }
+    
     public Image getSnapshot(int x, int y, int width, int height){
         SnapshotParameters sp = new SnapshotParameters();
         sp.setViewport(new javafx.geometry.Rectangle2D(x, y, width, height));

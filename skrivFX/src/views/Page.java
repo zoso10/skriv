@@ -7,23 +7,22 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Tab;
+import javafx.scene.paint.Color;
 import skrivfx.TestController;
 
 public class Page extends Tab {
 
     private static double scale = .65;
     private final double mmScale = .1727;
-    private Canvas mmCanvas;
-    private GraphicsContext mmGC;
+    private Canvas mmCanvas; //Minimap
+    private GraphicsContext mmGC; // Minimap
     private Canvas canvas;
     private GraphicsContext gc;
     private double curX, curY; // Cursor
-    private boolean isFirst = true;
+    private boolean isFirst = true; // For scaling
     private TestController tc;
     private double viewportTranslatePostion = 0.0;
-    // Maybe...
-    // A Page can only have one set of Notes
-    //private Notes notes;
+
 
     public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, TestController tc) {
         this(width, height, "Untitled " + tc.newPageUpdateCount(), tc);
@@ -93,6 +92,13 @@ public class Page extends Tab {
             mmGC.drawImage(w.getImage(), mmScale*curX, mmScale*curY, mmScale*w.getWidth(), mmScale*w.getHeight());
         }
         curX = curX + 40 + scale * w.getWidth();
+    }
+    
+    public void eraseWord(Word w){
+        javafx.scene.paint.Paint temp = gc.getFill();
+        gc.setFill(Color.AQUAMARINE);
+        gc.fillRect(w.getX(), w.getY(), w.getWidth(), w.getHeight());
+        gc.setFill(temp);
     }
     
     public void carriageReturn(){
