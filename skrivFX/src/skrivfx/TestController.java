@@ -13,8 +13,6 @@ import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -26,7 +24,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -43,7 +40,6 @@ public class TestController implements Initializable{
     // Other stuff
     private models.ModelSingleton model;
     private views.ViewSingleton view;
-    private boolean hasReachedEnd = false;
     private WritingBoxEvent wbe;
     
     //These are objects injected from the FXML file:
@@ -424,26 +420,11 @@ public class TestController implements Initializable{
     @FXML
     @SuppressWarnings("empty-statement")
     private void handleNewButtonAction(){
-        if(tabPane.getTabs().size() != 0){
-//            Word word = new Word(view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight()));
-//            model.addWord(word);
-//            view.drawWord(word);
-//            view.clearWritingCanvas();
-            //wbe.commitWord();
-            
-        }
-        
         views.Page p = view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this);
         tabPane.getTabs().add(p);
         model.addPage();
         p.addPageHandlers(new PageEvent(this));
         track.getChildren().add(p.getMiniMap());
-//        
-//        tabPane.getTabs().add(view.addTab(tabPane.widthProperty(), tabPane.heightProperty(), this));
-//        model.addPage();
-//        tabPane.getSelectionModel().select(model.getCurrentIndex());
-//        ((views.Page)tabPane.getSelectionModel().getSelectedItem()).addPageHandlers(new PageEvent(this));
-//        track.getChildren().add(view.getCurrentPageMiniMap());
         
         //save previous position of the viewport before switching to new tab
         double y = ((views.Page) tabPane.getSelectionModel().getSelectedItem()).getViewportTranslatePosition();
@@ -770,7 +751,7 @@ public class TestController implements Initializable{
                 wbe.commitWord();
                 view.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
                 model.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());
-                
+                System.out.println("Tab Changed");
             }
         });
         
@@ -791,7 +772,7 @@ public class TestController implements Initializable{
         
         
         PageEvent pe = new PageEvent(this);
-
+        
         tabPane.setOnMousePressed(pe);
         tabPane.setOnMouseDragged(pe);
         tabPane.setOnMouseReleased(pe);

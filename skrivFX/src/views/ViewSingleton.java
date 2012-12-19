@@ -102,6 +102,10 @@ public class ViewSingleton {
         return tabs.get(currentIndex).getMiniMap();
     }
     
+    public views.Page getCurrentPage(){
+        return tabs.get(currentIndex);
+    }
+    
     public void clearWritingCanvas(){
         writingGC.clearRect(0, 0, writingCanvas.getWidth(), writingCanvas.getHeight());
     }
