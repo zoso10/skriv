@@ -97,7 +97,8 @@ public class Page extends Tab {
     public void eraseWord(Word w){
         javafx.scene.paint.Paint temp = gc.getFill();
         gc.setFill(Color.AQUAMARINE);
-        gc.fillRect(w.getX(), w.getY(), w.getWidth(), w.getHeight());
+        // Just a little extra wiggle room
+        gc.fillRect(w.getX()-1, w.getY()-1, w.getWidth()+1, w.getHeight()+1);
         gc.setFill(temp);
     }
     

@@ -62,6 +62,7 @@ public class PageEvent implements EventHandler<Event>{
                     System.out.println("Word should be removed");
                     //model.deleteWord(w);
                     view.eraseWord(w);
+                    break;
                 }
             }
         }
