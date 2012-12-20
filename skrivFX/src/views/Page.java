@@ -91,14 +91,16 @@ public class Page extends Tab {
             //gc.drawImage(w.getImage(), curX, curY + 50-w.getHeight(), scale * w.getWidth(), scale * w.getHeight());
             mmGC.drawImage(w.getImage(), mmScale*curX, mmScale*curY, mmScale*w.getWidth(), mmScale*w.getHeight());
         }
+        
         curX = curX + 40 + scale * w.getWidth();
+        w.setWidth(scale*w.getWidth());
     }
     
     public void eraseWord(Word w){
         javafx.scene.paint.Paint temp = gc.getFill();
-        gc.setFill(Color.CADETBLUE);
+        gc.setFill(Color.WHITE);
         // Just a little extra wiggle room
-        gc.fillRect(w.getX()-1, w.getY()-10, w.getWidth()+1, 50);
+        gc.fillRect(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
         gc.setFill(temp);
     }
     
