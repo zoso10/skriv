@@ -757,7 +757,7 @@ public class TestController implements Initializable{
         //view.makeMinimapCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
      
         // Pass it the toggle button
-        wbe = new WritingBoxEvent(writeButton);
+        wbe = new WritingBoxEvent(writeButton, wordCountLabel);
         view.addHandlers(wbe);
         view.setLineWidth(3);
 
