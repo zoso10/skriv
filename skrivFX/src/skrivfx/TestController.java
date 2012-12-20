@@ -1,9 +1,6 @@
 package skrivfx;
 
-import classes.Word;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
@@ -27,7 +24,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -433,10 +429,6 @@ public class TestController implements Initializable{
         p.addPageHandlers(new PageEvent(this));
         track.getChildren().add(p.getMiniMap());
         
-        //save previous position of the viewport before switching to new tab
-//        double y = ((views.Page) tabPane.getSelectionModel().getSelectedItem()).getViewportTranslatePosition();
-//        ((views.Page) tabPane.getSelectionModel().getSelectedItem()).setViewportTranslatePosition(y);
-        
         //reset viewport 
         this.viewport.setTranslateY(0.0);
         this.viewport.setY(0.0);
@@ -494,7 +486,6 @@ public class TestController implements Initializable{
     }
     @FXML
     private void handleCloseButtonAction(ActionEvent e){
-        //tabPane.getTabs().remove(tabPane.getSelectionModel().getSelectedItem());
         tabPane.getTabs().remove(model.getCurrentIndex());
         System.out.println("tab removed");
         if(menuButton.isSelected()){
@@ -503,7 +494,6 @@ public class TestController implements Initializable{
             this.hideAllMenuButtons();
             if(tabPane.getTabs().size() == 0){
                 this.writeButton.setSelected(false);
-                //this.handleWriteButtonAction(e);
                 this.writeButtonClose();
             }
         }
@@ -512,17 +502,13 @@ public class TestController implements Initializable{
     @FXML
     private void handleSettingsButtonAction(){
         if(menuButton.isSelected()){
-//            this.menuButtonClose();
-//            menuButton.setSelected(false);
-//            this.hideAllMenuButtons();
             if(settingsPane.isVisible()){
                 this.closeSettingsPane();
             }
             else{
                 this.openSettingsPane();
             }
-        }
-        
+        }   
     }
     
     private void openSettingsPane(){
@@ -599,37 +585,37 @@ public class TestController implements Initializable{
     
     @FXML
     private void handleChatButtonPressed(){
-    if (chatButton.isSelected()){
-        this.chatPane.setVisible(true);
-        FadeTransition chatFade = 
-        new FadeTransition(Duration.millis(100), chatPane);
-        chatFade.setFromValue(0.0);
-        chatFade.setToValue(1.0);
-        chatFade.setCycleCount(1);
-        chatFade.setAutoReverse(true);
-        chatFade.play();
-    }
-    else{
-        FadeTransition chatFade = 
-        new FadeTransition(Duration.millis(100), chatPane);
-        chatFade.setFromValue(1.0);
-        chatFade.setToValue(0.0);
-        chatFade.setCycleCount(1);
-        chatFade.setAutoReverse(true);
-        chatFade.play();
-        Thread t = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                try{
-                    Thread.sleep(100);
-                } catch(Exception e){ System.out.println("pause exception"); }
-                chatPane.setVisible(false);
-            }
-        });
-        t.start(); 
-        
-    }
-}
+        if (chatButton.isSelected()){
+            this.chatPane.setVisible(true);
+            FadeTransition chatFade = 
+            new FadeTransition(Duration.millis(100), chatPane);
+            chatFade.setFromValue(0.0);
+            chatFade.setToValue(1.0);
+            chatFade.setCycleCount(1);
+            chatFade.setAutoReverse(true);
+            chatFade.play();
+        }
+        else{
+            FadeTransition chatFade = 
+            new FadeTransition(Duration.millis(100), chatPane);
+            chatFade.setFromValue(1.0);
+            chatFade.setToValue(0.0);
+            chatFade.setCycleCount(1);
+            chatFade.setAutoReverse(true);
+            chatFade.play();
+            Thread t = new Thread(new Runnable(){
+                @Override
+                public void run(){
+                    try{
+                        Thread.sleep(100);
+                    } catch(Exception e){ System.out.println("pause exception"); }
+                    chatPane.setVisible(false);
+                }
+            });
+            t.start();         
+        }
+    }   
+    
 /*------------------------      Viewport     -------------------------*/
     public void moveViewportDown(){
         if(viewport.getY() < 325){
@@ -645,7 +631,6 @@ public class TestController implements Initializable{
         else{
             viewport.setY(340);
             System.out.println("viewport is at end of page");
-            //view.getCurrentPageCanvas().getGraphicsContext2D().translate(0, 10);
             view.getCurrentPageCanvas().setTranslateY(view.getCurrentPageCanvas().getTranslateY() - 10);
             view.getCurrentPageCanvas().setHeight(view.getCurrentPageCanvas().getHeight() + 10);        
             
@@ -664,9 +649,6 @@ public class TestController implements Initializable{
     
     @FXML
     private void scrollDragAction(MouseEvent evt){
-        //System.out.println("Druggeded");
-       // if (thumb.getHeight() track.getFitHeight())
-        //thumb.setOpacity(0.5);
         if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
@@ -690,7 +672,6 @@ public class TestController implements Initializable{
     
     @FXML
     private void minimouserelease(MouseEvent evt){
-        //thumb.setOpacity(0.5);
         if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
@@ -704,7 +685,6 @@ public class TestController implements Initializable{
     
     @FXML
     private void minimousedragged(MouseEvent evt){
-        //thumb.setOpacity(0.5);
         if(evt.getY()-thumb.getHeight()/2 > 0 && evt.getY()+thumb.getHeight()/2 < track.getHeight()) {
             thumb.setY(evt.getY()-thumb.getHeight()/2);
         }
@@ -729,8 +709,8 @@ public class TestController implements Initializable{
             thumb.setY(track.getHeight()-thumb.getHeight());
         }
     }
-/*------------------------  Mouse & Keyboard  ------------------------*/
     
+/*------------------------  Mouse & Keyboard  ------------------------*/
     @FXML
     private void keyPressed(KeyEvent e) {
         if(e.isShiftDown()){
@@ -754,7 +734,6 @@ public class TestController implements Initializable{
         model = models.ModelSingleton.getInstance();
         view = views.ViewSingleton.getInstance();
         view.makeWritingCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
-        //view.makeMinimapCanvas(drawingPane.widthProperty(), drawingPane.heightProperty());
      
         // Pass it the toggle button
         wbe = new WritingBoxEvent(writeButton, wordCountLabel);
@@ -798,9 +777,6 @@ public class TestController implements Initializable{
     }
     
     private void tabChanged(){
-        //save previous position of the viewport before switching to new tab
-        //double y = ((views.Page) tabPane.getSelectionModel().getSelectedItem()).getViewportTranslatePosition();
-        //((views.Page) tabPane.getSelectionModel().getSelectedItem()).setViewportTranslatePosition(y);
         if(tabPane.getTabs().size() != 0){
             wbe.commitWord();
             view.setCurrentIndex(tabPane.getSelectionModel().getSelectedIndex());

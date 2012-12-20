@@ -36,7 +36,6 @@ public class Page extends Tab {
         super();
         this.setText(title);
         makeCanvas(width, height);
-        //this.setContent(canvas);
         curX = 20;
         curY = 10;
         this.tc = tc;
@@ -50,8 +49,6 @@ public class Page extends Tab {
 
     private void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
         canvas = new Canvas();
-//        canvas.widthProperty().bind(width);
-//        canvas.heightProperty().bind(height);
         canvas.setWidth(width.doubleValue());
         canvas.setHeight(height.doubleValue());
         
@@ -98,7 +95,6 @@ public class Page extends Tab {
         else{
             w.setLocation(curX, curY);
             gc.drawImage(w.getImage(), curX, curY, scale * w.getWidth(), scale * w.getHeight());
-            //gc.drawImage(w.getImage(), curX, curY + 50-w.getHeight(), scale * w.getWidth(), scale * w.getHeight());
             mmGC.drawImage(w.getImage(), mmScale*curX, mmScale*curY, mmScale*w.getWidth(), mmScale*w.getHeight());
         }
         
@@ -107,14 +103,8 @@ public class Page extends Tab {
     }
     
     public void eraseWord(Word w){
-//        javafx.scene.paint.Paint temp = gc.getFill();
-//        gc.setFill(Color.WHITE);
-//        // Just a little extra wiggle room
-//        gc.fillRect(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
-//        gc.setFill(temp);
         Rectangle r = new Rectangle(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
         r.setFill(Color.WHITE);
-        //r.setOpacity(1);
      
         pane.getChildren().add(r);
     }
@@ -138,15 +128,6 @@ public class Page extends Tab {
         r.setBlendMode(BlendMode.SRC_OVER);
         r.setOpacity(0.2);
         
-        
-        //r.setOpacity(0.3);
         pane.getChildren().add(r);
-        //javafx.scene.paint.Paint temp = gc.getFill();
-        //gc.setFill(Color.YELLOW);
-        // Just a little extra wiggle room
-        //gc.fillRect(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
-        //gc.setFill(temp);
-    }
-    
-    
+    } 
 }
