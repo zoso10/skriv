@@ -58,12 +58,12 @@ public class PageEvent implements EventHandler<Event>{
             java.util.List<classes.Word> words = model.getWords();
             for(classes.Word w : words){
                 // Check x-coords
-                if(endX < w.getX()+w.getWidth() && w.getX()> beginX && Math.abs(w.getY()-endY) < 50){
+                if(endX < w.getX()+w.getWidth() && w.getX()> beginX && Math.abs(w.getY()-endY) < 25){
 //                if(w.getX() < endX && w.getX()+w.getWidth() > beginX && Math.abs(w.getY()-endY) < 50 ){
                     System.out.println("Word should be removed");
 //                    model.deleteWord(w);
                     view.eraseWord(w);
-                    ;
+                    break;
                 }
             }
             
@@ -75,12 +75,12 @@ public class PageEvent implements EventHandler<Event>{
             java.util.List<classes.Word> words = model.getWords();
             for(classes.Word w : words){
                 // Check x-coords
-                if(endX < w.getX()+w.getWidth() && w.getX()> beginX && Math.abs(w.getY()-endY) < 50){
+                if(endX < w.getX()+w.getWidth() && w.getX()> beginX && Math.abs(w.getY()-endY) < 25){
 //                if(w.getX() < endX && w.getX()+w.getWidth() > beginX && Math.abs(w.getY()-endY) < 50 ){
                     System.out.println("Word should be highlighted");
 //                    model.deleteWord(w);
                     view.highlightWord(w);
-                    ;
+                    break;
                 }
             }
         }
