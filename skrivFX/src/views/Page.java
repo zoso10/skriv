@@ -7,7 +7,10 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Tab;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import skrivfx.TestController;
 
 public class Page extends Tab {
@@ -22,6 +25,7 @@ public class Page extends Tab {
     private boolean isFirst = true; // For scaling
     private TestController tc;
     private double viewportTranslatePostion = 0.0;
+    private Pane pane;
 
 
     public Page(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height, TestController tc) {
@@ -32,10 +36,16 @@ public class Page extends Tab {
         super();
         this.setText(title);
         makeCanvas(width, height);
-        this.setContent(canvas);
+        //this.setContent(canvas);
         curX = 20;
         curY = 10;
         this.tc = tc;
+        
+        //added pane
+        pane = new Pane();
+        this.setContent(pane);
+        pane.setPrefSize(width.doubleValue(), height.doubleValue());
+        pane.getChildren().add(canvas);
     }
 
     private void makeCanvas(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height) {
@@ -118,11 +128,19 @@ public class Page extends Tab {
     }
 
     void highlightWord(Word w) {
-        javafx.scene.paint.Paint temp = gc.getFill();
-        gc.setFill(Color.YELLOW);
+        Rectangle r = new Rectangle(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
+        r.setFill(Color.YELLOW);
+        r.setBlendMode(BlendMode.SRC_OVER);
+        r.setOpacity(0.2);
+        
+        
+        //r.setOpacity(0.3);
+        pane.getChildren().add(r);
+        //javafx.scene.paint.Paint temp = gc.getFill();
+        //gc.setFill(Color.YELLOW);
         // Just a little extra wiggle room
-        gc.fillRect(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
-        gc.setFill(temp);
+        //gc.fillRect(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
+        //gc.setFill(temp);
     }
     
     
