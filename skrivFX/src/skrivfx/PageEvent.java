@@ -66,6 +66,23 @@ public class PageEvent implements EventHandler<Event>{
                     ;
                 }
             }
+            
+        }
+        else if (tc.getHighlightButton().isSelected()){
+            endX = e.getX();
+            endY = e.getY();
+            
+            java.util.List<classes.Word> words = model.getWords();
+            for(classes.Word w : words){
+                // Check x-coords
+                if(endX < w.getX()+w.getWidth() && w.getX()> beginX && Math.abs(w.getY()-endY) < 50){
+//                if(w.getX() < endX && w.getX()+w.getWidth() > beginX && Math.abs(w.getY()-endY) < 50 ){
+                    System.out.println("Word should be highlighted");
+//                    model.deleteWord(w);
+                    view.highlightWord(w);
+                    ;
+                }
+            }
         }
         //System.out.println("inside mouse released");
         //do word function, x and y in here are initial mouse places

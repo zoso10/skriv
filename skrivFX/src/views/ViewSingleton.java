@@ -78,6 +78,9 @@ public class ViewSingleton {
         tabs.get(currentIndex).eraseWord(w);
     }
     
+    public void highlightWord(Word w){
+        tabs.get(currentIndex).highlightWord(w);
+    }
     public Image getSnapshot(int x, int y, int width, int height){
         SnapshotParameters sp = new SnapshotParameters();
         sp.setViewport(new javafx.geometry.Rectangle2D(x, y, width, height));

@@ -651,7 +651,7 @@ public class TestController implements Initializable{
             
         }
     }
-    
+     
     public Rectangle getViewport(){
         return viewport;
     }
@@ -827,5 +827,8 @@ public class TestController implements Initializable{
     public int newPageUpdateCount(){
         pageCount++;
         return pageCount;
+    }
+    public ToggleButton getHighlightButton(){
+        return highlightButton;
     }
 }

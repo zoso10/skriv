@@ -116,6 +116,14 @@ public class Page extends Tab {
     public double getViewportTranslatePosition(){
         return this.viewportTranslatePostion;
     }
+
+    void highlightWord(Word w) {
+        javafx.scene.paint.Paint temp = gc.getFill();
+        gc.setFill(Color.YELLOW);
+        // Just a little extra wiggle room
+        gc.fillRect(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
+        gc.setFill(temp);
+    }
     
     
 }
