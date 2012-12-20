@@ -107,11 +107,16 @@ public class Page extends Tab {
     }
     
     public void eraseWord(Word w){
-        javafx.scene.paint.Paint temp = gc.getFill();
-        gc.setFill(Color.WHITE);
-        // Just a little extra wiggle room
-        gc.fillRect(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
-        gc.setFill(temp);
+//        javafx.scene.paint.Paint temp = gc.getFill();
+//        gc.setFill(Color.WHITE);
+//        // Just a little extra wiggle room
+//        gc.fillRect(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
+//        gc.setFill(temp);
+        Rectangle r = new Rectangle(w.getX()-1, w.getY()-10, w.getWidth()+2, 50);
+        r.setFill(Color.WHITE);
+        //r.setOpacity(1);
+     
+        pane.getChildren().add(r);
     }
     
     public void carriageReturn(){
