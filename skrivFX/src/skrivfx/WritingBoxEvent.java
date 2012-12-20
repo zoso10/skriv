@@ -66,6 +66,7 @@ public class WritingBoxEvent implements EventHandler<MouseEvent>{
     
     private void mouseReleased(MouseEvent e){
         image = view.getSnapshot(model.left(), model.top(), model.getWidth(), model.getHeight());
+        view.endLine();
         if(hasReachedEnd){
             t.restart();
             hasReachedEnd = false;

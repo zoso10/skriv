@@ -17,10 +17,15 @@ public class ViewSingleton {
     private javafx.scene.canvas.Canvas writingCanvas; // Writing box
     private javafx.scene.canvas.GraphicsContext writingGC;
     private int currentIndex; // Current tab
+    private java.util.List<Double> xPoints;
+    private java.util.List<Double> yPoints;
+    private int counter;
     private static ViewSingleton instance;
     
     private ViewSingleton(){
         tabs = new java.util.ArrayList<>();
+        xPoints = new java.util.ArrayList<>();
+        yPoints = new java.util.ArrayList<>();
     }
     
     public static ViewSingleton getInstance(){
@@ -88,13 +93,28 @@ public class ViewSingleton {
     }
     
     public void startLine(double x, double y){
+        xPoints.add(x);
+        yPoints.add(y);
+        counter = 0;
         writingGC.beginPath();
         writingGC.moveTo(x, y);
     }
     
     public void updateLine(double x, double y){
-        writingGC.lineTo(x, y);
-        writingGC.stroke();
+        xPoints.add(x);
+        yPoints.add(y);
+        if(xPoints.size() > 2){
+            writingGC.bezierCurveTo(xPoints.get(counter), yPoints.get(counter), 
+                                    xPoints.get(counter+1), yPoints.get(counter+1), 
+                                    xPoints.get(counter+2), yPoints.get(counter+2));
+            writingGC.stroke();
+            ++counter;
+        }
+    }
+    
+    public void endLine(){
+        xPoints.clear();
+        yPoints.clear();
     }
     
     public javafx.scene.canvas.Canvas getWritingCanvas(){
