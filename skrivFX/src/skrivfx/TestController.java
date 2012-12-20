@@ -12,9 +12,11 @@ import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
@@ -24,6 +26,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -35,6 +38,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
 
 
 public class TestController implements Initializable{
@@ -456,9 +460,13 @@ public class TestController implements Initializable{
             this.hideAllMenuButtons();
             FileChooser fc = new FileChooser();
             fc.setTitle("Open skriv file...");
-            File defaultDirectory = new File(".");
-            fc.setInitialDirectory(defaultDirectory);
-            fc.showOpenDialog(new Stage());
+            File f = fc.showOpenDialog(new Stage());
+         
+            try{
+                java.awt.image.BufferedImage temp = ImageIO.read(f);
+                Image img = SwingFXUtils.toFXImage(temp, null);
+                view.getCurrentPageCanvas().getGraphicsContext2D().drawImage(img, 0, 0);
+            } catch(Exception e){ System.out.println("Failed reading image"); }
         }
     }
     
@@ -472,24 +480,16 @@ public class TestController implements Initializable{
             
             FileChooser fc = new FileChooser();
             fc.setTitle("Save skriv file...");
-            //File defaultDirectory = new File(".");
-            //fc.setInitialDirectory(defaultDirectory);
-            //File selectedDirectory = dc.showDialog(new Stage());
-            //fc.showSaveDialog(new Stage());
             File f = fc.showSaveDialog(new Stage());
             System.out.println(f.getName());
             
+            SnapshotParameters sp = new SnapshotParameters();
+            sp.setViewport(new javafx.geometry.Rectangle2D(0,0,556,717));
+            Image temp = view.getCurrentPageCanvas().snapshot(sp, null);
+            java.awt.image.BufferedImage img = SwingFXUtils.fromFXImage(temp, null);
             try{
-                FileOutputStream fos = new FileOutputStream(f);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-//                for(Word w : model.getWords()){
-//                    oos.writeObject(w);
-//                }   
-                System.out.println("Got ehre!");
-               //oos.writeObject(view.getSnapshot(0, 0, 100, 900)));
-                fos.close();
-                oos.close();
-            } catch(Exception e){ System.out.println("oh dang..."); }
+                ImageIO.write(img, "png", f);
+            } catch(Exception e){ System.out.println("Did not save!"); }
         }
     }
     @FXML
