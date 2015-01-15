@@ -1,5 +1,7 @@
 #skriv
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zoso10/skriv?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a project to create an advanced note-taking application.
 
 **Team Leader**
